@@ -690,3 +690,24 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   .en-bref-titre { font-size: 24px; }
 }
 .texte-grille > * { min-width: 0; }
+
+/* Confidentialité : actions directes */
+.actions-droits { margin-top: 20px !important; }
+.page-texte .actions-droits .bouton, .question-donnees .bouton { color: var(--craie); text-decoration: none; }
+.page-texte .actions-droits .bouton:hover { color: #fff; }
+.question-donnees { margin-top: 36px; padding: clamp(22px, 3vw, 32px); border: 1px solid var(--encre); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; }
+.question-donnees p { margin: 0 !important; font-family: "Boska", Georgia, serif; font-weight: 500; font-size: clamp(24px, 2.4vw, 32px) !important; color: var(--encre) !important; line-height: 1.1 !important; }
+.question-donnees div { display: flex; flex-wrap: wrap; gap: 10px; }
+.question-donnees .bouton.fil { color: var(--encre); border-color: var(--encre); }
+.question-donnees .bouton.fil:hover { background: var(--encre); color: var(--craie); }
+@media (max-width: 860px) {
+  .en-bref { padding: 18px 18px 20px; }
+  .en-bref-titre { font-size: 22px; }
+  .en-bref ul { margin-top: 10px; gap: 6px; }
+  .en-bref li { font-size: 15px; line-height: 1.4; padding-left: 18px; }
+  .en-bref li::before { width: 6px; height: 6px; top: .55em; }
+  .question-donnees div, .question-donnees .bouton { width: 100%; justify-content: center; }
+  .page-texte .actions-droits .bouton { width: 100%; justify-content: center; }
+}
+.page-texte .actions-droits .bouton, .question-donnees .bouton:not(.fil) { background: var(--encre); color: var(--craie); border-color: var(--encre); }
+.page-texte .actions-droits .bouton:hover, .question-donnees .bouton:not(.fil):hover { background: var(--rouge-texte); border-color: var(--rouge-texte); color: #fff; }
