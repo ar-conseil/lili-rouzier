@@ -447,3 +447,38 @@ p { hyphens: auto; -webkit-hyphens: auto; }
 }
 @media (max-width: 980px) { .entete.resserre { background: var(--encre); } }
 @media (max-width: 980px) { .une .photo img { animation: none; } }
+
+/* ============================================================
+   Ordinateur : finitions
+   ============================================================ */
+/* Clients : logo de la marque au bout de chaque ligne */
+.generique a { align-items: center; flex-wrap: nowrap; }
+.generique .cote { display: flex; align-items: center; gap: 28px; flex: none; color: #8f867c; transition: color .4s var(--ease); }
+.generique .cote .logo { --h: 34px; opacity: .55; transition: opacity .4s var(--ease); }
+.generique .cote .logo-aushopping { --h: 22px; }
+.generique .cote .logo-les-entrees-de-la-mer { --h: 46px; }
+.generique .cote .logo-move-your-fit { --h: 28px; }
+.generique .cote i { font-style: normal; font-size: 28px; transform: translateX(-10px); opacity: 0; transition: transform .45s var(--ease), opacity .45s var(--ease); }
+.generique a:hover .cote { color: var(--rose); }
+.generique a:hover .cote .logo { opacity: 1; }
+.generique a:hover .cote i { transform: none; opacity: 1; }
+@media (max-width: 760px) { .generique .cote .logo { display: none; } .generique .cote i { opacity: 1; transform: none; font-size: 22px; } }
+
+/* Navigation : la section en cours est soulignée */
+@media (min-width: 981px) {
+  .nav a[aria-current="location"]::after { transform: none; }
+  .nav a[aria-current="location"] { color: var(--craie); }
+}
+
+/* Avis : commandes plus confortables */
+.avis .commandes button { width: 60px; height: 60px; font-size: 22px; }
+.avis .commandes span { font-variant-numeric: tabular-nums; }
+
+/* Pied de page mieux ordonné */
+.pied .bas { align-items: flex-start; }
+.pied .mentions-bas { display: grid; gap: 6px; }
+
+/* Apparitions un peu plus vives, en cascade */
+@media (min-width: 981px) {
+  .apparait { transform: translateY(20px); transition-duration: .8s; transition-delay: var(--d, 0s); }
+}

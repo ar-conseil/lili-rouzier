@@ -141,3 +141,36 @@
   new IntersectionObserver(([e]) => { uneVisible = e.isIntersecting; maj(); }).observe(une);
   new IntersectionObserver(([e]) => { contactVisible = e.isIntersecting; maj(); }, { rootMargin: "0px 0px -20% 0px" }).observe(contact);
 })();
+
+// Cascade : dans une liste, chaque élément arrive un peu après le précédent
+document.querySelectorAll(".apparait").forEach((el) => {
+  const freres = el.parentElement ? [...el.parentElement.children].filter((e) => e.classList.contains("apparait")) : [];
+  const i = freres.indexOf(el);
+  if (i > 0) el.style.setProperty("--d", `${Math.min(i, 6) * 0.07}s`);
+});
+
+// Navigation : souligner la section en cours (ordinateur)
+(() => {
+  const liens = [...document.querySelectorAll('.nav a[href^="#"]')];
+  if (!liens.length || !("IntersectionObserver" in window)) return;
+  const parId = new Map(liens.map((a) => [a.getAttribute("href").slice(1), a]));
+  const obs = new IntersectionObserver((entrees) => {
+    entrees.forEach((e) => {
+      const a = parId.get(e.target.id);
+      if (!a) return;
+      if (e.isIntersecting) { liens.forEach((l) => l.removeAttribute("aria-current")); a.setAttribute("aria-current", "location"); }
+      else if (a.getAttribute("aria-current")) a.removeAttribute("aria-current");
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  parId.forEach((_, id) => { const sec = document.getElementById(id); if (sec) obs.observe(sec); });
+})();
+
+// Avis : flèches du clavier quand le carrousel a le focus
+(() => {
+  const zone = document.querySelector("#avis");
+  if (!zone) return;
+  zone.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") zone.querySelector("[data-avis-suiv]")?.click();
+    if (e.key === "ArrowLeft") zone.querySelector("[data-avis-prec]")?.click();
+  });
+})();
