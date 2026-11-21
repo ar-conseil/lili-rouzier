@@ -20,9 +20,9 @@
 <link rel="apple-touch-icon" href="../../assets/img/icone-180.png">
 <link rel="preload" href="../../assets/fonts/boska-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../../assets/fonts/switzer-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/site.css?v=14">
+<link rel="stylesheet" href="../../assets/site.css?v=15">
 </head>
-<body>
+<body class="page-cas" style="--marque: #f1b8be; --sur-marque: #171513;">
 <a class="lien-evitement" href="#contenu">Aller au contenu</a>
 
 <header class="entete resserre" data-entete>
@@ -45,30 +45,43 @@
   </div>
 </header>
 
-<main id="contenu" class="interieur">
-  <div class="conteneur">
-    <a class="retour" href="../../#realisations">← Tous les clients</a>
-    <h1>Caroline Poissonnier</h1>
-    <p class="chapo"><span class="a-completer">[À COMPLÉTER : une phrase sur la marque et ce qu’elle attendait]</span></p>
-
-    <div class="planches" aria-label="Visuels">
-      <div class="cadre"><span class="a-completer">[À COMPLÉTER : visuel principal (publication, campagne, story)]</span></div>
-      <div class="cadre"><span class="a-completer">[À COMPLÉTER : visuel]</span></div>
-      <div class="cadre"><span class="a-completer">[À COMPLÉTER : visuel]</span></div>
+<main id="contenu" class="cas">
+  <section class="cas-une">
+    <div class="conteneur">
+      <a class="retour" href="../../#realisations">← Tous les clients</a>
+      
+      <h1>Caroline Poissonnier</h1>
+      <p class="chapo"><span class="a-completer">[À COMPLÉTER : une phrase sur la marque et ce qu’elle attendait]</span></p>
     </div>
+  </section>
 
-    <div class="fiche">
-      <div class="apparait"><h2>Le contexte</h2><p><span class="a-completer">[À COMPLÉTER : où en était la marque sur les réseaux à l’arrivée de Lili]</span></p></div>
-      <div class="apparait"><h2>Ma mission</h2><div><p><span class="a-completer">[À COMPLÉTER : ce que Lili a fait pour Caroline Poissonnier]</span></p></div></div>
-      <div class="apparait"><h2>Ce que j’ai fait</h2><p><span class="a-completer">[À COMPLÉTER : ligne éditoriale, contenus, influence, animation… ce qui s’applique]</span></p></div>
-      <div class="apparait"><h2>Les résultats</h2><p><span class="a-completer">[À COMPLÉTER : chiffres vérifiables, s’il y en a]</span></p></div>
-    </div>
+  <div class="conteneur cas-corps">
+    <dl class="fiche">
+      <div class="apparait"><dt>Le contexte</dt><dd><p><span class="a-completer">[À COMPLÉTER : où en était la marque sur les réseaux à l’arrivée de Lili]</span></p></dd></div>
+      <div class="apparait"><dt>Ma mission</dt><dd><p><span class="a-completer">[À COMPLÉTER : ce que Lili a fait pour Caroline Poissonnier]</span></p></dd></div>
+      <div class="apparait"><dt>Ce que j’ai fait</dt><dd><p><span class="a-completer">[À COMPLÉTER : ligne éditoriale, contenus, influence, animation… ce qui s’applique]</span></p></dd></div>
+      <div class="apparait"><dt>Les résultats</dt><dd><p><span class="a-completer">[À COMPLÉTER : chiffres vérifiables, s’il y en a]</span></p></dd></div>
+    </dl>
 
-    <div class="suite">
-      <a class="suivant" href="../../realisations/les-entrees-de-la-mer/"><span>Client suivant</span><b>Les Entrées de la Mer →</b></a>
-      <a class="bouton" href="../../#contact">Parlons de votre projet <span class="fleche" aria-hidden="true">→</span></a>
-    </div>
+    <div class="cas-visuel vide apparait"><p><span class="a-completer">[À COMPLÉTER : visuels du projet : publications, campagnes, stories]</span></p></div>
+
   </div>
+
+  <section class="cas-autres">
+    <div class="conteneur">
+      <h2 class="titre">Les autres clients</h2>
+      <ul class="generique">
+        <li><a href="../../realisations/nhood/"><b>Nhood</b><span class="cote"><span class="logo logo-nhood" aria-hidden="true"></span><i aria-hidden="true">→</i></span></a></li>
+        <li><a href="../../realisations/aushopping/"><b>Aushopping</b><span class="cote"><span class="logo logo-aushopping" aria-hidden="true"></span><i aria-hidden="true">→</i></span></a></li>
+        <li><a href="../../realisations/les-entrees-de-la-mer/"><b>Les Entrées de la Mer</b><span class="cote"><span class="logo logo-les-entrees-de-la-mer" aria-hidden="true"></span><i aria-hidden="true">→</i></span></a></li>
+        <li><a href="../../realisations/move-your-fit/"><b>Move Your Fit</b><span class="cote"><span class="logo logo-move-your-fit" aria-hidden="true"></span><i aria-hidden="true">→</i></span></a></li>
+      </ul>
+      <div class="cas-appel">
+        <p>Envie de vous lancer&#8239;?</p>
+        <a class="bouton" href="../../#contact">Parlons de votre projet <span class="fleche" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="pied">
@@ -80,6 +93,6 @@
     </div>
   </div>
 </footer>
-<script src="../../assets/site.js?v=14" defer></script>
+<script src="../../assets/site.js?v=15" defer></script>
 </body>
 </html>

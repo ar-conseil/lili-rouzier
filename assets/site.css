@@ -482,3 +482,59 @@ p { hyphens: auto; -webkit-hyphens: auto; }
 @media (min-width: 981px) {
   .apparait { transform: translateY(20px); transition-duration: .8s; transition-delay: var(--d, 0s); }
 }
+
+/* ============================================================
+   Pages clients : aux couleurs de la marque
+   ============================================================ */
+.cas-une { background: var(--marque); color: var(--sur-marque); padding: 150px 0 clamp(64px, 8vw, 110px); }
+.cas-une .retour { color: var(--sur-marque); opacity: .75; }
+.cas-une .retour:hover { opacity: 1; color: var(--sur-marque); }
+.cas-une .logo { display: block; --h: 72px; margin: 8px 0 34px; color: var(--sur-marque); }
+.cas-une .logo-aushopping { --h: 46px; }
+.cas-une .logo-les-entrees-de-la-mer { --h: 120px; }
+.cas-une .logo-move-your-fit { --h: 60px; }
+.cas-une h1 { font-size: clamp(60px, 10vw, 176px); line-height: .9; color: var(--sur-marque); }
+.cas-une .chapo { margin-top: 26px; max-width: 32em; font-size: 20px; color: var(--sur-marque); }
+
+.cas-corps { padding-top: clamp(72px, 9vw, 130px); padding-bottom: clamp(72px, 9vw, 130px); }
+.cas-corps .fiche { margin: 0; border-top: 1px solid #3a3530; }
+.cas-corps .fiche > div { display: grid; grid-template-columns: 4fr 7fr; gap: 32px; padding: 30px 0; border-bottom: 1px solid #3a3530; }
+.cas-corps dt { font-family: "Boska", Georgia, serif; font-weight: 500; font-size: clamp(30px, 3vw, 44px); line-height: 1; }
+.cas-corps dt::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 14px; vertical-align: .18em; background: var(--marque); border-radius: 50%; box-shadow: 0 0 0 1px rgba(244,239,232,.25); }
+.cas-corps dd { margin: 0; color: #ddd5cb; }
+.cas-corps dd p + p { margin-top: 12px; }
+
+.cas-visuel { margin-top: clamp(64px, 8vw, 110px); }
+.cas-visuel img { width: min(100%, 860px); aspect-ratio: 1; object-fit: cover; }
+.cas-visuel figcaption { margin-top: 12px; font-size: 14px; color: #a59c92; }
+.cas-visuel figcaption a { color: var(--craie); text-underline-offset: 3px; }
+.cas-visuel.vide { display: grid; place-items: center; min-height: 260px; border: 1px solid #3a3530; border-left: 6px solid var(--marque); padding: 24px; }
+
+.cas-citation { margin-top: clamp(64px, 8vw, 110px); padding-left: clamp(0px, 4vw, 56px); border-left: 2px solid var(--marque); }
+.cas-citation blockquote { font-family: "Boska", Georgia, serif; font-weight: 400; font-size: clamp(28px, 3.4vw, 52px); line-height: 1.12; max-width: 22em; }
+.cas-citation figcaption { margin-top: 16px; font-size: 15px; color: #a59c92; }
+
+.cas-autres { padding: clamp(72px, 9vw, 130px) 0; border-top: 1px solid #2c2824; }
+.cas-autres .generique { margin-top: 36px; }
+.cas-autres .generique b { font-size: clamp(36px, 5vw, 80px); }
+.cas-appel { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; margin-top: clamp(56px, 7vw, 96px); padding: clamp(28px, 4vw, 48px); background: var(--craie); color: var(--encre); }
+.cas-appel p { font-family: "Boska", Georgia, serif; font-weight: 500; font-size: clamp(30px, 3.4vw, 52px); line-height: 1; }
+.cas-appel .bouton { background: var(--encre); color: var(--craie); border-color: var(--encre); }
+.cas-appel .bouton:hover { background: var(--rouge-texte); border-color: var(--rouge-texte); color: #fff; }
+
+@media (max-width: 760px) {
+  .cas-une { padding-top: 110px; }
+  .cas-corps .fiche > div { grid-template-columns: 1fr; gap: 10px; }
+  .cas-une .logo { --h: 54px; }
+  .cas-une .logo-les-entrees-de-la-mer { --h: 90px; }
+}
+/* En-tête lisible sur la couleur de la marque, tant qu'on est en haut de page */
+@media (min-width: 981px) {
+  .page-cas .entete:not(.resserre) .marque,
+  .page-cas .entete:not(.resserre) .nav a:not(.bouton) { color: var(--sur-marque); }
+  .page-cas .entete:not(.resserre) .nav .bouton { background: var(--sur-marque); color: var(--marque); border-color: var(--sur-marque); }
+}
+@media (max-width: 980px) {
+  .page-cas:not(.menu-ouvert) .entete:not(.resserre) .marque,
+  .page-cas:not(.menu-ouvert) .entete:not(.resserre) .burger { color: var(--sur-marque); }
+}
