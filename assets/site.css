@@ -711,3 +711,34 @@ p { hyphens: auto; -webkit-hyphens: auto; }
 }
 .page-texte .actions-droits .bouton, .question-donnees .bouton:not(.fil) { background: var(--encre); color: var(--craie); border-color: var(--encre); }
 .page-texte .actions-droits .bouton:hover, .question-donnees .bouton:not(.fil):hover { background: var(--rouge-texte); border-color: var(--rouge-texte); color: #fff; }
+
+/* ============================================================
+   Accueil sur téléphone : deuxième passe
+   ============================================================ */
+@media (max-width: 760px) {
+  /* Services : cartes à faire glisser, avec leur vignette */
+  .services-grille { display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; gap: 12px; margin: 32px calc(var(--marge) * -1) 0; padding: 0 var(--marge) 8px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--marge); scrollbar-width: none; }
+  .services-grille::-webkit-scrollbar { display: none; }
+  .services-grille li { scroll-snap-align: start; display: flex; flex-direction: column; align-items: stretch; padding: 0; border: 1px solid #3a3530; background: #1f1c19; }
+  .services-grille .vignette { display: block !important; position: static; width: 100%; opacity: 1; transform: none; }
+  .services-grille .vignette img { aspect-ratio: 16 / 10; box-shadow: none; }
+  .services-grille h3 { margin: 16px 16px 0; font-size: 28px; }
+  .services-grille p { margin: 8px 16px 18px; font-size: 15px; }
+  .services-grille li.autre { border-color: var(--rose); background: transparent; justify-content: flex-end; min-height: 100%; }
+  .services-grille li.autre a { padding: 0 0 4px; }
+  .indice-glisser { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 13px; color: #8f867c; }
+
+  /* Une seule photo à la suite : on retire celle de la rue sous la méthode */
+  .methode .grille > figure { display: none; }
+
+  /* Instagram : trois colonnes comme un profil, six publications */
+  .grille-insta { grid-template-columns: repeat(3, 1fr); gap: 3px; }
+  .grille-insta li:nth-child(n+7) { display: none; }
+
+  /* Contact : deux boutons de même largeur, envoi pleine largeur */
+  .contact .appel { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .contact .appel .bouton { justify-content: center; padding: 0 10px; }
+  .contact .appel .numero { display: none; }
+  .envoi button { width: 100%; justify-content: center; }
+}
+@media (min-width: 761px) { .indice-glisser { display: none; } }

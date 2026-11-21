@@ -192,3 +192,17 @@ document.querySelectorAll(".apparait").forEach((el) => {
   }, { rootMargin: "-35% 0px -60% 0px" });
   parId.forEach((_, id) => { const s = document.getElementById(id); if (s) obs.observe(s); });
 })();
+
+// Avis : glisser du doigt pour passer d’un avis à l’autre
+(() => {
+  const scene = document.querySelector("[data-avis]");
+  if (!scene) return;
+  let x0 = null, y0 = null;
+  scene.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  scene.addEventListener("touchend", (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) document.querySelector(dx < 0 ? "[data-avis-suiv]" : "[data-avis-prec]")?.click();
+    x0 = y0 = null;
+  }, { passive: true });
+})();
