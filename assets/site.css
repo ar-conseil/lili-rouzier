@@ -1,0 +1,289 @@
+/* Lili Rouzier : palette, polices, remise à zéro */
+
+@font-face { font-family: "Switzer"; src: url("fonts/switzer-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Switzer"; src: url("fonts/switzer-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Switzer"; src: url("fonts/switzer-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Switzer"; src: url("fonts/switzer-600-normal.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Boska"; src: url("fonts/boska-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Boska"; src: url("fonts/boska-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Boska"; src: url("fonts/boska-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Boska"; src: url("fonts/boska-700-normal.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Melodrama"; src: url("fonts/melodrama-300-normal.woff2") format("woff2"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Melodrama"; src: url("fonts/melodrama-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Melodrama"; src: url("fonts/melodrama-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Melodrama"; src: url("fonts/melodrama-600-normal.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+
+:root {
+  --encre: #171513;
+  --craie: #f4efe8;
+  --blanc: #fffdfa;
+  --rouge: #d4202a;
+  --rouge-texte: #b3141e;
+  --rose: #f1b8be;
+  --rose-pale: #f9e3e5;
+  --gris: #6a635c;
+  --trait: #ddd5ca;
+
+  --texte: "Switzer", "Helvetica Neue", Arial, sans-serif;
+  --marge: clamp(16px, 4vw, 56px);
+  --max: 1280px;
+  --ease: cubic-bezier(.22, .61, .21, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--texte); font-size: 18px; line-height: 1.55; color: var(--encre); background: var(--craie); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; font-kerning: normal; overflow-x: hidden; }
+img, picture, svg { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+h1, h2, h3, h4, p, ul, ol, figure, blockquote { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+p { hyphens: auto; -webkit-hyphens: auto; }
+
+.conteneur { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--marge); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.lien-evitement { position: absolute; left: 8px; top: -60px; z-index: 100; padding: 10px 14px; background: var(--encre); color: var(--craie); text-decoration: none; }
+.lien-evitement:focus { top: 8px; }
+:focus-visible { outline: 2px solid var(--rouge-texte); outline-offset: 3px; }
+
+/* La signature manuscrite de Lili, colorable */
+.signature { display: block; aspect-ratio: 993 / 276; background: currentColor; -webkit-mask: url("img/signature-lili.png") center / contain no-repeat; mask: url("img/signature-lili.png") center / contain no-repeat; }
+
+/* Information manquante : visible, jamais confondue avec le contenu */
+.a-completer { display: inline-block; font: 500 12px/1.4 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: 0; text-transform: none; color: #7a4f00; background: #fff1c9; border: 1px dashed #c99700; padding: 2px 7px; vertical-align: middle; }
+
+/* Apparition au défilement */
+.apparait { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.apparait.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .apparait { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+}
+
+/* Site (direction « studio ») */
+  body { background: var(--encre); color: var(--craie); }
+  h1, h2, h3, .melo, .generique b, .valeurs b, .bandeau li, .avis blockquote, .mois .tete b { font-family: "Melodrama", "Boska", Didot, Georgia, serif !important; font-weight: 400; letter-spacing: -0.01em; }
+  ::selection { background: var(--rose); color: var(--encre); }
+  :focus-visible { outline-color: var(--rose); }
+  .bouton { display: inline-flex; align-items: center; gap: 14px; min-height: 54px; padding: 0 26px; background: var(--craie); color: var(--encre); text-decoration: none; font-weight: 500; font-size: 16px; border: 1px solid var(--craie); transition: background .35s var(--ease), color .35s var(--ease), border-color .35s; }
+  .bouton:hover { background: var(--rose); border-color: var(--rose); }
+  .bouton.fil { background: transparent; color: var(--craie); border-color: #4a443e; }
+  .bouton.fil:hover { border-color: var(--craie); background: transparent; }
+  .bouton .fleche { display: inline-block; transition: transform .35s var(--ease); }
+  .bouton:hover .fleche { transform: translateX(4px); }
+  .gris { color: #a59c92; }
+
+  /* En-tête */
+  .entete { position: fixed; inset: 0 0 auto 0; z-index: 30; transition: background .4s var(--ease), border-color .4s; border-bottom: 1px solid transparent; }
+  .entete.resserre { background: rgba(23,21,19,.96); border-bottom-color: #2c2824; }
+  .entete .conteneur { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 80px; }
+  .entete .marque { width: 150px; color: var(--craie); }
+  .nav { display: flex; align-items: center; gap: 30px; font-size: 15px; }
+  .nav a:not(.bouton) { text-decoration: none; position: relative; }
+  .nav a:not(.bouton)::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
+  .nav a:not(.bouton):hover::after { transform: none; }
+  .nav .lien-espace { color: #a59c92; }
+  .nav .bouton { min-height: 44px; padding: 0 18px; font-size: 15px; }
+  .burger { display: none; height: 44px; padding: 0 16px; background: none; color: var(--craie); border: 1px solid #4a443e; cursor: pointer; }
+
+  /* Accroche */
+  .une { position: relative; min-height: 100svh; display: grid; align-items: end; overflow: hidden; }
+  .une .photo { position: absolute; inset: 0 0 0 auto; width: min(58vw, 860px); }
+  .une .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; -webkit-mask: linear-gradient(to right, transparent, #000 32%); mask: linear-gradient(to right, transparent, #000 32%); animation: recul 2.4s var(--ease) both; }
+  @keyframes recul { from { transform: scale(1.08); opacity: 0; } to { transform: none; opacity: 1; } }
+  .une .conteneur { position: relative; z-index: 2; padding-top: 140px; padding-bottom: 56px; }
+  .une h1 { font-size: clamp(64px, 9.6vw, 164px); line-height: .9; max-width: 9.5em; text-shadow: 0 2px 40px rgba(23,21,19,.55); }
+  .une h1 .ligne { display: block; overflow: hidden; }
+  .une h1 .ligne > span { display: block; animation: monte 1.3s var(--ease) both; }
+  .une h1 .ligne:nth-child(2) > span { animation-delay: .12s; }
+  .une h1 .ligne:nth-child(3) > span { animation-delay: .24s; }
+  @keyframes monte { from { transform: translateY(105%); } to { transform: none; } }
+  .une .bas { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 28px; margin-top: 40px; }
+  .une .chapo { max-width: 28em; font-size: 19px; color: #d8d0c6; }
+  .une .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .une .credit { position: absolute; right: var(--marge); top: 96px; z-index: 2; font-size: 12px; color: #8f867c; writing-mode: vertical-rl; }
+
+  /* Bandeau défilant des marques */
+  .bandeau { border-block: 1px solid #2c2824; padding: 26px 0; overflow: hidden; white-space: nowrap; }
+  .bandeau .piste { display: inline-flex; gap: 0; animation: defile 38s linear infinite; }
+  .bandeau:hover .piste { animation-play-state: paused; }
+  .bandeau ul { display: inline-flex; }
+  .bandeau li { font-family: "Melodrama", serif; font-size: clamp(40px, 5vw, 76px); line-height: 1; padding-right: .6em; }
+  .bandeau li::after { content: "·"; color: var(--rouge); padding-left: .6em; }
+  @keyframes defile { to { transform: translateX(-50%); } }
+  .bandeau-note { padding-top: 10px; }
+
+  section[id] { scroll-margin-top: 90px; }
+  .bloc { padding: clamp(96px, 12vw, 180px) 0; }
+  .titre { font-size: clamp(52px, 7vw, 112px); line-height: .92; }
+
+  /* Ce que je fais */
+  .lignes { margin-top: 64px; border-top: 1px solid #3a3530; }
+  .lignes li { display: grid; grid-template-columns: 6fr 5fr; gap: 32px; align-items: baseline; padding: 30px 0; border-bottom: 1px solid #3a3530; }
+  .lignes h3 { font-size: clamp(36px, 4vw, 60px); line-height: 1; transition: transform .5s var(--ease), color .5s var(--ease); }
+  .lignes li:hover h3 { transform: translateX(14px); color: var(--rose); }
+  .lignes p { color: #cfc6bc; max-width: 30em; }
+
+  /* Comment on travaille */
+  .methode { background: #1f1c19; }
+  .methode .grille { display: grid; grid-template-columns: 5fr 6fr; gap: clamp(40px, 7vw, 120px); }
+  .methode figure { position: sticky; top: 110px; align-self: start; }
+  .methode figure img { width: 100%; aspect-ratio: 3/4; object-fit: cover; filter: contrast(1.05); }
+  .methode figcaption { margin-top: 10px; font-size: 13px; color: #8f867c; }
+  .parcours { position: relative; margin-top: 56px; padding-left: 34px; }
+  .parcours::before { content: ""; position: absolute; left: 4px; top: 8px; bottom: 8px; width: 1px; background: #3a3530; }
+  .parcours::after { content: ""; position: absolute; left: 4px; top: 8px; width: 1px; height: calc((100% - 16px) * var(--p, 0)); background: var(--rose); }
+  .parcours li { position: relative; padding-bottom: 48px; }
+  .parcours li::before { content: ""; position: absolute; left: -34px; top: 10px; width: 9px; height: 9px; border-radius: 50%; background: var(--encre); border: 1px solid var(--rose); }
+  .parcours .quand { font-size: 14px; color: var(--rose); }
+  .parcours h3 { margin-top: 6px; font-size: clamp(34px, 3.4vw, 48px); line-height: 1; }
+  .parcours p { margin-top: 10px; color: #cfc6bc; max-width: 30em; }
+
+  .espace { display: grid; grid-template-columns: 5fr 6fr; gap: clamp(40px, 7vw, 120px); align-items: center; margin-top: clamp(96px, 10vw, 150px); }
+  .espace h3 { font-size: clamp(44px, 5vw, 76px); line-height: .95; }
+  .espace p { margin-top: 18px; color: #cfc6bc; max-width: 30em; }
+  .mois { background: var(--craie); color: var(--encre); padding: 22px; }
+  .mois .tete { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+  .mois .tete b { font-weight: 400; font-size: 30px; }
+  .mois .tete span { font-size: 13px; color: var(--gris); }
+  .jours { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .jours span { position: relative; aspect-ratio: 1; background: #e9e2d8; font-size: 11px; padding: 4px; overflow: hidden; }
+  .jours span.vide { background: transparent; }
+  .jours img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .jours span.ok::after { content: "✓"; position: absolute; right: 3px; bottom: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--encre); color: var(--craie); font-size: 10px; display: grid; place-items: center; }
+  .jours span.attente { outline: 2px solid var(--rouge); outline-offset: 2px; }
+  .mois .legende { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 16px; font-size: 13px; }
+  .mois .legende i { display: inline-block; width: 10px; height: 10px; margin-right: 6px; vertical-align: -1px; }
+  .mois .legende .r { outline: 2px solid var(--rouge); outline-offset: 1px; }
+  .mois .legende .n { background: var(--encre); border-radius: 50%; }
+
+  /* Quelques clients */
+  .generique { margin-top: 56px; }
+  .generique a { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; padding: 18px 0; border-bottom: 1px solid #3a3530; text-decoration: none; }
+  .generique b { font-family: "Melodrama", serif; font-weight: 400; font-size: clamp(44px, 7vw, 120px); line-height: .95; transition: color .4s var(--ease), letter-spacing .6s var(--ease); }
+  .generique a:hover b { color: var(--rose); letter-spacing: .01em; }
+  .generique span { color: #a59c92; }
+
+  /* Qui je suis */
+  .moi .grille { display: grid; grid-template-columns: 6fr 5fr; gap: clamp(40px, 7vw, 120px); align-items: center; }
+  .moi figure img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+  .moi figcaption { margin-top: 10px; font-size: 13px; color: #8f867c; }
+  .moi .texte p { margin-top: 20px; font-size: 19px; line-height: 1.6; color: #ddd5cb; }
+  .moi .texte p.grand { font-family: "Melodrama", serif; font-size: clamp(30px, 2.8vw, 42px); line-height: 1.1; color: var(--craie); }
+  .moi .signature { width: 210px; margin-top: 26px; color: var(--rose); }
+
+  .valeurs { border-top: 1px solid #3a3530; }
+  .valeurs li { display: grid; grid-template-columns: 7fr 4fr; gap: 24px; align-items: center; padding: 18px 0; border-bottom: 1px solid #3a3530; }
+  .valeurs b { font-family: "Melodrama", serif; font-weight: 300; font-size: clamp(56px, 9vw, 150px); line-height: .9; }
+  .valeurs p { color: #cfc6bc; }
+
+  /* Ce qu’ils en disent */
+  .avis { background: var(--craie); color: var(--encre); }
+  .avis .scene { min-height: 380px; display: grid; align-content: center; }
+  .avis blockquote { font-family: "Melodrama", serif; font-size: clamp(36px, 5vw, 76px); line-height: 1.02; max-width: 18em; }
+  .avis figcaption { margin-top: 22px; font-size: 16px; }
+  .avis figcaption span { color: var(--gris); }
+  .avis [hidden] { display: none; }
+  .avis .commandes { display: flex; align-items: center; gap: 12px; margin-top: 40px; }
+  .avis .commandes button { width: 52px; height: 52px; border: 1px solid var(--encre); background: none; cursor: pointer; font-size: 20px; transition: background .3s, color .3s; }
+  .avis .commandes button:hover { background: var(--encre); color: var(--craie); }
+  .avis .commandes span { margin-left: 10px; font-size: 15px; color: var(--gris); }
+
+  /* Contact */
+  .contact .grille { display: grid; grid-template-columns: 5fr 6fr; gap: clamp(40px, 7vw, 120px); }
+  .contact .infos { margin-top: 30px; display: grid; gap: 14px; color: #cfc6bc; }
+  .contact .infos a { color: var(--craie); text-underline-offset: 5px; }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 28px; }
+  .champ { display: grid; gap: 6px; }
+  .champ.large { grid-column: 1 / -1; }
+  label, legend { font-size: 14px; color: #a59c92; }
+  input[type=text], input[type=email], select, textarea { width: 100%; min-height: 48px; padding: 8px 0; background: transparent; border: 0; border-bottom: 1px solid #5a534c; border-radius: 0; font-size: 19px; color: var(--craie); }
+  select { appearance: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23f4efe8' stroke-width='1.5'/%3E%3C/svg%3E") right 4px center no-repeat; }
+  select option { color: var(--encre); }
+  textarea { min-height: 110px; resize: vertical; }
+  input:focus, select:focus, textarea:focus { outline: none; border-bottom-color: var(--rose); }
+  fieldset { border: 0; padding: 0; margin: 0; }
+  .puces { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .puces label { position: relative; cursor: pointer; }
+  .puces input { position: absolute; opacity: 0; }
+  .puces span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid #5a534c; color: var(--craie); font-size: 15px; transition: background .25s, color .25s, border-color .25s; }
+  .puces input:checked + span { background: var(--craie); color: var(--encre); border-color: var(--craie); }
+  .puces input:focus-visible + span { outline: 2px solid var(--rose); outline-offset: 2px; }
+  .piege { position: absolute; left: -9999px; }
+  .envoi { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
+  .envoi button { cursor: pointer; }
+  .envoi p { font-size: 14px; color: #a59c92; }
+
+  .pied { padding: 40px 0 32px; border-top: 1px solid #2c2824; }
+  .pied .signature { width: min(800px, 88vw); color: var(--craie); opacity: .92; }
+  .pied .bas { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; margin-top: 40px; font-size: 14px; color: #8f867c; }
+  .pied nav { display: flex; flex-wrap: wrap; gap: 20px; }
+  .pied a { text-decoration: none; }
+  .pied a:hover { color: var(--craie); }
+
+  @media (max-width: 980px) {
+    .burger { display: block; }
+    .nav { position: fixed; inset: 80px 0 auto 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 8px var(--marge) 28px; background: var(--encre); border-bottom: 1px solid #2c2824; }
+    .menu-ouvert .nav { display: flex; }
+    .menu-ouvert .entete { background: var(--encre); }
+    .nav a:not(.bouton) { font-family: "Melodrama", serif; font-size: 40px; padding: 6px 0; }
+    .nav .bouton { margin-top: 16px; justify-content: center; min-height: 52px; }
+    .une .photo { width: 100%; height: 72%; }
+    .une .photo img { -webkit-mask: linear-gradient(to bottom, #000 45%, transparent 98%); mask: linear-gradient(to bottom, #000 45%, transparent 98%); }
+    .une .credit { display: none; }
+    .lignes li, .methode .grille, .espace, .moi .grille, .contact .grille { grid-template-columns: 1fr; }
+    .lignes li { gap: 10px; }
+    .methode figure { position: static; max-width: 420px; }
+    .valeurs li { grid-template-columns: 1fr; gap: 6px; }
+  }
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    .une .conteneur { padding-bottom: 36px; }
+    form { grid-template-columns: 1fr; }
+    .jours { gap: 4px; }
+  }
+
+/* Source des avis */
+.avis .source-avis { margin-top: 28px; font-size: 15px; color: var(--gris); }
+.avis .source-avis a { color: var(--encre); text-underline-offset: 4px; }
+
+/* Pages intérieures */
+.interieur { padding: 150px 0 clamp(80px, 10vw, 140px); }
+.retour { display: inline-block; margin-bottom: 36px; font-size: 15px; color: #a59c92; text-decoration: none; }
+.retour:hover { color: var(--craie); }
+.interieur h1 { font-size: clamp(64px, 11vw, 190px); line-height: .88; }
+.interieur .chapo { margin-top: 26px; max-width: 32em; font-size: 20px; color: #d8d0c6; }
+
+.planches { display: grid; grid-template-columns: 7fr 5fr; gap: 16px; margin-top: clamp(56px, 7vw, 96px); }
+.planches .cadre { display: grid; place-items: center; min-height: 260px; border: 1px dashed #4a443e; color: #8f867c; font-size: 15px; text-align: center; padding: 20px; }
+.planches .cadre:first-child { grid-row: span 2; min-height: 540px; }
+
+.fiche { margin-top: clamp(64px, 8vw, 120px); border-top: 1px solid #3a3530; }
+.fiche > div { display: grid; grid-template-columns: 4fr 7fr; gap: 32px; padding: 30px 0; border-bottom: 1px solid #3a3530; }
+.fiche h2 { font-size: clamp(32px, 3.2vw, 46px); line-height: 1; }
+.fiche p { color: #ddd5cb; max-width: 34em; }
+.fiche p + p { margin-top: 14px; }
+.fiche blockquote { font-family: "Melodrama", "Boska", serif; font-size: clamp(26px, 2.6vw, 36px); line-height: 1.12; color: var(--craie); }
+.fiche figcaption { margin-top: 12px; font-size: 14px; color: #a59c92; }
+
+.suite { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 28px; margin-top: clamp(80px, 9vw, 130px); padding-top: 30px; border-top: 1px solid #3a3530; }
+.suite a.suivant { text-decoration: none; }
+.suite a.suivant span { display: block; font-size: 15px; color: #a59c92; }
+.suite a.suivant b { font-family: "Melodrama", "Boska", serif; font-weight: 400; font-size: clamp(40px, 5vw, 72px); line-height: 1; transition: color .4s var(--ease); }
+.suite a.suivant:hover b { color: var(--rose); }
+
+/* Pages de texte (mentions, confidentialité) */
+.texte-long { max-width: 44em; margin-top: 56px; }
+.texte-long h2 { margin-top: 48px; font-size: clamp(30px, 3vw, 40px); line-height: 1.05; }
+.texte-long p, .texte-long li { margin-top: 12px; color: #ddd5cb; }
+.texte-long ul { padding-left: 1.1em; list-style: disc; }
+.texte-long a { color: var(--craie); text-underline-offset: 4px; }
+.texte-long .maj { margin-top: 48px; font-size: 14px; color: #8f867c; }
+
+@media (max-width: 760px) {
+  .interieur { padding-top: 120px; }
+  .planches { grid-template-columns: 1fr; }
+  .planches .cadre:first-child { min-height: 340px; grid-row: auto; }
+  .fiche > div { grid-template-columns: 1fr; gap: 10px; }
+}

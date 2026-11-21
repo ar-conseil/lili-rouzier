@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lili Rouzier, community manager dans les Hauts-de-France</title>
+<meta name="description" content="Piste B, la couleur : maquette de la page d’accueil.">
+<meta name="robots" content="noindex">
+<link rel="preload" href="../../assets/fonts/tanker-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/switzer-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/base.css">
+<style>
+  :root { --rayures: repeating-linear-gradient(90deg, var(--rouge) 0 14px, var(--blanc) 14px 28px); }
+  body { background: var(--blanc); }
+  .affiche, h1, h2 { font-family: "Tanker", Impact, sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: .005em; line-height: .86; }
+  .bouton { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 24px; border-radius: 4px; background: var(--rouge-texte); color: #fff; text-decoration: none; font-weight: 600; font-size: 16px; border: 2px solid var(--rouge-texte); transition: background .2s, color .2s, transform .2s var(--ease); }
+  .bouton:hover { background: var(--encre); border-color: var(--encre); }
+  .bouton:active { transform: translateY(1px); }
+  .bouton.contour { background: transparent; color: var(--encre); border-color: var(--encre); }
+  .bouton.contour:hover { background: var(--encre); color: var(--blanc); }
+
+  /* En-tête */
+  .entete { position: sticky; top: 0; z-index: 20; background: var(--rose); }
+  .entete .conteneur { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 72px; }
+  .entete .marque { width: 140px; color: var(--encre); }
+  .nav { display: flex; align-items: center; gap: 26px; font-size: 16px; font-weight: 500; }
+  .nav a:not(.bouton) { text-decoration: none; }
+  .nav a:not(.bouton):hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+  .nav .bouton { min-height: 44px; padding: 0 18px; font-size: 15px; }
+  .burger { display: none; height: 44px; padding: 0 16px; border: 2px solid var(--encre); border-radius: 4px; background: none; font-weight: 600; cursor: pointer; }
+
+  /* Accroche : la photo se fond dans le rose du mur */
+  .une { position: relative; background: var(--rose); overflow: hidden; }
+  .une .conteneur { position: relative; display: grid; grid-template-columns: 1.25fr 1fr; align-items: end; min-height: min(86vh, 820px); }
+  .une .texte { position: relative; z-index: 2; padding: 40px 0 64px; }
+  .une h1 { font-size: clamp(52px, 7.4vw, 124px); color: var(--encre); }
+  .une h1 > span { display: block; white-space: nowrap; }
+  .une h1 .rouge { color: var(--rouge-texte); font-style: normal; }
+  .une .chapo { max-width: 27em; margin-top: 28px; font-size: 19px; line-height: 1.5; }
+  .une .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .une .photo { position: relative; align-self: end; margin-right: calc(var(--marge) * -1); }
+  .une .photo img { width: 100%; max-height: 86vh; object-fit: cover; object-position: 50% 15%; -webkit-mask: linear-gradient(to right, transparent 0, #000 14%); mask: linear-gradient(to right, transparent 0, #000 14%); }
+  .une .credit { position: absolute; right: 12px; bottom: 10px; font-size: 12px; color: rgba(23,21,19,.7); }
+  .rayures { height: 28px; background: var(--rayures); }
+
+  /* Références */
+  .refs { background: var(--encre); color: var(--blanc); padding: 26px 0; }
+  .refs .conteneur { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; }
+  .refs p { font-size: 15px; color: #c9c0b6; }
+  .refs ul { display: flex; flex-wrap: wrap; gap: 4px 30px; }
+  .refs li { font-family: "Tanker", sans-serif; font-size: clamp(28px, 3vw, 40px); text-transform: uppercase; line-height: 1; }
+  .refs li:nth-child(even) { color: var(--rose); }
+
+  section[id] { scroll-margin-top: 80px; }
+  .bloc { padding: clamp(72px, 10vw, 140px) 0; }
+  h2 { font-size: clamp(56px, 7.6vw, 120px); }
+  .sous-titre { margin-top: 18px; max-width: 34em; font-size: 19px; }
+
+  /* Ce que je fais : un fil de publications */
+  .fil { display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px 20px; margin-top: 56px; }
+  .pub .carre { position: relative; aspect-ratio: 1; display: grid; place-items: center; overflow: hidden; padding: 20px; text-align: center; }
+  .pub .carre h3 { position: relative; z-index: 1; font-family: "Tanker", sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(30px, 2.8vw, 44px); line-height: .9; }
+  .pub .carre img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+  .pub:hover .carre img { transform: scale(1.05); }
+  .pub p { margin-top: 12px; font-size: 16px; line-height: 1.5; }
+  .t-rouge { background: var(--rouge); color: var(--blanc); }
+  .t-rose { background: var(--rose); }
+  .t-encre { background: var(--encre); color: var(--rose); }
+  .t-rayures { background: var(--rayures); }
+  .t-rayures h3, .t-photo h3 { background: var(--blanc); color: var(--encre); padding: 10px 12px 6px; transform: rotate(-3deg); }
+  .t-photo h3 { transform: rotate(2deg); }
+  .t-craie { background: var(--craie); border: 2px solid var(--encre); }
+  .pub.vous .carre { background: var(--blanc); border: 2px dashed var(--rouge-texte); color: var(--rouge-texte); text-decoration: none; }
+
+  /* Comment on travaille : des stories */
+  .methode { background: var(--craie); }
+  .stories { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 56px; }
+  .story { position: relative; aspect-ratio: 9/16; border-radius: 14px; overflow: hidden; padding: 30px 16px 18px; display: flex; flex-direction: column; }
+  .story .barres { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; gap: 4px; }
+  .story .barres i { flex: 1; height: 3px; border-radius: 2px; background: currentColor; opacity: .35; }
+  .story .barres i.fait { opacity: 1; }
+  .story h3 { margin-top: auto; font-family: "Tanker", sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(30px, 2.6vw, 40px); line-height: .9; position: relative; }
+  .story p { position: relative; margin-top: 10px; font-size: 15px; line-height: 1.4; }
+  .story > picture { position: absolute; inset: 0; }
+  .story > picture img { width: 100%; height: 100%; object-fit: cover; }
+  .story.photo { color: var(--blanc); }
+  .story.photo::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, rgba(23,21,19,.78)); }
+  .story.photo h3, .story.photo p, .story.photo .barres { z-index: 1; }
+  .s2 { background: var(--rose); } .s3 { background: var(--encre); color: var(--rose); } .s4 { background: var(--rouge); color: var(--blanc); } .s5 { background: var(--blanc); border: 2px solid var(--encre); }
+
+  .espace { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; margin-top: clamp(80px, 9vw, 130px); }
+  .espace h3 { font-family: "Tanker", sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(48px, 5.4vw, 84px); line-height: .88; }
+  .espace p { margin-top: 18px; max-width: 30em; }
+  .telephone { width: 300px; justify-self: center; background: var(--encre); border-radius: 44px; padding: 12px; transform: rotate(2.5deg); }
+  .telephone .ecran { border-radius: 34px; overflow: hidden; background: var(--blanc); }
+  .telephone .barre { display: flex; justify-content: space-between; align-items: center; padding: 16px 16px 10px; font-size: 13px; font-weight: 600; }
+  .telephone .barre span { font-size: 12px; font-weight: 600; color: var(--rouge-texte); }
+  .telephone .zone { position: relative; }
+  .telephone .zone img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+  .telephone .epingle { position: absolute; top: 38%; left: 46%; width: 30px; height: 30px; border-radius: 50% 50% 50% 0; background: var(--rouge); color: #fff; display: grid; place-items: center; font-size: 13px; font-weight: 700; }
+  .telephone .commentaire { position: absolute; top: 52%; left: 14px; right: 14px; background: var(--blanc); border-radius: 10px; padding: 8px 10px; font-size: 13px; line-height: 1.35; }
+  .telephone .commentaire b { display: block; font-size: 12px; }
+  .telephone .gestes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px; }
+  .telephone .gestes span { display: grid; place-items: center; height: 44px; border-radius: 10px; font-size: 14px; font-weight: 600; background: var(--craie); }
+  .telephone .gestes span:first-child { background: var(--rouge-texte); color: #fff; }
+
+  /* Quelques clients : la grille d’un profil */
+  .grille-profil { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 48px; }
+  .tuile { position: relative; aspect-ratio: 4/5; display: grid; place-items: center; overflow: hidden; padding: 16px; text-align: center; text-decoration: none; }
+  .tuile b { font-family: "Tanker", sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(30px, 4vw, 64px); line-height: .9; transition: transform .6s var(--ease); }
+  .tuile:hover b { transform: scale(1.04) rotate(-1deg); }
+  .tuile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .tuile small { position: absolute; left: 12px; right: 12px; bottom: 12px; font-size: 14px; }
+  .tuile .a-completer { position: absolute; left: 10px; bottom: 10px; }
+
+  /* Qui je suis */
+  .moi { background: var(--blanc); }
+  .moi .grille { display: grid; grid-template-columns: 5fr 6fr; gap: clamp(32px, 6vw, 100px); align-items: start; }
+  .moi figure { position: relative; }
+  .moi figure img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+  .moi figure::before { content: ""; position: absolute; left: -16px; top: 26px; width: 66%; height: 92%; background: var(--rayures); z-index: -1; }
+  .moi figure { z-index: 0; }
+  .moi figcaption { margin-top: 10px; font-size: 13px; color: var(--gris); }
+  .moi .texte p { margin-top: 20px; font-size: 19px; line-height: 1.6; max-width: 32em; }
+  .moi .signature { width: 200px; margin-top: 24px; color: var(--rouge-texte); }
+  .hashtags { margin-top: 48px; display: grid; gap: 18px; }
+  .hashtags li { display: grid; grid-template-columns: 250px 1fr; gap: 16px; align-items: baseline; padding-top: 16px; border-top: 2px solid var(--encre); }
+  .hashtags b { font-family: "Tanker", sans-serif; font-weight: 400; font-size: 36px; text-transform: uppercase; color: var(--rouge-texte); line-height: 1; }
+
+  /* Ce qu’ils en disent */
+  .avis { background: var(--rose-pale); }
+  .commentaires { margin-top: 48px; max-width: 860px; }
+  .commentaires li { display: grid; grid-template-columns: 52px 1fr; gap: 16px; padding: 22px 0; border-bottom: 1px solid #e8c5c9; }
+  .commentaires .init { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font-weight: 600; background: var(--encre); color: var(--rose); }
+  .commentaires li:nth-child(2) .init { background: var(--rouge-texte); color: #fff; }
+  .commentaires li:nth-child(3) .init { background: var(--rose); color: var(--encre); }
+  .commentaires li:nth-child(4) .init { background: var(--blanc); color: var(--encre); border: 2px solid var(--encre); }
+  .commentaires p.qui { font-size: 15px; }
+  .commentaires p.qui b { font-weight: 600; }
+  .commentaires p.qui span { color: var(--gris); }
+  .commentaires blockquote { margin-top: 4px; font-size: 19px; line-height: 1.5; }
+  .avis .total { margin-top: 28px; font-size: 15px; }
+
+  /* Contact */
+  .contact .grille { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .bulles { margin-top: 32px; display: grid; gap: 8px; justify-items: start; }
+  .bulles p { max-width: 24em; background: var(--rose); padding: 12px 18px; border-radius: 20px 20px 20px 4px; font-size: 18px; }
+  .bulles p + p { background: var(--craie); }
+  .infos { margin-top: 28px; display: grid; gap: 10px; font-size: 16px; }
+  .infos a { font-weight: 600; text-underline-offset: 4px; }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .champ { display: grid; gap: 6px; }
+  .champ.large { grid-column: 1 / -1; }
+  label, legend { font-size: 15px; font-weight: 600; }
+  input[type=text], input[type=email], select, textarea { width: 100%; min-height: 52px; padding: 12px 14px; background: var(--blanc); border: 2px solid var(--encre); border-radius: 4px; font-size: 17px; }
+  textarea { min-height: 130px; resize: vertical; }
+  input:focus, select:focus, textarea:focus { outline: 3px solid var(--rose); outline-offset: 0; }
+  fieldset { border: 0; padding: 0; margin: 0; }
+  .puces { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .puces label { position: relative; cursor: pointer; }
+  .puces input { position: absolute; opacity: 0; }
+  .puces span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 2px solid var(--encre); border-radius: 4px; font-weight: 500; }
+  .puces input:checked + span { background: var(--encre); color: var(--rose); }
+  .puces input:focus-visible + span { outline: 3px solid var(--rouge-texte); outline-offset: 2px; }
+  .piege { position: absolute; left: -9999px; }
+  .envoi { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .envoi button { cursor: pointer; }
+  .envoi p { font-size: 14px; color: var(--gris); }
+
+  .pied { background: var(--rose); padding: 40px 0 28px; }
+  .pied .signature { width: min(760px, 88vw); margin: 0 auto; color: var(--encre); }
+  .pied .bas { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; margin-top: 40px; padding-top: 16px; border-top: 2px solid var(--encre); font-size: 14px; }
+  .pied nav { display: flex; flex-wrap: wrap; gap: 18px; }
+  .pied a { text-decoration: none; font-weight: 500; }
+  .pied a:hover { text-decoration: underline; }
+
+  @media (max-width: 1060px) {
+    .fil { grid-template-columns: repeat(2, 1fr); }
+    .stories { grid-template-columns: repeat(5, 230px); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; }
+    .story { scroll-snap-align: start; }
+  }
+  @media (max-width: 960px) {
+    .burger { display: block; }
+    .nav { position: fixed; inset: 72px 0 auto 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 8px var(--marge) 24px; background: var(--rose); }
+    .menu-ouvert .nav { display: flex; }
+    .nav a:not(.bouton) { font-family: "Tanker", sans-serif; text-transform: uppercase; font-size: 40px; padding: 6px 0; }
+    .nav .bouton { margin-top: 14px; min-height: 52px; }
+    .une .conteneur { grid-template-columns: 1fr; min-height: 0; }
+    .une .texte { padding-bottom: 8px; }
+    .une .photo { margin: 0 calc(var(--marge) * -1); }
+    .une .photo img { max-height: 70vh; -webkit-mask: linear-gradient(to bottom, transparent 0, #000 12%); mask: linear-gradient(to bottom, transparent 0, #000 12%); }
+    .espace, .moi .grille, .contact .grille { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    .une h1 { font-size: 58px; }
+    .une h1 > span { white-space: normal; }
+    .fil { grid-template-columns: 1fr 1fr; gap: 28px 12px; }
+    .pub p { font-size: 15px; }
+    .pub .carre { padding: 10px; }
+    .pub .carre h3 { font-size: 26px; }
+    .grille-profil { grid-template-columns: 1fr 1fr; }
+    .hashtags li { grid-template-columns: 1fr; gap: 4px; }
+    form { grid-template-columns: 1fr; }
+    .telephone { width: 270px; }
+  }
+</style>
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <div class="conteneur">
+    <a class="marque" href="#" aria-label="Lili Rouzier, accueil"><span class="signature"></span></a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu" data-menu-bouton>Menu</button>
+    <nav class="nav" id="menu" data-menu aria-label="Navigation principale">
+      <a href="#services">Services</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#a-propos">À propos</a>
+      <a href="#contact">Contact</a>
+      <a href="#" title="Adresse du cockpit à brancher">Espace client</a>
+      <a class="bouton" href="#contact">Parlons de votre projet</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+  <section class="une">
+    <div class="conteneur">
+      <div class="texte">
+        <h1><span>Douze ans à faire</span><span>parler <em class="rouge">les marques</em></span><span>sur les réseaux.</span></h1>
+        <p class="chapo">Je suis Lili, community manager dans les Hauts-de-France. Stratégie, contenus, communauté&#8239;: je tiens vos réseaux comme si c’était ma marque.</p>
+        <div class="actions">
+          <a class="bouton" href="#contact">Parlons de votre projet</a>
+          <a class="bouton contour" href="#realisations">Voir les réalisations</a>
+        </div>
+      </div>
+      <div class="photo">
+        <picture>
+          <source type="image/avif" srcset="../../assets/img/lili-mur-rose-640.avif 640w, ../../assets/img/lili-mur-rose-1200.avif 1200w" sizes="(max-width: 960px) 100vw, 45vw">
+          <source type="image/webp" srcset="../../assets/img/lili-mur-rose-640.webp 640w, ../../assets/img/lili-mur-rose-1200.webp 1200w" sizes="(max-width: 960px) 100vw, 45vw">
+          <img src="../../assets/img/lili-mur-rose-1200.webp" width="1200" height="1600" alt="Lili Rouzier devant un mur rose couvert d’éclairs" fetchpriority="high">
+        </picture>
+      </div>
+    </div>
+  </section>
+  <div class="rayures" aria-hidden="true"></div>
+
+  <section class="refs" aria-label="Marques accompagnées">
+    <div class="conteneur">
+      <p>Elles m’ont confié leurs réseaux</p>
+      <ul><li>Nhood</li><li>Aushopping</li><li>Caroline Poissonier</li><li>Les Entrées de la Mer</li><li>Move Your Fit</li></ul>
+      <span class="a-completer">[À COMPLÉTER : accord de chaque marque]</span>
+    </div>
+  </section>
+
+  <section class="bloc" id="services">
+    <div class="conteneur">
+      <h2 class="apparait">Ce que je fais</h2>
+      <p class="sous-titre apparait">Je peux tout prendre en main, ou seulement la partie qui vous manque.</p>
+      <div class="fil">
+        <article class="pub apparait"><div class="carre t-rouge"><h3>La ligne éditoriale</h3></div><p>On définit ensemble le ton, les sujets, ce qu’on dit et ce qu’on ne dit pas. Vous l’avez par écrit.</p></article>
+        <article class="pub apparait"><div class="carre t-rayures"><h3>Le calendrier</h3></div><p>Un mois de publications prévu à l’avance. Rien ne part sans votre accord.</p></article>
+        <article class="pub apparait"><div class="carre t-photo"><picture><source type="image/avif" srcset="../../assets/img/atelier-telephone-800.avif"><img src="../../assets/img/atelier-telephone-800.webp" width="800" height="533" alt="" loading="lazy"></picture><h3>Les contenus</h3></div><p>Photos, vidéos, reels, stories et textes, créés pour votre marque et dans son style.</p></article>
+        <article class="pub apparait"><div class="carre t-rose"><h3>La veille</h3></div><p>Ce que font vos concurrents, ce qui marche dans votre secteur. Je vous le raconte chaque mois.</p></article>
+        <article class="pub apparait"><div class="carre t-encre"><h3>Les partenariats et l’influence</h3></div><p>Je trouve les créateurs qui collent à votre marque et je suis la collaboration jusqu’au bout.</p></article>
+        <article class="pub apparait"><div class="carre t-craie"><h3>La communauté</h3></div><p>Je réponds aux messages et aux commentaires, vite, et avec votre ton.</p></article>
+        <article class="pub apparait"><div class="carre t-photo"><picture><source type="image/avif" srcset="../../assets/img/atelier-carnet-640.avif"><img src="../../assets/img/atelier-carnet-640.webp" width="640" height="768" alt="" loading="lazy"></picture><h3>Le rapport du mois</h3></div><p>Les chiffres importants, ce qu’ils veulent dire, et ce qu’on change ensuite.</p></article>
+        <article class="pub vous apparait"><a class="carre" href="#contact"><h3>Et chez vous&#8239;?</h3></a><p>Dites-moi ce qui vous manque, on en parle.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloc methode" id="methode">
+    <div class="conteneur">
+      <h2 class="apparait">Comment on travaille</h2>
+      <ol class="stories" aria-label="Les étapes, dans l’ordre">
+        <li class="story photo apparait"><picture><source type="image/avif" srcset="../../assets/img/lili-rayures-480.avif"><img src="../../assets/img/lili-rayures-480.webp" width="480" height="853" alt="" loading="lazy"></picture><div class="barres" aria-hidden="true"><i class="fait"></i><i></i><i></i><i></i><i></i></div><h3>On se rencontre</h3><p>Le premier rendez-vous est offert. Vous me parlez de votre marque, je vous écoute.</p></li>
+        <li class="story s2 apparait"><div class="barres" aria-hidden="true"><i class="fait"></i><i class="fait"></i><i></i><i></i><i></i></div><h3>L’état des lieux</h3><p>J’analyse vos comptes et ceux de vos concurrents, puis je vous propose une stratégie.</p></li>
+        <li class="story s3 apparait"><div class="barres" aria-hidden="true"><i class="fait"></i><i class="fait"></i><i class="fait"></i><i></i><i></i></div><h3>Le calendrier, ensemble</h3><p>Vous voyez chaque publication avant qu’elle parte.</p></li>
+        <li class="story s4 apparait"><div class="barres" aria-hidden="true"><i class="fait"></i><i class="fait"></i><i class="fait"></i><i class="fait"></i><i></i></div><h3>Je crée et je publie</h3><p>Les contenus sortent à l’heure, et quelqu’un répond quand on vous écrit.</p></li>
+        <li class="story s5 apparait"><div class="barres" aria-hidden="true"><i class="fait"></i><i class="fait"></i><i class="fait"></i><i class="fait"></i><i class="fait"></i></div><h3>Le point du mois</h3><p>On regarde les chiffres et on ajuste ce qui doit l’être.</p></li>
+      </ol>
+
+      <div class="espace">
+        <div class="apparait">
+          <h3>Votre espace client</h3>
+          <p>Tout se passe dans un espace en ligne rien qu’à vous. Vos publications y apparaissent telles qu’elles sortiront sur Instagram, Facebook ou LinkedIn.</p>
+          <p>Vous validez en deux gestes, ou vous laissez un commentaire directement sur l’image. Plus besoin de chercher le bon fichier dans vos mails.</p>
+        </div>
+        <div class="telephone apparait" aria-label="Illustration : une publication à valider sur téléphone">
+          <div class="ecran">
+            <div class="barre">votre_marque<span>À valider</span></div>
+            <div class="zone">
+              <picture><source type="image/avif" srcset="../../assets/img/atelier-marbre-640.avif"><img src="../../assets/img/atelier-marbre-640.webp" width="640" height="640" alt="" loading="lazy"></picture>
+              <span class="epingle" aria-hidden="true">1</span>
+              <p class="commentaire" aria-hidden="true"><b>Vous</b>On peut mettre le logo un peu plus grand&#8239;?</p>
+            </div>
+            <div class="gestes" aria-hidden="true"><span>Valider</span><span>Commenter</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloc" id="realisations">
+    <div class="conteneur">
+      <h2 class="apparait">Quelques clients</h2>
+      <p class="sous-titre apparait"><span class="a-completer">[À COMPLÉTER : missions et visuels par client]</span></p>
+      <div class="grille-profil">
+        <a class="tuile t-encre apparait" href="#"><b>Nhood</b><span class="a-completer">[mission]</span></a>
+        <a class="tuile t-rose apparait" href="#"><b>Aushopping</b><span class="a-completer">[mission]</span></a>
+        <a class="tuile apparait" href="#" aria-label="Un fil Instagram en cours de création"><picture><source type="image/avif" srcset="../../assets/img/atelier-tablette-800.avif"><img src="../../assets/img/atelier-tablette-800.webp" width="800" height="600" alt="" loading="lazy"></picture></a>
+        <a class="tuile t-craie apparait" href="#"><b>Caroline Poissonier</b><span class="a-completer">[mission]</span></a>
+        <a class="tuile t-rouge apparait" href="#"><b>Les Entrées de la Mer</b><small>Les réseaux de deux marques</small></a>
+        <a class="tuile t-rayures apparait" href="#"><b style="background:var(--blanc);padding:8px 10px 2px">Move Your Fit</b><span class="a-completer">[mission]</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloc moi" id="a-propos">
+    <div class="conteneur grille">
+      <figure class="apparait">
+        <picture>
+          <source type="image/avif" srcset="../../assets/img/lili-studio-tabouret-640.avif 640w, ../../assets/img/lili-studio-tabouret-1200.avif 1200w" sizes="(max-width: 960px) 100vw, 40vw">
+          <source type="image/webp" srcset="../../assets/img/lili-studio-tabouret-640.webp 640w, ../../assets/img/lili-studio-tabouret-1200.webp 1200w" sizes="(max-width: 960px) 100vw, 40vw">
+          <img src="../../assets/img/lili-studio-tabouret-1200.webp" width="1200" height="1500" alt="Lili Rouzier assise sur un tabouret, photo noir et blanc" loading="lazy">
+        </picture>
+        <figcaption>Photo&#8239;: <span class="a-completer">[À COMPLÉTER : photographe]</span></figcaption>
+      </figure>
+      <div class="texte apparait">
+        <h2>Qui je suis</h2>
+        <p>Je m’appelle Lili. Ça fait douze ans que je fais vivre des marques sur les réseaux sociaux. J’ai travaillé pour Nhood, Aushopping ou Caroline Poissonier, et j’ai appris à leurs côtés ce qui compte vraiment&#8239;: une ligne claire, un calendrier tenu, des contenus qui ressemblent à la marque, et une communauté qu’on écoute.</p>
+        <p>J’ai travaillé dans six pays. J’en ai gardé une vraie facilité à m’adapter, à un secteur, à un ton, à une équipe.</p>
+        <span class="signature" role="img" aria-label="Signature de Lili Rouzier"></span>
+        <p><span class="a-completer">[À VALIDER PAR LILI : ce texte]</span></p>
+        <ul class="hashtags">
+          <li><b>#Expertise</b><p>Douze ans de métier. Je m’appuie sur vos chiffres plutôt que sur des intuitions.</p></li>
+          <li><b>#Bienveillance</b><p>Je vous dis les choses franchement, et toujours gentiment.</p></li>
+          <li><b>#Passion</b><p>J’aime ce métier. Ça se voit dans les détails, comme une légende reprise jusqu’à ce qu’elle sonne juste.</p></li>
+          <li><b>#Ambition</b><p>Je veux que vos réseaux servent votre marque pour de vrai.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloc avis" id="avis">
+    <div class="conteneur">
+      <h2 class="apparait">Ce qu’ils en disent</h2>
+      <ul class="commentaires">
+        <li class="apparait"><span class="init" aria-hidden="true">JF</span><div><p class="qui"><b>Julien Farrugia</b> <span>Les Entrées de la Mer · août 2022</span></p><blockquote>«&nbsp;Elle a pris en charge les réseaux sociaux pour nos 2 marques et produit un contenu de qualité tout en apportant son expertise.&nbsp;»</blockquote></div></li>
+        <li class="apparait"><span class="init" aria-hidden="true">PV</span><div><p class="qui"><b>Pauline Vidailhet</b> <span>mai 2025</span></p><blockquote>«&nbsp;Une ligne éditoriale pro, sincère et adaptée à notre image de marque (elle a même réussi à nous faire danser sur Instagram)&nbsp;!&nbsp;»</blockquote></div></li>
+        <li class="apparait"><span class="init" aria-hidden="true">MY</span><div><p class="qui"><b>Move Your Fit</b> <span>mars 2021</span></p><blockquote>«&nbsp;Lili est très pro et a surtout cette touche "tendance" qui permettra à votre marque de toujours être à la pointe de ce qui se fait.&nbsp;»</blockquote></div></li>
+        <li class="apparait"><span class="init" aria-hidden="true">YL</span><div><p class="qui"><b>Yohann Lequenne</b> <span>juillet 2021</span></p><blockquote>«&nbsp;Nous avons travaillé 6 mois ensemble avec de très bons résultats je recommande&nbsp;!&nbsp;»</blockquote></div></li>
+      </ul>
+      <p class="total">Avis publiés sur Google, 5,0 sur 5.</p>
+    </div>
+  </section>
+
+  <section class="bloc contact" id="contact">
+    <div class="conteneur grille">
+      <div class="apparait">
+        <h2>Envie de vous lancer&#8239;?</h2>
+        <div class="bulles">
+          <p>Dites-moi tout&#8239;! Parlez-moi de votre marque et de vos réseaux.</p>
+          <p>Le premier rendez-vous est offert. Les tarifs sont sur devis.</p>
+        </div>
+        <div class="infos">
+          <p>Je réponds <span class="a-completer">[À COMPLÉTER : délai]</span></p>
+          <p>Hauts-de-France, depuis la métropole lilloise.</p>
+          <p><a href="https://www.instagram.com/lilipointcom/" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/Lilipointcom-105431731795990" rel="noopener">Facebook</a> · <a href="https://www.linkedin.com/in/alison-rouzier-0a0b3771/" rel="noopener">LinkedIn</a></p>
+        </div>
+      </div>
+      <form class="apparait" data-maquette novalidate>
+        <div class="champ"><label for="nom">Votre nom</label><input id="nom" name="nom" type="text" autocomplete="name" required></div>
+        <div class="champ"><label for="entreprise">Votre entreprise</label><input id="entreprise" name="entreprise" type="text" autocomplete="organization"></div>
+        <div class="champ large"><label for="email">Votre e-mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        <fieldset class="champ large"><legend>Les réseaux concernés</legend>
+          <div class="puces">
+            <label><input type="checkbox" name="reseaux" value="Instagram"><span>Instagram</span></label>
+            <label><input type="checkbox" name="reseaux" value="Facebook"><span>Facebook</span></label>
+            <label><input type="checkbox" name="reseaux" value="LinkedIn"><span>LinkedIn</span></label>
+            <label><input type="checkbox" name="reseaux" value="TikTok"><span>TikTok</span></label>
+            <label><input type="checkbox" name="reseaux" value="Autre"><span>Autre</span></label>
+          </div>
+        </fieldset>
+        <div class="champ large"><label for="besoin">Votre besoin</label><textarea id="besoin" name="besoin" required></textarea></div>
+        <div class="champ large"><label for="budget">Budget mensuel, si vous en avez une idée</label>
+          <select id="budget" name="budget"><option value="">Je ne sais pas encore</option><option>Moins de 500 €</option><option>De 500 à 1 000 €</option><option>De 1 000 à 2 000 €</option><option>Plus de 2 000 €</option></select></div>
+        <div class="piege" aria-hidden="true"><label for="site">Ne pas remplir</label><input id="site" name="site" type="text" tabindex="-1" autocomplete="off"></div>
+        <div class="envoi"><button class="bouton" type="submit">Envoyer le message</button><p data-retour role="status">Vos coordonnées servent seulement à vous répondre.</p></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="pied">
+  <div class="conteneur">
+    <span class="signature" role="img" aria-label="Lili Rouzier"></span>
+    <div class="bas">
+      <span>© 2026 Lili Rouzier, EI. Community manager, Hauts-de-France.</span>
+      <nav aria-label="Liens du pied de page"><a href="#">Mentions légales</a><a href="#">Confidentialité</a><a href="https://www.instagram.com/lilipointcom/" rel="noopener">Instagram</a><a href="https://www.linkedin.com/in/alison-rouzier-0a0b3771/" rel="noopener">LinkedIn</a><a href="#">Espace client</a></nav>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/base.js" defer></script>
+</body>
+</html>

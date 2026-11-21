@@ -1,0 +1,7 @@
+.DS_Store
+.claude/
+# Notes de travail privées (réponses d'Antonin, avis relevés) : restent sur le Mac
+contenus/
+# Captures pleine page des pistes (lourdes), seules les vignettes ecran1 sont versionnées
+pistes/captures/*-ordinateur.jpg
+pistes/captures/*-telephone.jpg

@@ -1,0 +1,56 @@
+# Site de Lili Rouzier
+
+Site vitrine de Lili Rouzier, community manager freelance (EI) dans les Hauts-de-France. Domaine visé : lilirouzier.com. Dépôt : `ar-conseil/lili-rouzier`, servi par GitHub Pages, sans étape de build.
+
+Brief complet : `~/Downloads/PROMPT_SITE_LILI.md`. Sources de contenu validées : `contenus/sources.md` (notes privées, non versionnées, sur le Mac d'Antonin). Médias originaux : `~/.lili/site/medias/` (photos fournies, visuels de l'ancien site Wix).
+
+## Où on en est
+
+- Étape 2 faite : Antonin a choisi la **piste C, le studio** (21/11/2026). Les pistes A et B restent dans `pistes/` pour mémoire (exclues par `robots.txt`).
+- Étape 3 faite : site complet avec emplacements `[À COMPLÉTER]`.
+- Reste : étape 4 (médias, missions et accords des marques), étape 5 (formulaire branché), étape 6 (recette, Lighthouse), étape 7 (mise en ligne, DNS, redirection Wix).
+- Dépôt public `ar-conseil/lili-rouzier`, préversion sur https://ar-conseil.github.io/lili-rouzier/ (avec les encadrés à compléter). Ne pas ajouter `CNAME` avant que le DNS de lilirouzier.com pointe vers GitHub Pages.
+- Aperçu local : `python3 -m http.server 8742` à la racine, puis http://localhost:8742/
+
+## Structure
+
+- `index.html` : accueil. `realisations/<marque>/` : une étude de cas par client. `mentions-legales/`, `confidentialite/`, `espace-client/` (page d'attente, noindex), `404.html`.
+- `assets/site.css` et `assets/site.js` : styles et scripts du site (pas d'étape de build). `assets/base.css` et `assets/base.js` ne servent plus qu'aux pistes.
+- En-tête et pied de page sont recopiés dans chaque page : toute modification se fait partout.
+- Chemins relatifs partout (le site doit marcher aussi sur `ar-conseil.github.io/lili-rouzier/`), sauf `404.html` en chemins absolus.
+- `outils/partage.html` : source de l'image de partage `assets/img/partage.jpg` (capture 1200 × 630 avec Chrome sans interface).
+- Le formulaire de contact est encore en mode maquette (`data-maquette`).
+- Melodrama a une apostrophe ’ très fine : c'est le dessin de la police, pas un bug.
+
+## Règle d'or : un site fait main
+
+Antonin l'a demandé explicitement : le site ne doit pas avoir l'air fait par une IA. Chaque page doit pouvoir passer pour le travail d'un directeur artistique et d'un rédacteur humains.
+
+### Voix
+- Lili parle à la première personne, simplement, comme sur son ancien site (« Je vous écoute », « Dites-moi tout », « Envie de vous lancer ? »).
+- Phrases courtes et concrètes. Une idée par phrase.
+- Interdits : les antithèses « X, pas Y » ; les formules choc à deux points ; les triades d'adjectifs ; « Ce qui change tout », « Découvrez », « Boostez », « sur-mesure », « 360° », « passionnée » ; les émoticônes ; le tiret cadratin comme ponctuation.
+- Typographie française : apostrophe ’, guillemets « » avec espaces insécables, espace fine insécable avant ; : ! ?
+
+### Visuel
+- Interdits : petites étiquettes en capitales espacées au-dessus de chaque titre ; un mot en italique coloré dans chaque titre ; numérotation 01, 02, 03 systématique ; dégradés décoratifs, halos, flous, verre dépoli ; icônes génériques dans des ronds ; grilles de trois cartes identiques ; compteurs de chiffres ; boutons en pilule partout ; ombres molles sur tout.
+- Polices écartées car vues partout : Inter, Geist, Instrument Serif, Bricolage Grotesque, Satoshi, Clash, Poppins, Playfair.
+- À faire : partir du réel (signature manuscrite de Lili, ses photos, avis nommés et datés, crédits photo) ; une idée de mise en page par section ; un rythme irrégulier ; des couleurs prélevées dans ses photos.
+
+### Vérité
+- Ne jamais inventer une référence, un chiffre, un résultat ni un témoignage. Information manquante : `<span class="a-completer">[À COMPLÉTER : …]</span>`, bien visible.
+- Avis Google : extraits exacts, non corrigés, avec nom et date. Un des cinq avis n'est volontairement pas affiché (raison dans `contenus/sources.md`).
+- Pas de logos de marques sans accord écrit.
+- Jamais l'adresse e-mail de Lili en clair dans le code.
+
+## Identité
+
+- Palette (prélevée dans les photos de Lili, reprise ensuite par son cockpit) : encre `#171513`, craie `#f4efe8`, rouge rayure `#d4202a` (texte sur clair : `#b3141e`), rose éclair `#f1b8be`, rose pâle `#f9e3e5`, gris `#6a635c`.
+- Signature : `assets/img/signature-lili.png` (logo manuscrit repris de sa carte de visite), utilisée en masque CSS pour prendre n'importe quelle couleur.
+- Polices auto-hébergées dans `assets/fonts/` (Fontshare, licence ITF gratuite, usage commercial autorisé) : Melodrama (titres du site), Switzer (texte courant), Boska (secours des titres ; titres de la piste A), Tanker (piste B seulement).
+
+## Technique
+
+- HTML, CSS et JS maison. Images en AVIF et WebP, plusieurs tailles, toujours avec `width` et `height`.
+- `prefers-reduced-motion` respecté partout. Accessibilité AA.
+- Scripts de conversion d'images et de polices : à refaire à partir de `~/.lili/site/medias/` si besoin (Pillow, AVIF et WebP disponibles).

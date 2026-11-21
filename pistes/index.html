@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trois pistes pour le site de Lili Rouzier</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+  body { padding: 48px 0 80px; }
+  h1 { font-family: "Boska", serif; font-weight: 500; font-size: clamp(40px, 6vw, 72px); line-height: 1; letter-spacing: -0.02em; }
+  .signature { width: 180px; margin-bottom: 28px; }
+  p.intro { margin-top: 16px; max-width: 36em; color: var(--gris); }
+  ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-top: 48px; }
+  a.piste { display: block; text-decoration: none; }
+  a.piste img { width: 100%; aspect-ratio: 16/10; object-fit: cover; object-position: top; border: 1px solid var(--trait); transition: transform .5s var(--ease); }
+  a.piste:hover img { transform: translateY(-4px); }
+  a.piste h2 { margin-top: 14px; font-family: "Boska", serif; font-weight: 500; font-size: 30px; }
+  a.piste p { color: var(--gris); font-size: 16px; }
+</style>
+</head>
+<body>
+<main class="conteneur">
+  <span class="signature" role="img" aria-label="Lili Rouzier"></span>
+  <h1>Trois pistes pour le site</h1>
+  <p class="intro">Même contenu, trois directions. Les encadrés jaunes signalent ce qu’il reste à fournir. Le formulaire ne s’envoie pas encore.</p>
+  <ul>
+    <li><a class="piste" href="editoriale/"><img src="captures/editoriale-ordinateur-ecran1.jpg" alt="Aperçu de la piste A" width="1440" height="900"><h2>A. Le magazine</h2><p>Typographie à empattements, noir et blanc, beaucoup d’air, mise en page de presse.</p></a></li>
+    <li><a class="piste" href="social/"><img src="captures/social-ordinateur-ecran1.jpg" alt="Aperçu de la piste B" width="1440" height="900"><h2>B. La couleur</h2><p>Le rose et le rouge de ses photos, une typo d’affiche, des stories et une grille de profil.</p></a></li>
+    <li><a class="piste" href="studio/"><img src="captures/studio-ordinateur-ecran1.jpg" alt="Aperçu de la piste C" width="1440" height="900"><h2>C. Le studio</h2><p>Fond sombre, grandes lettres fines, bandeau des marques qui défile, animations au défilement.</p></a></li>
+  </ul>
+</main>
+</body>
+</html>
