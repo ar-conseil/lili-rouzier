@@ -487,7 +487,7 @@ p { hyphens: auto; -webkit-hyphens: auto; }
    Pages clients : aux couleurs de la marque
    ============================================================ */
 .cas-une { background: var(--marque); color: var(--sur-marque); padding: 150px 0 clamp(64px, 8vw, 110px); }
-.cas-une .retour { color: var(--sur-marque); opacity: .75; }
+.cas-une .retour { color: var(--sur-marque); opacity: 1; font-weight: 500; }
 .cas-une .retour:hover { opacity: 1; color: var(--sur-marque); }
 .cas-une .logo { display: block; --h: 72px; margin: 8px 0 34px; color: var(--sur-marque); }
 .cas-une .logo-aushopping { --h: 46px; }
