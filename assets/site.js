@@ -40,7 +40,7 @@
   // En attendant le cockpit de Lili, les messages passent par FormSubmit (formsubmit.co).
   // ALIAS = la chaîne aléatoire que FormSubmit envoie à Lili après l'activation.
   // Jamais l'adresse e-mail de Lili ici.
-  const ALIAS = "";
+  const ALIAS = "fbb0d5dffaed9cbeda7837d88a696533";
   const ATTENTE_MS = 60000; // un envoi par minute et par navigateur
 
   document.querySelectorAll("form[data-contact]").forEach((f) => {
