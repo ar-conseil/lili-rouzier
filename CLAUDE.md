@@ -21,6 +21,15 @@ Brief complet : `~/Downloads/PROMPT_SITE_LILI.md`. Sources de contenu validées 
 - `outils/partage.html` : source de l'image de partage `assets/img/partage.jpg` (capture 1200 × 630 avec Chrome sans interface).
 - Formulaire de contact : envoi par FormSubmit en attendant le cockpit (`assets/site.js`, constante `ALIAS`). Activé par Lili le 21/11/2026 (alias renseigné). Champ piège `_honey` et un envoi par minute. Une nouvelle activation sera peut-être demandée par FormSubmit au passage sur lilirouzier.com.
 
+## Passage sur lilirouzier.com (en cours, 21/11/2026)
+
+- Plan validé par Antonin : transférer lilirouzier.com de Wix vers OVHcloud, puis fermer Wix.
+- Le domaine porte des e-mails Google (Google Workspace probable) : à recopier tels quels dans la nouvelle zone DNS, sinon la messagerie de Lili est coupée.
+  - MX : 10 aspmx.l.google.com. / 20 alt1.aspmx.l.google.com. / 30 alt2.aspmx.l.google.com. / 40 alt3.aspmx.l.google.com. / 50 alt4.aspmx.l.google.com.
+  - TXT : `v=spf1 include:_spf.google.com -all` et `google-site-verification=OqxMD231dSsMihNKXdxbPXWT8Dky1thdWkMqzaDv95s`
+- Pour GitHub Pages : A @ 185.199.108.153 / .109.153 / .110.153 / .111.153 ; AAAA @ 2606:50c0:8000::153 / 8001 / 8002 / 8003 ; CNAME www → ar-conseil.github.io.
+- Une fois le DNS en place : fichier `CNAME` (lilirouzier.com), domaine personnalisé dans les réglages Pages, HTTPS forcé, 404 et liens à revérifier, réactivation FormSubmit probable.
+
 ## Recette Lighthouse (21/11/2026)
 
 - Mesurée sur 5 pages (accueil, deux études de cas, mentions, confidentialité), mobile et ordinateur : accessibilité, bonnes pratiques et SEO à 100 partout ; performance de 98 à 100.
