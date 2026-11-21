@@ -287,3 +287,5 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   .planches .cadre:first-child { min-height: 340px; grid-row: auto; }
   .fiche > div { grid-template-columns: 1fr; gap: 10px; }
 }
+
+.envoi button:disabled { opacity: .5; cursor: wait; }

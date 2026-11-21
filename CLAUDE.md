@@ -19,7 +19,7 @@ Brief complet : `~/Downloads/PROMPT_SITE_LILI.md`. Sources de contenu validées 
 - En-tête et pied de page sont recopiés dans chaque page : toute modification se fait partout.
 - Chemins relatifs partout (le site doit marcher aussi sur `ar-conseil.github.io/lili-rouzier/`), sauf `404.html` en chemins absolus.
 - `outils/partage.html` : source de l'image de partage `assets/img/partage.jpg` (capture 1200 × 630 avec Chrome sans interface).
-- Le formulaire de contact est encore en mode maquette (`data-maquette`).
+- Formulaire de contact : envoi par FormSubmit en attendant le cockpit (`assets/site.js`, constante `ALIAS`). Activation demandée le 21/11/2026 : tant que `ALIAS` est vide, le formulaire affiche un message d’attente. Champ piège `_honey` et un envoi par minute. Une nouvelle activation sera peut-être demandée par FormSubmit au passage sur lilirouzier.com.
 - Melodrama a une apostrophe ’ très fine : c'est le dessin de la police, pas un bug.
 
 ## Règle d'or : un site fait main

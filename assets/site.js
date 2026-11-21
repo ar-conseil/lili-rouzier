@@ -36,12 +36,65 @@
     maj(); window.addEventListener("scroll", maj, { passive: true });
   }
 
-  // Formulaire de maquette : pas d'envoi réel dans les pistes
-  document.querySelectorAll("form[data-maquette]").forEach((f) => {
-    f.addEventListener("submit", (e) => {
+  // Formulaire de contact
+  // En attendant le cockpit de Lili, les messages passent par FormSubmit (formsubmit.co).
+  // ALIAS = la chaîne aléatoire que FormSubmit envoie à Lili après l'activation.
+  // Jamais l'adresse e-mail de Lili ici.
+  const ALIAS = "";
+  const ATTENTE_MS = 60000; // un envoi par minute et par navigateur
+
+  document.querySelectorAll("form[data-contact]").forEach((f) => {
+    const retour = f.querySelector("[data-retour]");
+    const bouton = f.querySelector('button[type="submit"]');
+    const dire = (texte) => { if (retour) retour.textContent = texte; };
+
+    f.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const msg = f.querySelector("[data-retour]");
-      if (msg) msg.textContent = "Maquette : l'envoi sera branché sur le cockpit de Lili à l'étape suivante.";
+      if (!f.reportValidity()) return;
+
+      // Champ piège rempli : un robot. On fait comme si tout allait bien.
+      if (f.elements._honey && f.elements._honey.value) { f.reset(); dire("Merci, votre message est bien parti."); return; }
+
+      let dernier = 0;
+      try { dernier = Number(localStorage.getItem("lili-dernier-envoi")) || 0; } catch {}
+      if (Date.now() - dernier < ATTENTE_MS) { dire("Votre message vient de partir. Patientez une minute avant d’en envoyer un autre."); return; }
+
+      if (!ALIAS) { dire("Le formulaire n’est pas encore ouvert. Écrivez-moi sur Instagram ou LinkedIn en attendant."); return; }
+
+      const v = (nom) => (f.elements[nom] ? f.elements[nom].value.trim() : "");
+      const reseaux = [...f.querySelectorAll('input[name="reseaux"]:checked')].map((c) => c.value).join(", ");
+      const donnees = {
+        "Nom": v("nom"),
+        "Entreprise": v("entreprise"),
+        "E-mail": v("email"),
+        "Réseaux": reseaux || "Non précisé",
+        "Besoin": v("besoin"),
+        "Budget mensuel": v("budget") || "Non précisé",
+        _replyto: v("email"),
+        _subject: `Site : nouveau message de ${v("nom")}`,
+        _template: "table",
+        _captcha: "false",
+        _honey: "",
+      };
+
+      bouton.disabled = true;
+      dire("Envoi en cours…");
+      try {
+        const r = await fetch(`https://formsubmit.co/ajax/${ALIAS}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(donnees),
+        });
+        const json = await r.json().catch(() => ({}));
+        if (!r.ok || String(json.success) !== "true") throw new Error(json.message || r.status);
+        try { localStorage.setItem("lili-dernier-envoi", String(Date.now())); } catch {}
+        f.reset();
+        dire("Merci, votre message est bien parti. Je vous réponds très vite.");
+      } catch (err) {
+        dire("L’envoi n’a pas marché. Réessayez dans un instant, ou écrivez-moi sur Instagram ou LinkedIn.");
+      } finally {
+        bouton.disabled = false;
+      }
     });
   });
 })();
