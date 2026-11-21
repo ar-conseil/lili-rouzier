@@ -20,7 +20,6 @@ Brief complet : `~/Downloads/PROMPT_SITE_LILI.md`. Sources de contenu validées 
 - Chemins relatifs partout (le site doit marcher aussi sur `ar-conseil.github.io/lili-rouzier/`), sauf `404.html` en chemins absolus.
 - `outils/partage.html` : source de l'image de partage `assets/img/partage.jpg` (capture 1200 × 630 avec Chrome sans interface).
 - Formulaire de contact : envoi par FormSubmit en attendant le cockpit (`assets/site.js`, constante `ALIAS`). Activé par Lili le 21/11/2026 (alias renseigné). Champ piège `_honey` et un envoi par minute. Une nouvelle activation sera peut-être demandée par FormSubmit au passage sur lilirouzier.com.
-- Melodrama a une apostrophe ’ très fine : c'est le dessin de la police, pas un bug.
 
 ## Règle d'or : un site fait main
 
@@ -47,7 +46,7 @@ Antonin l'a demandé explicitement : le site ne doit pas avoir l'air fait par un
 
 - Palette (prélevée dans les photos de Lili, reprise ensuite par son cockpit) : encre `#171513`, craie `#f4efe8`, rouge rayure `#d4202a` (texte sur clair : `#b3141e`), rose éclair `#f1b8be`, rose pâle `#f9e3e5`, gris `#6a635c`.
 - Signature : `assets/img/signature-lili.png` (logo manuscrit repris de sa carte de visite), utilisée en masque CSS pour prendre n'importe quelle couleur.
-- Polices auto-hébergées dans `assets/fonts/` (Fontshare, licence ITF gratuite, usage commercial autorisé) : Melodrama (titres du site), Switzer (texte courant), Boska (secours des titres ; titres de la piste A), Tanker (piste B seulement).
+- Polices auto-hébergées dans `assets/fonts/` (Fontshare, licence ITF gratuite, usage commercial autorisé) : **Boska pour les titres** (choisie par Antonin le 21/11/2026 parmi huit, à la place de Melodrama jugée trop fine), **Switzer pour le texte**. Melodrama et Tanker ne servent plus qu'aux pistes C et B.
 
 ## Technique
 

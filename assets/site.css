@@ -8,10 +8,6 @@
 @font-face { font-family: "Boska"; src: url("fonts/boska-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
 @font-face { font-family: "Boska"; src: url("fonts/boska-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
 @font-face { font-family: "Boska"; src: url("fonts/boska-700-normal.woff2") format("woff2"); font-weight: 700; font-display: swap; }
-@font-face { font-family: "Melodrama"; src: url("fonts/melodrama-300-normal.woff2") format("woff2"); font-weight: 300; font-display: swap; }
-@font-face { font-family: "Melodrama"; src: url("fonts/melodrama-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Melodrama"; src: url("fonts/melodrama-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
-@font-face { font-family: "Melodrama"; src: url("fonts/melodrama-600-normal.woff2") format("woff2"); font-weight: 600; font-display: swap; }
 
 :root {
   --encre: #171513;
@@ -63,7 +59,7 @@ p { hyphens: auto; -webkit-hyphens: auto; }
 
 /* Site (direction « studio ») */
   body { background: var(--encre); color: var(--craie); }
-  h1, h2, h3, .melo, .generique b, .valeurs b, .bandeau li, .avis blockquote, .mois .tete b { font-family: "Melodrama", "Boska", Didot, Georgia, serif !important; font-weight: 400; letter-spacing: -0.01em; }
+  h1, h2, h3, .melo, .generique b, .valeurs b, .bandeau li, .avis blockquote, .mois .tete b { font-family: "Boska", Georgia, serif !important; font-weight: 500; letter-spacing: -0.02em; }
   ::selection { background: var(--rose); color: var(--encre); }
   :focus-visible { outline-color: var(--rose); }
   .bouton { display: inline-flex; align-items: center; gap: 14px; min-height: 54px; padding: 0 26px; background: var(--craie); color: var(--encre); text-decoration: none; font-weight: 500; font-size: 16px; border: 1px solid var(--craie); transition: background .35s var(--ease), color .35s var(--ease), border-color .35s; }
@@ -109,7 +105,7 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   .bandeau .piste { display: inline-flex; gap: 0; animation: defile 38s linear infinite; }
   .bandeau:hover .piste { animation-play-state: paused; }
   .bandeau ul { display: inline-flex; }
-  .bandeau li { font-family: "Melodrama", serif; font-size: clamp(40px, 5vw, 76px); line-height: 1; padding-right: .6em; }
+  .bandeau li { font-family: "Boska", Georgia, serif; font-size: clamp(40px, 5vw, 76px); line-height: 1; padding-right: .6em; }
   .bandeau li::after { content: "·"; color: var(--rouge); padding-left: .6em; }
   @keyframes defile { to { transform: translateX(-50%); } }
   .bandeau-note { padding-top: 10px; }
@@ -161,7 +157,7 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   /* Quelques clients */
   .generique { margin-top: 56px; }
   .generique a { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; padding: 18px 0; border-bottom: 1px solid #3a3530; text-decoration: none; }
-  .generique b { font-family: "Melodrama", serif; font-weight: 400; font-size: clamp(44px, 7vw, 120px); line-height: .95; transition: color .4s var(--ease), letter-spacing .6s var(--ease); }
+  .generique b { font-family: "Boska", Georgia, serif; font-weight: 500; font-size: clamp(44px, 7vw, 120px); line-height: .95; transition: color .4s var(--ease), letter-spacing .6s var(--ease); }
   .generique a:hover b { color: var(--rose); letter-spacing: .01em; }
   .generique span { color: #a59c92; }
 
@@ -170,18 +166,18 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   .moi figure img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
   .moi figcaption { margin-top: 10px; font-size: 13px; color: #8f867c; }
   .moi .texte p { margin-top: 20px; font-size: 19px; line-height: 1.6; color: #ddd5cb; }
-  .moi .texte p.grand { font-family: "Melodrama", serif; font-size: clamp(30px, 2.8vw, 42px); line-height: 1.1; color: var(--craie); }
+  .moi .texte p.grand { font-family: "Boska", Georgia, serif; font-weight: 400; font-size: clamp(30px, 2.8vw, 42px); line-height: 1.1; color: var(--craie); }
   .moi .signature { width: 210px; margin-top: 26px; color: var(--rose); }
 
   .valeurs { border-top: 1px solid #3a3530; }
   .valeurs li { display: grid; grid-template-columns: 7fr 4fr; gap: 24px; align-items: center; padding: 18px 0; border-bottom: 1px solid #3a3530; }
-  .valeurs b { font-family: "Melodrama", serif; font-weight: 300; font-size: clamp(56px, 9vw, 150px); line-height: .9; }
+  .valeurs b { font-family: "Boska", Georgia, serif; font-weight: 400; font-style: italic; font-size: clamp(56px, 9vw, 150px); line-height: .9; }
   .valeurs p { color: #cfc6bc; }
 
   /* Ce qu’ils en disent */
   .avis { background: var(--craie); color: var(--encre); }
   .avis .scene { min-height: 380px; display: grid; align-content: center; }
-  .avis blockquote { font-family: "Melodrama", serif; font-size: clamp(36px, 5vw, 76px); line-height: 1.02; max-width: 18em; }
+  .avis blockquote { font-family: "Boska", Georgia, serif; font-size: clamp(36px, 5vw, 76px); line-height: 1.02; max-width: 18em; }
   .avis figcaption { margin-top: 22px; font-size: 16px; }
   .avis figcaption span { color: var(--gris); }
   .avis [hidden] { display: none; }
@@ -227,7 +223,7 @@ p { hyphens: auto; -webkit-hyphens: auto; }
     .nav { position: fixed; inset: 80px 0 auto 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 8px var(--marge) 28px; background: var(--encre); border-bottom: 1px solid #2c2824; }
     .menu-ouvert .nav { display: flex; }
     .menu-ouvert .entete { background: var(--encre); }
-    .nav a:not(.bouton) { font-family: "Melodrama", serif; font-size: 40px; padding: 6px 0; }
+    .nav a:not(.bouton) { font-family: "Boska", Georgia, serif; font-size: 40px; padding: 6px 0; }
     .nav .bouton { margin-top: 16px; justify-content: center; min-height: 52px; }
     .une .photo { width: 100%; height: 72%; }
     .une .photo img { -webkit-mask: linear-gradient(to bottom, #000 45%, transparent 98%); mask: linear-gradient(to bottom, #000 45%, transparent 98%); }
@@ -264,13 +260,13 @@ p { hyphens: auto; -webkit-hyphens: auto; }
 .fiche h2 { font-size: clamp(32px, 3.2vw, 46px); line-height: 1; }
 .fiche p { color: #ddd5cb; max-width: 34em; }
 .fiche p + p { margin-top: 14px; }
-.fiche blockquote { font-family: "Melodrama", "Boska", serif; font-size: clamp(26px, 2.6vw, 36px); line-height: 1.12; color: var(--craie); }
+.fiche blockquote { font-family: "Boska", Georgia, serif; font-size: clamp(26px, 2.6vw, 36px); line-height: 1.12; color: var(--craie); }
 .fiche figcaption { margin-top: 12px; font-size: 14px; color: #a59c92; }
 
 .suite { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 28px; margin-top: clamp(80px, 9vw, 130px); padding-top: 30px; border-top: 1px solid #3a3530; }
 .suite a.suivant { text-decoration: none; }
 .suite a.suivant span { display: block; font-size: 15px; color: #a59c92; }
-.suite a.suivant b { font-family: "Melodrama", "Boska", serif; font-weight: 400; font-size: clamp(40px, 5vw, 72px); line-height: 1; transition: color .4s var(--ease); }
+.suite a.suivant b { font-family: "Boska", Georgia, serif; font-weight: 500; font-size: clamp(40px, 5vw, 72px); line-height: 1; transition: color .4s var(--ease); }
 .suite a.suivant:hover b { color: var(--rose); }
 
 /* Pages de texte (mentions, confidentialité) */
