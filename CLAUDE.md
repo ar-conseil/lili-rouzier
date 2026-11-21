@@ -23,8 +23,8 @@ Brief complet : `~/Downloads/PROMPT_SITE_LILI.md`. Sources de contenu validées 
 
 ## Passage sur lilirouzier.com (en cours, 21/11/2026)
 
-- Plan validé par Antonin : transférer lilirouzier.com de Wix vers OVHcloud, puis fermer Wix.
-- Le domaine porte des e-mails Google (Google Workspace probable) : à recopier tels quels dans la nouvelle zone DNS, sinon la messagerie de Lili est coupée.
+- Transfert de lilirouzier.com de Wix vers **Scaleway** (choix d'Antonin). Code de transfert demandé le 21/11/2026, envoyé à la boîte Gmail de Lili ; c'est Antonin qui le saisit chez Scaleway. Les deux sites Wix sont dans la corbeille (conservés 90 jours) ; l'ancienne adresse wixsite répond 404.
+- Le domaine porte des e-mails Google (Google Workspace probable) : à recopier tels quels dans la zone DNS Scaleway, sinon la messagerie de Lili est coupée.
   - MX : 10 aspmx.l.google.com. / 20 alt1.aspmx.l.google.com. / 30 alt2.aspmx.l.google.com. / 40 alt3.aspmx.l.google.com. / 50 alt4.aspmx.l.google.com.
   - TXT : `v=spf1 include:_spf.google.com -all` et `google-site-verification=OqxMD231dSsMihNKXdxbPXWT8Dky1thdWkMqzaDv95s`
 - Pour GitHub Pages : A @ 185.199.108.153 / .109.153 / .110.153 / .111.153 ; AAAA @ 2606:50c0:8000::153 / 8001 / 8002 / 8003 ; CNAME www → ar-conseil.github.io.
