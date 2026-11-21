@@ -21,6 +21,12 @@ Brief complet : `~/Downloads/PROMPT_SITE_LILI.md`. Sources de contenu validées 
 - `outils/partage.html` : source de l'image de partage `assets/img/partage.jpg` (capture 1200 × 630 avec Chrome sans interface).
 - Formulaire de contact : envoi par FormSubmit en attendant le cockpit (`assets/site.js`, constante `ALIAS`). Activé par Lili le 21/11/2026 (alias renseigné). Champ piège `_honey` et un envoi par minute. Une nouvelle activation sera peut-être demandée par FormSubmit au passage sur lilirouzier.com.
 
+## Recette Lighthouse (21/11/2026)
+
+- Mesurée sur 5 pages (accueil, deux études de cas, mentions, confidentialité), mobile et ordinateur : accessibilité, bonnes pratiques et SEO à 100 partout ; performance de 98 à 100.
+- Attention : sur le Mac d'Antonin, la protection NordVPN (Threat Protection) injecte un script de 139 Ko dans Chrome, ce qui fausse Lighthouse (accueil mobile mesuré à 93 à cause de lui). Mesurer soit avec PageSpeed Insights, soit via un serveur local qui imite GitHub Pages (gzip, `Cache-Control: max-age=600`, site sous `/lili-rouzier/`).
+- GitHub Pages impose un cache de 10 minutes sur les fichiers : d'où le paramètre `?v=` sur `site.css` et `site.js`, à augmenter à chaque modification.
+
 ## Règle d'or : un site fait main
 
 Antonin l'a demandé explicitement : le site ne doit pas avoir l'air fait par une IA. Chaque page doit pouvoir passer pour le travail d'un directeur artistique et d'un rédacteur humains.

@@ -32,8 +32,9 @@
   // En-tête qui se resserre au défilement
   const entete = document.querySelector("[data-entete]");
   if (entete) {
-    const maj = () => entete.classList.toggle("resserre", window.scrollY > 24);
-    maj(); window.addEventListener("scroll", maj, { passive: true });
+    let etat = null;
+    const maj = () => { const r = window.scrollY > 24; if (r !== etat) { etat = r; entete.classList.toggle("resserre", r); } };
+    requestAnimationFrame(maj); window.addEventListener("scroll", maj, { passive: true });
   }
 
   // Formulaire de contact
@@ -104,12 +105,17 @@
   (() => {
     const p = document.querySelector("[data-parcours]");
     if (p) {
+      // Calcul seulement quand le parcours est visible, une fois par image
+      let prevu = false, visible = false;
       const maj = () => {
+        prevu = false;
         const r = p.getBoundingClientRect(), h = window.innerHeight;
         const v = Math.min(1, Math.max(0, (h * 0.6 - r.top) / r.height));
         p.style.setProperty("--p", v.toFixed(3));
       };
-      maj(); window.addEventListener("scroll", maj, { passive: true });
+      const demander = () => { if (visible && !prevu) { prevu = true; requestAnimationFrame(maj); } };
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; demander(); }).observe(p);
+      window.addEventListener("scroll", demander, { passive: true });
     }
     const scene = document.querySelector("[data-avis]");
     if (scene) {

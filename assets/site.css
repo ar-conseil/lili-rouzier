@@ -43,7 +43,7 @@ p { hyphens: auto; -webkit-hyphens: auto; }
 :focus-visible { outline: 2px solid var(--rouge-texte); outline-offset: 3px; }
 
 /* La signature manuscrite de Lili, colorable */
-.signature { display: block; aspect-ratio: 993 / 276; background: currentColor; -webkit-mask: url("img/signature-lili.png") center / contain no-repeat; mask: url("img/signature-lili.png") center / contain no-repeat; }
+.signature { display: block; aspect-ratio: 993 / 276; background: currentColor; -webkit-mask: url("img/signature-lili.webp") center / contain no-repeat; mask: url("img/signature-lili.webp") center / contain no-repeat; }
 
 /* Information manquante : visible, jamais confondue avec le contenu */
 .a-completer { display: inline-block; font: 500 12px/1.4 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: 0; text-transform: none; color: #7a4f00; background: #fff1c9; border: 1px dashed #c99700; padding: 2px 7px; vertical-align: middle; }
