@@ -363,3 +363,9 @@ p { hyphens: auto; -webkit-hyphens: auto; }
 .liste-faq summary:hover { color: var(--rose); }
 .liste-faq p { padding: 0 48px 26px 0; color: #cfc6bc; max-width: 36em; }
 @media (max-width: 980px) { .faq .grille { grid-template-columns: 1fr; } }
+
+/* Appel direct */
+.contact .appel { margin: 6px 0 4px; }
+.contact .appel .bouton { gap: 12px; }
+.contact .appel .numero { color: #a59c92; font-variant-numeric: tabular-nums; transition: color .35s var(--ease); }
+.contact .appel .bouton:hover .numero { color: var(--craie); }
