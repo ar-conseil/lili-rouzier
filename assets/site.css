@@ -285,3 +285,22 @@ p { hyphens: auto; -webkit-hyphens: auto; }
 }
 
 .envoi button:disabled { opacity: .5; cursor: wait; }
+
+/* Logos des marques (monochromes, prennent la couleur du texte) */
+.logo { display: inline-block; vertical-align: middle; height: var(--h, 44px); aspect-ratio: var(--r); background: currentColor; -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat; }
+.logo-nhood { --r: 1005 / 460; --m: url("img/logos/nhood.webp"); --h: 66px; }
+.logo-aushopping { --r: 960 / 145; --m: url("img/logos/aushopping.webp"); --h: 38px; }
+.logo-move-your-fit { --r: 1909 / 446; --m: url("img/logos/move-your-fit.webp"); --h: 50px; }
+.logo-les-entrees-de-la-mer { --r: 214.05 / 250; --m: url("img/logos/les-entrees-de-la-mer.svg"); --h: 88px; }
+.bandeau ul { align-items: center; }
+.bandeau li.logos { display: flex; align-items: center; height: 90px; }
+.bandeau li:not(.logos) { font-size: clamp(30px, 3.4vw, 48px); }
+.bandeau li.logos::after { align-self: center; }
+.bandeau .logo { margin-right: .6em; }
+.interieur .logo { --h: 64px; display: block; margin-bottom: 28px; color: var(--craie); }
+.interieur .logo-aushopping { --h: 40px; }
+.interieur .logo-les-entrees-de-la-mer { --h: 96px; }
+@media (max-width: 760px) {
+  .bandeau li.logos { height: 64px; }
+  .bandeau .logo { height: calc(var(--h) * .72); }
+}

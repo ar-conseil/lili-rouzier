@@ -8,7 +8,7 @@ Brief complet : `~/Downloads/PROMPT_SITE_LILI.md`. Sources de contenu validées 
 
 - Étape 2 faite : Antonin a choisi la **piste C, le studio** (21/11/2026). Les pistes A et B restent dans `pistes/` pour mémoire (exclues par `robots.txt`).
 - Étape 3 faite : site complet avec emplacements `[À COMPLÉTER]`.
-- Reste : étape 4 (médias, missions et accords des marques), étape 5 (formulaire branché), étape 6 (recette, Lighthouse), étape 7 (mise en ligne, DNS, redirection Wix).
+- Reste : étape 4 (médias et missions par client, logo de Caroline Poissonier), puis branchement de lilirouzier.com. Pas de page d'adieu ni de redirection Wix : Antonin ferme le site Wix (21/11/2026). Attention, le domaine lilirouzier.com est enregistré chez Wix : le garder ou le transférer avant de fermer le compte.
 - Dépôt public `ar-conseil/lili-rouzier`, préversion sur https://ar-conseil.github.io/lili-rouzier/ (avec les encadrés à compléter). Ne pas ajouter `CNAME` avant que le DNS de lilirouzier.com pointe vers GitHub Pages.
 - Aperçu local : `python3 -m http.server 8742` à la racine, puis http://localhost:8742/
 
@@ -45,7 +45,8 @@ Antonin l'a demandé explicitement : le site ne doit pas avoir l'air fait par un
 ### Vérité
 - Ne jamais inventer une référence, un chiffre, un résultat ni un témoignage. Information manquante : `<span class="a-completer">[À COMPLÉTER : …]</span>`, bien visible.
 - Avis Google : extraits exacts, non corrigés, avec nom et date. Un des cinq avis n'est volontairement pas affiché (raison dans `contenus/sources.md`).
-- Pas de logos de marques sans accord écrit.
+- Les cinq marques (Nhood, Aushopping, Caroline Poissonier, Les Entrées de la Mer, Move Your Fit) ont donné leur accord pour être citées avec leur logo (confirmé par Antonin le 21/11/2026). Toute nouvelle marque : accord d'abord.
+- Logos dans `assets/img/logos/` : silhouettes monochromes (masques CSS, classes `.logo-<marque>` dans `site.css`). Sources : sites officiels ; Nhood depuis Wikimedia Commons (CC BY-SA 4.0, crédité dans les mentions légales).
 - Jamais l'adresse e-mail de Lili en clair dans le code.
 
 ## Identité
