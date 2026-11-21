@@ -14,7 +14,7 @@ Brief complet : `~/Downloads/PROMPT_SITE_LILI.md`. Sources de contenu validées 
 
 ## Structure
 
-- `index.html` : accueil. `realisations/<marque>/` : une étude de cas par client. `mentions-legales/`, `confidentialite/`, `espace-client/` (page d'attente, noindex), `404.html`.
+- `index.html` : accueil. `realisations/<marque>/` : une étude de cas par client. `mentions-legales/`, `confidentialite/`, `404.html`. Pas d'espace client sur ce site (décision d'Antonin, 22/11/2026) : ni page, ni lien, ni section.
 - `assets/site.css` et `assets/site.js` : styles et scripts du site (pas d'étape de build). `assets/base.css` et `assets/base.js` ne servent plus qu'aux pistes.
 - En-tête et pied de page sont recopiés dans chaque page : toute modification se fait partout.
 - Chemins relatifs partout (le site doit marcher aussi sur `ar-conseil.github.io/lili-rouzier/`), sauf `404.html` en chemins absolus.

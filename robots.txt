@@ -1,5 +1,4 @@
 User-agent: *
 Disallow: /pistes/
-Disallow: /espace-client/
 
 Sitemap: https://lilirouzier.com/sitemap.xml
