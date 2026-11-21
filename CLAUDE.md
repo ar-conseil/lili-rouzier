@@ -31,6 +31,12 @@ Brief complet : `~/Downloads/PROMPT_SITE_LILI.md`. Sources de contenu validées 
 - Fiche Google Business de Lili : lien du site remplacé le 21/11/2026 par https://ar-conseil.github.io/lili-rouzier/ (provisoire) ; à repasser sur https://lilirouzier.com/ après le branchement.
 - Une fois le DNS en place : fichier `CNAME` (lilirouzier.com), domaine personnalisé dans les réglages Pages, HTTPS forcé, 404 et liens à revérifier, réactivation FormSubmit probable.
 
+## Contenus ajoutés (22/11/2026)
+
+- Section « Sur mon Instagram » : 8 publications de @lilipointcom (`assets/img/insta/`, originaux dans `~/.lili/site/medias/instagram/`), chaque vignette renvoie à la publication.
+- Photo pleine largeur de Lili au travail (`lili-cafe-*`), tirée de sa publication Instagram du 15/12/2023.
+- Piste à proposer : témoignage de Fatou Keita (CEO My French Beauté), publié par Lili sur Instagram le 05/11/2021, à ajouter aux avis si Antonin valide.
+
 ## Recette Lighthouse (21/11/2026)
 
 - Mesurée sur 5 pages (accueil, deux études de cas, mentions, confidentialité), mobile et ordinateur : accessibilité, bonnes pratiques et SEO à 100 partout ; performance de 98 à 100.
