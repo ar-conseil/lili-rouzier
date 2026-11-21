@@ -86,14 +86,14 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   /* Accroche */
   .une { position: relative; min-height: 100svh; display: grid; align-items: end; overflow: hidden; }
   .une .photo { position: absolute; inset: 0 0 0 auto; width: min(58vw, 860px); }
-  .une .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; -webkit-mask: linear-gradient(to right, transparent, #000 32%); mask: linear-gradient(to right, transparent, #000 32%); animation: recul 2.4s var(--ease) both; }
+  .une .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; -webkit-mask: linear-gradient(to right, transparent, #000 32%); mask: linear-gradient(to right, transparent, #000 32%); animation: recul 1.4s var(--ease) both; }
   @keyframes recul { from { transform: scale(1.08); opacity: 0; } to { transform: none; opacity: 1; } }
   .une .conteneur { position: relative; z-index: 2; padding-top: 140px; padding-bottom: 56px; }
   .une h1 { font-size: clamp(64px, 9.6vw, 164px); line-height: .9; max-width: 9.5em; text-shadow: 0 2px 40px rgba(23,21,19,.55); }
   .une h1 .ligne { display: block; overflow: hidden; }
-  .une h1 .ligne > span { display: block; animation: monte 1.3s var(--ease) both; }
-  .une h1 .ligne:nth-child(2) > span { animation-delay: .12s; }
-  .une h1 .ligne:nth-child(3) > span { animation-delay: .24s; }
+  .une h1 .ligne > span { display: block; animation: monte .9s var(--ease) both; }
+  .une h1 .ligne:nth-child(2) > span { animation-delay: .08s; }
+  .une h1 .ligne:nth-child(3) > span { animation-delay: .16s; }
   @keyframes monte { from { transform: translateY(105%); } to { transform: none; } }
   .une .bas { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 28px; margin-top: 40px; }
   .une .chapo { max-width: 28em; font-size: 19px; color: #d8d0c6; }
@@ -370,3 +370,80 @@ p { hyphens: auto; -webkit-hyphens: auto; }
 .contact .appel .numero { color: #a59c92; font-variant-numeric: tabular-nums; transition: color .35s var(--ease); }
 .contact .appel .bouton:hover .numero { color: var(--craie); }
 .contact .appel { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* ============================================================
+   Téléphone et tablette : refonte de l'expérience mobile
+   ============================================================ */
+.burger-traits { display: block; position: relative; width: 26px; height: 12px; }
+.burger-traits i { position: absolute; left: 0; right: 0; height: 1.5px; background: currentColor; transition: transform .45s var(--ease), top .45s var(--ease), width .45s var(--ease); }
+.burger-traits i:first-child { top: 0; }
+.burger-traits i:last-child { top: 10px; width: 70%; left: auto; }
+.nav-pied { display: none; }
+.cta-flottant { display: none; }
+
+@media (max-width: 980px) {
+  /* En-tête */
+  .entete .conteneur { height: 64px; }
+  .entete .marque { width: 118px; position: relative; z-index: 2; }
+  .burger { position: relative; z-index: 2; display: grid; place-items: center; width: 48px; height: 48px; margin-right: -10px; padding: 0; border: 0; background: none; color: var(--craie); }
+  .menu-ouvert .burger-traits i:first-child { top: 5px; transform: rotate(45deg); }
+  .menu-ouvert .burger-traits i:last-child { top: 5px; width: 100%; transform: rotate(-45deg); }
+  .menu-ouvert { overflow: hidden; }
+  .menu-ouvert .entete { background: transparent; border-bottom-color: transparent; }
+
+  /* Menu plein écran */
+  .nav { position: fixed; inset: 0; z-index: 1; display: flex !important; flex-direction: column; justify-content: center; align-items: stretch; gap: 0; height: 100dvh; padding: 88px var(--marge) calc(28px + env(safe-area-inset-bottom)); background: var(--encre); border: 0; opacity: 0; visibility: hidden; transition: opacity .4s var(--ease), visibility 0s linear .4s; }
+  .menu-ouvert .nav { opacity: 1; visibility: visible; transition: opacity .4s var(--ease); }
+  .nav > a:not(.bouton) { font-family: "Boska", Georgia, serif; font-weight: 500; font-size: clamp(40px, 11vw, 56px); line-height: 1.05; padding: 6px 0; letter-spacing: -0.02em; opacity: 0; transform: translateY(16px); transition: opacity .5s var(--ease), transform .6s var(--ease); }
+  .nav > a:not(.bouton)::after { display: none; }
+  .nav > a.lien-espace { font-size: 22px; font-family: var(--texte); margin-top: 18px; color: #a59c92; }
+  .nav > .bouton { margin-top: 28px; justify-content: center; min-height: 54px; opacity: 0; transition: opacity .5s var(--ease) .3s; }
+  .menu-ouvert .nav > a { opacity: 1; transform: none; }
+  .menu-ouvert .nav > a:nth-child(1) { transition-delay: .05s; } .menu-ouvert .nav > a:nth-child(2) { transition-delay: .1s; }
+  .menu-ouvert .nav > a:nth-child(3) { transition-delay: .15s; } .menu-ouvert .nav > a:nth-child(4) { transition-delay: .2s; }
+  .menu-ouvert .nav > a:nth-child(5) { transition-delay: .25s; }
+  .nav-pied { display: flex; gap: 22px; margin-top: auto; padding-top: 28px; border-top: 1px solid #2c2824; font-size: 15px; }
+  .nav-pied a { color: #cfc6bc; text-decoration: none; }
+  .nav-pied a:active { color: var(--rose); }
+
+  /* Accueil : la photo au-dessus, le texte dessous, rien ne se chevauche */
+  .une { min-height: 0; display: block; }
+  .une .photo { position: relative; inset: auto; width: 100%; height: min(62svh, 520px); }
+  .une .photo img { object-position: 50% 12%; animation-duration: 1s; -webkit-mask: linear-gradient(to bottom, #000 55%, transparent); mask: linear-gradient(to bottom, #000 55%, transparent); }
+  .une .conteneur { padding-top: 0; margin-top: -72px; padding-bottom: 44px; }
+  .une h1 { font-size: clamp(44px, 12.4vw, 64px); line-height: .95; max-width: none; text-wrap: balance; }
+  .une h1 .ligne > span { animation-duration: .8s; }
+  .une .bas { display: block; margin-top: 22px; }
+  .une .chapo { font-size: 17px; }
+  .une .actions { margin-top: 24px; display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .une .actions .bouton { justify-content: center; }
+
+  /* Rythme : sections un peu plus serrées */
+  .bloc { padding: 76px 0; }
+  .titre { font-size: clamp(42px, 11vw, 60px); }
+  .services-grille li { padding: 22px 0 24px; }
+  .services-grille h3 { font-size: 30px; }
+  .pause { height: 56svh; }
+  .methode figure { max-width: none; }
+  .methode figure img { aspect-ratio: 4/3; object-position: 50% 30%; }
+  .parcours { margin-top: 36px; }
+  .parcours li { padding-bottom: 32px; }
+  .parcours h3 { font-size: 30px; }
+  .espace { margin-top: 72px; }
+  .generique b { font-size: clamp(38px, 10vw, 56px); }
+  .valeurs b { font-size: clamp(48px, 14vw, 72px); }
+  .liste-faq summary { font-size: 23px; padding: 20px 40px 20px 0; }
+
+  /* Bouton flottant, visible entre l'accueil et le contact */
+  .cta-flottant { position: fixed; left: var(--marge); right: var(--marge); bottom: calc(14px + env(safe-area-inset-bottom)); z-index: 25; display: flex; justify-content: center; align-items: center; gap: 10px; min-height: 52px; background: var(--craie); color: var(--encre); text-decoration: none; font-weight: 500; box-shadow: 0 10px 30px rgba(0,0,0,.35); opacity: 0; transform: translateY(120%); transition: opacity .35s var(--ease), transform .45s var(--ease); pointer-events: none; }
+  .cta-flottant.visible { opacity: 1; transform: none; pointer-events: auto; }
+  .menu-ouvert .cta-flottant { opacity: 0; pointer-events: none; }
+
+  /* Défilement fluide : pas d’effet d’apparition sur téléphone */
+  .apparait { opacity: 1; transform: none; transition: none; }
+}
+@media (max-width: 980px) {
+  .nav .nav-pied a { font-family: var(--texte) !important; font-size: 15px !important; font-weight: 500; letter-spacing: 0; padding: 10px 0 !important; opacity: 1 !important; transform: none !important; }
+}
+@media (max-width: 980px) { .entete.resserre { background: var(--encre); } }
+@media (max-width: 980px) { .une .photo img { animation: none; } }

@@ -37,6 +37,12 @@ Brief complet : `~/Downloads/PROMPT_SITE_LILI.md`. Sources de contenu validées 
 - Photo pleine largeur de Lili au travail (`lili-cafe-*`), tirée de sa publication Instagram du 15/12/2023.
 - Témoignage de Fatou Keita (CEO My French Beauté), publié par Lili sur Instagram le 22/10/2021 (publication CVVYTJpMyZ1), ajouté au carrousel des avis avec l'accord d'Antonin (22/11/2026). My French Beauté n'est pas dans le bandeau des marques : accord à demander avant.
 
+## Mobile (22/11/2026)
+
+- Refonte téléphone après retour d'Antonin : icône de menu (deux traits qui deviennent une croix), menu plein écran avec raccourcis Appeler / WhatsApp / Instagram, accueil photo au-dessus et texte dessous, bouton flottant « Parlons de votre projet » entre l'accueil et le contact, en-tête opaque au défilement.
+- Pas d'effets d'apparition au défilement sur téléphone (fluidité) ; ils restent sur ordinateur.
+- Lighthouse mobile accueil : 95 à 98 en performance, 100 ailleurs.
+
 ## Recette Lighthouse (21/11/2026)
 
 - Mesurée sur 5 pages (accueil, deux études de cas, mentions, confidentialité), mobile et ordinateur : accessibilité, bonnes pratiques et SEO à 100 partout ; performance de 98 à 100.

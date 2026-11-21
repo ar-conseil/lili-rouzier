@@ -4,14 +4,18 @@
 
   // Apparition au défilement
   const elements = document.querySelectorAll(".apparait");
-  if (reduit || !("IntersectionObserver" in window)) {
+  // Sur téléphone, pas d’apparition au défilement : le contenu est là tout de suite, le défilement reste fluide
+  const mobile = window.matchMedia("(max-width: 980px)").matches;
+  if (mobile) {
+    // rien à faire : la feuille de style affiche déjà tout
+  } else if (reduit || !("IntersectionObserver" in window)) {
     elements.forEach((el) => el.classList.add("visible"));
   } else {
     const obs = new IntersectionObserver((entrees) => {
       entrees.forEach((e) => {
         if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); }
       });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    }, { rootMargin: window.matchMedia("(max-width: 980px)").matches ? "0px 0px 12% 0px" : "0px 0px -8% 0px", threshold: 0.01 });
     elements.forEach((el) => obs.observe(el));
   }
 
@@ -126,3 +130,14 @@
       document.querySelector("[data-avis-suiv]").addEventListener("click", () => voir(i + 1));
     }
   })();
+
+// Bouton flottant « Parlons de votre projet » (téléphone) : caché sur l'accueil et le contact
+(() => {
+  const cta = document.querySelector("[data-cta]");
+  const une = document.querySelector(".une"), contact = document.querySelector("#contact");
+  if (!cta || !une || !contact || !("IntersectionObserver" in window)) return;
+  let uneVisible = true, contactVisible = false;
+  const maj = () => cta.classList.toggle("visible", !uneVisible && !contactVisible);
+  new IntersectionObserver(([e]) => { uneVisible = e.isIntersecting; maj(); }).observe(une);
+  new IntersectionObserver(([e]) => { contactVisible = e.isIntersecting; maj(); }, { rootMargin: "0px 0px -20% 0px" }).observe(contact);
+})();
