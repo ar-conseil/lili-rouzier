@@ -47,6 +47,7 @@
     const retour = f.querySelector("[data-retour]");
     const bouton = f.querySelector('button[type="submit"]');
     const dire = (texte) => { if (retour) retour.textContent = texte; };
+    bouton.disabled = false; // le bouton ne s’active qu’avec ce script
 
     f.addEventListener("submit", async (e) => {
       e.preventDefault();

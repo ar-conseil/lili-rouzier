@@ -24,7 +24,7 @@
 <link rel="preload" href="assets/fonts/melodrama-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/switzer-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" type="image/avif" imagesrcset="assets/img/lili-studio-pied-640.avif 640w, assets/img/lili-studio-pied-1200.avif 1200w" imagesizes="(max-width: 980px) 100vw, 58vw">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=3">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -236,7 +236,7 @@
           <p><a href="https://www.instagram.com/lilipointcom/" rel="noopener">Instagram</a>, <a href="https://www.facebook.com/Lilipointcom-105431731795990" rel="noopener">Facebook</a>, <a href="https://www.linkedin.com/in/alison-rouzier-0a0b3771/" rel="noopener">LinkedIn</a></p>
         </div>
       </div>
-      <form class="apparait" data-contact novalidate>
+      <form class="apparait" data-contact method="post" action="#contact" novalidate>
         <div class="champ"><label for="nom">Votre nom</label><input id="nom" name="nom" type="text" autocomplete="name" required></div>
         <div class="champ"><label for="entreprise">Votre entreprise</label><input id="entreprise" name="entreprise" type="text" autocomplete="organization"></div>
         <div class="champ large"><label for="email">Votre e-mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
@@ -253,7 +253,7 @@
         <div class="champ large"><label for="budget">Budget mensuel, si vous en avez une idée</label>
           <select id="budget" name="budget"><option value="">Je ne sais pas encore</option><option>Moins de 500 €</option><option>De 500 à 1 000 €</option><option>De 1 000 à 2 000 €</option><option>Plus de 2 000 €</option></select></div>
         <div class="piege" aria-hidden="true"><label for="site">Ne pas remplir</label><input id="site" name="_honey" type="text" tabindex="-1" autocomplete="off"></div>
-        <div class="envoi"><button class="bouton" type="submit">Envoyer <span class="fleche" aria-hidden="true">→</span></button><p data-retour role="status">Vos coordonnées servent seulement à vous répondre.</p></div>
+        <div class="envoi"><button class="bouton" type="submit" disabled>Envoyer <span class="fleche" aria-hidden="true">→</span></button><p data-retour role="status">Vos coordonnées servent seulement à vous répondre.</p></div>
       </form>
     </div>
   </section>
@@ -268,6 +268,6 @@
     </div>
   </div>
 </footer>
-<script src="assets/site.js" defer></script>
+<script src="assets/site.js?v=3" defer></script>
 </body>
 </html>
