@@ -35,7 +35,7 @@ Brief complet : `~/Downloads/PROMPT_SITE_LILI.md`. Sources de contenu validées 
 
 - Section « Sur mon Instagram » : 8 publications de @lilipointcom (`assets/img/insta/`, originaux dans `~/.lili/site/medias/instagram/`), chaque vignette renvoie à la publication.
 - Photo pleine largeur de Lili au travail (`lili-cafe-*`), tirée de sa publication Instagram du 15/12/2023.
-- Piste à proposer : témoignage de Fatou Keita (CEO My French Beauté), publié par Lili sur Instagram le 05/11/2021, à ajouter aux avis si Antonin valide.
+- Témoignage de Fatou Keita (CEO My French Beauté), publié par Lili sur Instagram le 22/10/2021 (publication CVVYTJpMyZ1), ajouté au carrousel des avis avec l'accord d'Antonin (22/11/2026). My French Beauté n'est pas dans le bandeau des marques : accord à demander avant.
 
 ## Recette Lighthouse (21/11/2026)
 
