@@ -5,3 +5,4 @@ contenus/
 # Captures pleine page des pistes (lourdes), seules les vignettes ecran1 sont versionnées
 pistes/captures/*-ordinateur.jpg
 pistes/captures/*-telephone.jpg
+pistes/captures/site-*.jpg

@@ -8,7 +8,7 @@ Brief complet : `~/Downloads/PROMPT_SITE_LILI.md`. Sources de contenu validées 
 
 - Étape 2 faite : Antonin a choisi la **piste C, le studio** (21/11/2026). Les pistes A et B restent dans `pistes/` pour mémoire (exclues par `robots.txt`).
 - Étape 3 faite : site complet avec emplacements `[À COMPLÉTER]`.
-- Reste : étape 4 (médias et missions par client), puis branchement de lilirouzier.com. Pas de page d'adieu ni de redirection Wix : Antonin ferme le site Wix (21/11/2026). Attention, le domaine lilirouzier.com est enregistré chez Wix : le garder ou le transférer avant de fermer le compte.
+- Reste : étape 4 (médias et missions par client), puis branchement de lilirouzier.com. Pas de page d'adieu ni de redirection Wix : Antonin ferme le site Wix (21/11/2026). Domaine lilirouzier.com : acheté chez Wix le 11/11/2023, payé jusqu'au 11/11/2029, DNS chez Wix, aucun site branché dessus (404). Aucun reçu dans la boîte Gmail d'Antonin : probablement sur le compte Wix de Lili. Le transférer (ou au moins changer ses DNS) avant de fermer le compte Wix. lilirouzier.fr est libre.
 - Dépôt public `ar-conseil/lili-rouzier`, préversion sur https://ar-conseil.github.io/lili-rouzier/ (avec les encadrés à compléter). Ne pas ajouter `CNAME` avant que le DNS de lilirouzier.com pointe vers GitHub Pages.
 - Aperçu local : `python3 -m http.server 8742` à la racine, puis http://localhost:8742/
 
