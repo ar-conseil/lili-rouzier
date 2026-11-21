@@ -538,3 +538,45 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   .page-cas:not(.menu-ouvert) .entete:not(.resserre) .marque,
   .page-cas:not(.menu-ouvert) .entete:not(.resserre) .burger { color: var(--sur-marque); }
 }
+
+/* ============================================================
+   Pages de texte : mentions légales, confidentialité
+   ============================================================ */
+.page-texte { background: var(--craie); color: var(--encre); padding: 140px 0 clamp(80px, 10vw, 140px); }
+.page-texte .retour { color: var(--gris); }
+.page-texte .retour:hover { color: var(--encre); }
+.page-texte h1 { font-size: clamp(56px, 8vw, 128px); line-height: .9; }
+.texte-tete { padding-bottom: clamp(40px, 5vw, 64px); border-bottom: 1px solid var(--encre); }
+.texte-tete .chapo { margin-top: 22px; max-width: 32em; font-size: 20px; color: #3b3632; }
+.texte-tete .maj { margin-top: 14px; font-size: 14px; color: var(--gris); }
+.texte-grille { display: grid; grid-template-columns: 3fr 8fr; gap: clamp(32px, 6vw, 96px); margin-top: clamp(40px, 5vw, 64px); }
+.sommaire-texte { position: sticky; top: 100px; align-self: start; font-size: 15px; }
+.sommaire-texte p { color: var(--gris); margin-bottom: 10px; }
+.sommaire-texte ol { counter-reset: none; }
+.sommaire-texte li { border-top: 1px solid var(--trait); }
+.sommaire-texte a { display: block; padding: 9px 0; text-decoration: none; transition: color .3s var(--ease), padding .3s var(--ease); }
+.sommaire-texte a:hover { color: var(--rouge-texte); padding-left: 6px; }
+.page-texte .texte-long { max-width: 40em; margin-top: 0; }
+.page-texte .texte-long section { padding: 4px 0 30px; scroll-margin-top: 100px; }
+.page-texte .texte-long section + section { padding-top: 30px; border-top: 1px solid var(--trait); }
+.page-texte .texte-long h2 { margin-top: 0; font-size: clamp(28px, 2.6vw, 38px); }
+.page-texte .texte-long p { margin-top: 12px; color: #3b3632; font-size: 18px; line-height: 1.65; }
+.page-texte .texte-long a { color: var(--encre); text-underline-offset: 4px; }
+.page-texte .texte-long a:hover { color: var(--rouge-texte); }
+.infos-legales { margin: 16px 0 0; }
+.infos-legales > div { display: grid; grid-template-columns: 200px 1fr; gap: 16px; padding: 12px 0; border-top: 1px solid var(--trait); }
+.infos-legales dt { font-weight: 500; }
+.infos-legales dd { margin: 0; color: #3b3632; }
+.en-bref { margin-bottom: 40px; padding: clamp(22px, 3vw, 32px); background: var(--encre); color: var(--craie); }
+.en-bref-titre { font-family: "Boska", Georgia, serif; font-weight: 500; font-size: 28px; color: var(--rose) !important; margin: 0 !important; }
+.en-bref ul { margin-top: 14px; display: grid; gap: 8px; }
+.en-bref li { position: relative; padding-left: 22px; color: #ddd5cb; }
+.en-bref li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--rose); }
+.page-legale .entete:not(.resserre) { background: var(--encre); }
+@media (max-width: 860px) {
+  .page-texte { padding-top: 104px; }
+  .texte-grille { grid-template-columns: 1fr; }
+  .sommaire-texte { position: static; }
+  .infos-legales > div { grid-template-columns: 1fr; gap: 2px; }
+}
+.page-texte .en-bref ul { list-style: none; padding-left: 0; }
