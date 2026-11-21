@@ -336,3 +336,30 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   .une .photo { width: min(46vw, 720px); }
   .une .photo img { -webkit-mask: linear-gradient(to right, transparent, #000 22%); mask: linear-gradient(to right, transparent, #000 22%); }
 }
+
+/* Services en deux colonnes, vignette au survol */
+.services-grille { display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(32px, 6vw, 96px); border-top: 0; }
+.services-grille li { position: relative; display: block; padding: 30px 0 34px; border-top: 1px solid #3a3530; border-bottom: 0; }
+.services-grille h3 { font-size: clamp(32px, 3.2vw, 48px); }
+.services-grille p { margin-top: 12px; }
+.services-grille .vignette { position: absolute; right: 0; top: -58px; width: 84px; z-index: 2; opacity: 0; transform: rotate(4deg) scale(.9); transition: opacity .45s var(--ease), transform .6s var(--ease); pointer-events: none; }
+.services-grille .vignette img { width: 100%; aspect-ratio: 1; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+.services-grille li:hover .vignette { opacity: 1; transform: rotate(-3deg) scale(1); }
+.services-grille li.autre a { display: block; text-decoration: none; }
+.services-grille li.autre h3 { color: var(--rose); }
+.services-grille li.autre p { color: var(--craie); }
+@media (hover: none) { .services-grille .vignette { display: none; } }
+@media (max-width: 760px) { .services-grille { grid-template-columns: 1fr; } }
+
+/* Vos questions */
+.faq { background: #1f1c19; }
+.faq .grille { display: grid; grid-template-columns: 4fr 7fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
+.liste-faq { border-top: 1px solid #3a3530; }
+.liste-faq details { border-bottom: 1px solid #3a3530; }
+.liste-faq summary { position: relative; display: block; padding: 24px 48px 24px 0; cursor: pointer; list-style: none; font-family: "Boska", Georgia, serif; font-weight: 500; font-size: clamp(24px, 2.2vw, 32px); line-height: 1.15; }
+.liste-faq summary::-webkit-details-marker { display: none; }
+.liste-faq summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-family: var(--texte); font-size: 28px; font-weight: 400; color: var(--rose); transition: transform .3s var(--ease); }
+.liste-faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.liste-faq summary:hover { color: var(--rose); }
+.liste-faq p { padding: 0 48px 26px 0; color: #cfc6bc; max-width: 36em; }
+@media (max-width: 980px) { .faq .grille { grid-template-columns: 1fr; } }

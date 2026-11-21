@@ -24,7 +24,7 @@
 <link rel="preload" href="assets/fonts/boska-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/switzer-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" type="image/avif" imagesrcset="assets/img/lili-studio-pied-640.avif 640w, assets/img/lili-studio-pied-900.avif 900w, assets/img/lili-studio-pied-1200.avif 1200w" imagesizes="(max-width: 980px) 100vw, 58vw">
-<link rel="stylesheet" href="assets/site.css?v=8">
+<link rel="stylesheet" href="assets/site.css?v=9">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +59,54 @@
         "https://www.instagram.com/lilipointcom/",
         "https://maps.google.com/?cid=11313845048076739870"
       ]
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Combien coûte un accompagnement ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les tarifs sont sur devis. Ils dépendent des réseaux à tenir, du rythme de publication et des contenus à créer. Le premier rendez-vous est offert : c’est là qu’on en parle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Où travaillez-vous ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dans les Hauts-de-France, depuis la métropole lilloise."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Sur quels réseaux ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Instagram, Facebook et LinkedIn. Pour un autre réseau, dites-le-moi dans votre message."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Dois-je tout vous confier ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non. Je peux tout prendre en main, ou seulement la partie qui vous manque : la stratégie, les contenus, l’animation de la communauté ou le rapport du mois."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment je valide les publications ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dans votre espace client. Chaque publication y apparaît telle qu’elle sortira. Vous la validez en deux gestes, ou vous laissez un commentaire directement sur l’image."
+      }
     }
   ]
 }
@@ -114,14 +162,15 @@
   <section class="bloc" id="services">
     <div class="conteneur">
       <h2 class="titre apparait">Ce que je fais</h2>
-      <ul class="lignes">
-        <li class="apparait"><h3>La ligne éditoriale</h3><p>On définit ensemble le ton, les sujets, ce qu’on dit et ce qu’on ne dit pas. Vous l’avez par écrit, et toute votre équipe peut s’en servir.</p></li>
-        <li class="apparait"><h3>Le calendrier</h3><p>Un mois de publications prévu à l’avance. Vous le voyez, vous le validez, rien ne part sans votre accord.</p></li>
-        <li class="apparait"><h3>Les contenus</h3><p>Photos, vidéos, reels, stories et textes, créés pour votre marque et dans son style.</p></li>
-        <li class="apparait"><h3>La veille</h3><p>Je regarde ce que font vos concurrents et ce qui marche dans votre secteur, et je vous le raconte chaque mois.</p></li>
-        <li class="apparait"><h3>L’influence</h3><p>Je trouve les créateurs qui collent à votre marque, je les contacte et je suis la collaboration jusqu’à la publication.</p></li>
-        <li class="apparait"><h3>La communauté</h3><p>Je réponds aux messages et aux commentaires, vite, et avec votre ton.</p></li>
-        <li class="apparait"><h3>Le rapport du mois</h3><p>Les chiffres importants, ce qu’ils veulent dire, et ce qu’on change pour le mois suivant.</p></li>
+      <ul class="lignes services-grille">
+        <li class="apparait"><picture class="vignette" aria-hidden="true"><source type="image/avif" srcset="assets/img/insta/plan-prepare.avif"><img src="assets/img/insta/plan-prepare.webp" width="600" height="600" alt="" loading="lazy"></picture><h3>La ligne éditoriale</h3><p>On définit ensemble le ton, les sujets, ce qu’on dit et ce qu’on ne dit pas. Vous l’avez par écrit, et toute votre équipe peut s’en servir.</p></li>
+        <li class="apparait"><picture class="vignette" aria-hidden="true"><source type="image/avif" srcset="assets/img/insta/strategie.avif"><img src="assets/img/insta/strategie.webp" width="600" height="600" alt="" loading="lazy"></picture><h3>Le calendrier</h3><p>Un mois de publications prévu à l’avance. Vous le voyez, vous le validez, rien ne part sans votre accord.</p></li>
+        <li class="apparait"><picture class="vignette" aria-hidden="true"><source type="image/avif" srcset="assets/img/insta/illustration.avif"><img src="assets/img/insta/illustration.webp" width="600" height="600" alt="" loading="lazy"></picture><h3>Les contenus</h3><p>Photos, vidéos, reels, stories et textes, créés pour votre marque et dans son style.</p></li>
+        <li class="apparait"><picture class="vignette" aria-hidden="true"><source type="image/avif" srcset="assets/img/insta/productivity.avif"><img src="assets/img/insta/productivity.webp" width="600" height="600" alt="" loading="lazy"></picture><h3>La veille</h3><p>Je regarde ce que font vos concurrents et ce qui marche dans votre secteur, et je vous le raconte chaque mois.</p></li>
+        <li class="apparait"><picture class="vignette" aria-hidden="true"><source type="image/avif" srcset="assets/img/insta/cafe-livre.avif"><img src="assets/img/insta/cafe-livre.webp" width="600" height="600" alt="" loading="lazy"></picture><h3>L’influence</h3><p>Je trouve les créateurs qui collent à votre marque, je les contacte et je suis la collaboration jusqu’à la publication.</p></li>
+        <li class="apparait"><picture class="vignette" aria-hidden="true"><source type="image/avif" srcset="assets/img/insta/sourire.avif"><img src="assets/img/insta/sourire.webp" width="600" height="600" alt="" loading="lazy"></picture><h3>La communauté</h3><p>Je réponds aux messages et aux commentaires, vite, et avec votre ton.</p></li>
+        <li class="apparait"><picture class="vignette" aria-hidden="true"><source type="image/avif" srcset="assets/img/insta/aushopping-noyelles.avif"><img src="assets/img/insta/aushopping-noyelles.webp" width="600" height="600" alt="" loading="lazy"></picture><h3>Le rapport du mois</h3><p>Les chiffres importants, ce qu’ils veulent dire, et ce qu’on change pour le mois suivant.</p></li>
+        <li class="apparait autre"><a href="#contact"><h3>Un besoin précis&#8239;?</h3><p>Je peux tout prendre en main, ou seulement la partie qui vous manque. Parlons-en <span aria-hidden="true">→</span></p></a></li>
       </ul>
     </div>
   </section>
@@ -251,6 +300,19 @@
     </div>
   </section>
 
+  <section class="bloc faq" id="questions" aria-labelledby="titre-faq">
+    <div class="conteneur grille">
+      <h2 class="titre apparait" id="titre-faq">Vos questions</h2>
+      <div class="liste-faq">
+        <details class="apparait"><summary>Combien coûte un accompagnement&#8239;?</summary><p>Les tarifs sont sur devis. Ils dépendent des réseaux à tenir, du rythme de publication et des contenus à créer. Le premier rendez-vous est offert&#8239;: c’est là qu’on en parle.</p></details>
+        <details class="apparait"><summary>Où travaillez-vous&#8239;?</summary><p>Dans les Hauts-de-France, depuis la métropole lilloise.</p></details>
+        <details class="apparait"><summary>Sur quels réseaux&#8239;?</summary><p>Instagram, Facebook et LinkedIn. Pour un autre réseau, dites-le-moi dans votre message.</p></details>
+        <details class="apparait"><summary>Dois-je tout vous confier&#8239;?</summary><p>Non. Je peux tout prendre en main, ou seulement la partie qui vous manque&#8239;: la stratégie, les contenus, l’animation de la communauté ou le rapport du mois.</p></details>
+        <details class="apparait"><summary>Comment je valide les publications&#8239;?</summary><p>Dans votre espace client. Chaque publication y apparaît telle qu’elle sortira. Vous la validez en deux gestes, ou vous laissez un commentaire directement sur l’image.</p></details>
+      </div>
+    </div>
+  </section>
+
   <section class="bloc contact" id="contact">
     <div class="conteneur grille">
       <div class="apparait">
@@ -294,6 +356,6 @@
     </div>
   </div>
 </footer>
-<script src="assets/site.js?v=8" defer></script>
+<script src="assets/site.js?v=9" defer></script>
 </body>
 </html>
