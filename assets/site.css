@@ -598,3 +598,49 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   .p404-grille { grid-template-columns: 1fr; }
   .p404-image { max-width: 260px; }
 }
+
+/* ============================================================
+   Pages clients sur téléphone
+   ============================================================ */
+@media (max-width: 760px) {
+  .cas-une { padding: 92px 0 40px; }
+  .cas-une .retour { font-size: 14px; margin-bottom: 22px; }
+  .cas-une .logo { --h: 44px; margin: 0 0 18px; }
+  .cas-une .logo-aushopping { --h: 28px; }
+  .cas-une .logo-les-entrees-de-la-mer { --h: 72px; }
+  .cas-une .logo-move-your-fit { --h: 36px; }
+  .cas-une h1 { font-size: clamp(44px, 12.5vw, 60px); line-height: .95; text-wrap: balance; }
+  .cas-une .chapo { margin-top: 16px; font-size: 17px; }
+
+  .cas-corps { padding-top: 44px; padding-bottom: 56px; }
+  .cas-corps .fiche > div { padding: 18px 0; gap: 8px; }
+  .cas-corps dt { font-size: 26px; }
+  .cas-corps dt::before { width: 8px; height: 8px; margin-right: 10px; }
+
+  .cas-visuel { margin-top: 44px; }
+  figure.cas-visuel { margin-inline: calc(var(--marge) * -1); }
+  figure.cas-visuel img { width: 100%; }
+  figure.cas-visuel figcaption { padding-inline: var(--marge); }
+  .cas-visuel.vide { min-height: 0; padding: 18px 16px; place-items: start; }
+
+  .cas-citation { margin-top: 44px; padding-left: 16px; }
+  .cas-citation blockquote { font-size: 25px; line-height: 1.18; }
+
+  /* Les autres clients : cartes à faire glisser, à la couleur de chaque marque */
+  .cas-autres { padding: 56px 0 64px; }
+  .cas-autres .generique { display: grid; grid-auto-flow: column; grid-auto-columns: 72%; gap: 12px; margin: 24px calc(var(--marge) * -1) 0; padding: 0 var(--marge) 6px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--marge); border: 0; scrollbar-width: none; }
+  .cas-autres .generique::-webkit-scrollbar { display: none; }
+  .cas-autres .generique li { scroll-snap-align: start; }
+  .cas-autres .generique a { display: flex; flex-direction: column-reverse; justify-content: space-between; align-items: flex-start; aspect-ratio: 4 / 3.4; padding: 18px; border: 0; background: var(--c); color: var(--t); }
+  .cas-autres .generique b { font-size: 30px !important; line-height: 1; color: var(--t); }
+  .cas-autres .generique a:hover b { color: var(--t); }
+  .cas-autres .generique .cote { width: 100%; justify-content: space-between; color: var(--t); }
+  .cas-autres .generique .cote .logo { display: inline-block; opacity: 1; color: var(--t); --h: 30px; }
+  .cas-autres .generique .cote .logo-aushopping { --h: 20px; }
+  .cas-autres .generique .cote .logo-les-entrees-de-la-mer { --h: 48px; }
+  .cas-autres .generique .cote .logo-move-your-fit { --h: 24px; }
+  .cas-autres .generique .cote i { color: var(--t); opacity: .8; }
+  .cas-appel { margin-top: 40px; padding: 24px; }
+  .cas-appel p { font-size: 30px; }
+  .cas-appel .bouton { width: 100%; justify-content: center; }
+}

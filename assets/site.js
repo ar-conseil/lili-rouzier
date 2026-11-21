@@ -134,7 +134,7 @@
 // Bouton flottant « Parlons de votre projet » (téléphone) : caché sur l'accueil et le contact
 (() => {
   const cta = document.querySelector("[data-cta]");
-  const une = document.querySelector(".une"), contact = document.querySelector("#contact");
+  const une = document.querySelector(".une, .cas-une"), contact = document.querySelector("#contact, .cas-appel");
   if (!cta || !une || !contact || !("IntersectionObserver" in window)) return;
   let uneVisible = true, contactVisible = false;
   const maj = () => cta.classList.toggle("visible", !uneVisible && !contactVisible);
