@@ -23,7 +23,7 @@ Brief complet : `~/Downloads/PROMPT_SITE_LILI.md`. Sources de contenu validées 
 
 ## Passage sur lilirouzier.com (en cours, 21/11/2026)
 
-- Transfert de lilirouzier.com de Wix vers **Scaleway** (choix d'Antonin). Code de transfert demandé le 21/11/2026, envoyé à la boîte Gmail de Lili ; c'est Antonin qui le saisit chez Scaleway. Les deux sites Wix sont dans la corbeille (conservés 90 jours) ; l'ancienne adresse wixsite répond 404.
+- Transfert de lilirouzier.com de Wix vers **Scaleway** (choix d'Antonin). Code de transfert demandé le 21/11/2026, envoyé à la boîte Gmail de Lili ; c'est Antonin qui le saisit chez Scaleway. Commande payée le 21/11/2026 (projet Scaleway « Lili Rouzier », 12,34 €), opération « Transfer domain » en attente ; la zone DNS n'est modifiable qu'une fois le transfert terminé. Penser à activer le renouvellement automatique (désactivé par défaut) et à vérifier la date d'échéance réelle. Les deux sites Wix sont dans la corbeille (conservés 90 jours) ; l'ancienne adresse wixsite répond 404.
 - Le domaine porte des e-mails Google (Google Workspace probable) : à recopier tels quels dans la zone DNS Scaleway, sinon la messagerie de Lili est coupée.
   - MX : 10 aspmx.l.google.com. / 20 alt1.aspmx.l.google.com. / 30 alt2.aspmx.l.google.com. / 40 alt3.aspmx.l.google.com. / 50 alt4.aspmx.l.google.com.
   - TXT : `v=spf1 include:_spf.google.com -all` et `google-site-verification=OqxMD231dSsMihNKXdxbPXWT8Dky1thdWkMqzaDv95s`
