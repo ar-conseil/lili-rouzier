@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.write('<base href="' + (location.pathname.indexOf("/lili-rouzier/") === 0 ? "/lili-rouzier/" : "/") + '">');</script>
 <title>Page introuvable, Lili Rouzier</title>
 <meta name="description" content="Cette page n’existe pas.">
 <meta name="robots" content="noindex">
@@ -15,26 +16,26 @@
 <meta property="og:description" content="Cette page n’existe pas.">
 <meta property="og:image" content="https://lilirouzier.com/assets/img/partage.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.ico" sizes="32x32">
-<link rel="icon" href="/assets/img/icone-192.png" type="image/png" sizes="192x192">
-<link rel="apple-touch-icon" href="/assets/img/icone-180.png">
-<link rel="preload" href="/assets/fonts/boska-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/switzer-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v=17">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/img/icone-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/img/icone-180.png">
+<link rel="preload" href="assets/fonts/boska-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/switzer-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css?v=18">
 </head>
 <body>
 <a class="lien-evitement" href="#contenu">Aller au contenu</a>
 
 <header class="entete resserre" data-entete>
   <div class="conteneur">
-    <a class="marque" href="/./" aria-label="Lili Rouzier, accueil"><span class="signature"></span></a>
+    <a class="marque" href="./" aria-label="Lili Rouzier, accueil"><span class="signature"></span></a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="menu" data-menu-bouton><span class="burger-traits" aria-hidden="true"><i></i><i></i></span><span class="sr-only">Ouvrir le menu</span></button>
     <nav class="nav" id="menu" data-menu aria-label="Navigation principale">
-      <a href="/#services">Services</a>
-      <a href="/#realisations">Réalisations</a>
-      <a href="/#a-propos">À propos</a>
-      <a href="/#contact">Contact</a>
-      <a class="bouton" href="/#contact">Parlons de votre projet</a>
+      <a href="#services">Services</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#a-propos">À propos</a>
+      <a href="#contact">Contact</a>
+      <a class="bouton" href="#contact">Parlons de votre projet</a>
       <div class="nav-pied">
         <a href="tel:+33686041566">Appeler</a>
         <a href="https://wa.me/33686041566?text=Bonjour%20Lili%2C%20je%20vous%20%C3%A9cris%20depuis%20votre%20site." rel="noopener">WhatsApp</a>
@@ -44,23 +45,36 @@
   </div>
 </header>
 
-<main id="contenu" class="interieur">
-  <div class="conteneur">
-    <h1>Page introuvable</h1>
-    <p class="chapo">Cette page n’existe pas, ou plus.</p>
-    <p style="margin-top:32px"><a class="bouton" href="/">Revenir à l’accueil <span class="fleche" aria-hidden="true">→</span></a></p>
+<main id="contenu" class="p404">
+  <div class="conteneur p404-grille">
+    <div>
+      <p class="p404-code" aria-hidden="true">404</p>
+      <h1>Cette page n’existe pas, ou plus.</h1>
+      <p class="chapo">Le lien est peut-être ancien, ou il manque une lettre. Voici par où reprendre&#8239;:</p>
+      <ul class="generique p404-liens">
+        <li><a href="./"><b>L’accueil</b><span class="cote"><i aria-hidden="true">→</i></span></a></li>
+        <li><a href="./#services"><b>Ce que je fais</b><span class="cote"><i aria-hidden="true">→</i></span></a></li>
+        <li><a href="./#realisations"><b>Quelques clients</b><span class="cote"><i aria-hidden="true">→</i></span></a></li>
+        <li><a href="./#contact"><b>M’écrire</b><span class="cote"><i aria-hidden="true">→</i></span></a></li>
+      </ul>
+    </div>
+    <figure class="p404-image">
+      <picture><source type="image/avif" srcset="assets/img/insta/sourire.avif"><img src="assets/img/insta/sourire.webp" width="600" height="600" alt="Sucette en forme de sourire, dont un morceau a été croqué"></picture>
+      <figcaption>Pas de panique, on retrouve vite le bon chemin.</figcaption>
+    </figure>
   </div>
 </main>
+
 
 <footer class="pied">
   <div class="conteneur">
     <span class="signature" role="img" aria-label="Lili Rouzier"></span>
     <div class="bas">
       <span>© 2026 Lili Rouzier, EI. Community manager, Hauts-de-France.</span>
-      <nav aria-label="Liens du pied de page"><a href="/mentions-legales/">Mentions légales</a><a href="/confidentialite/">Confidentialité</a><a href="https://www.instagram.com/lilipointcom/" rel="noopener">Instagram</a><a href="https://www.linkedin.com/in/alison-rouzier-0a0b3771/" rel="noopener">LinkedIn</a></nav>
+      <nav aria-label="Liens du pied de page"><a href="mentions-legales/">Mentions légales</a><a href="confidentialite/">Confidentialité</a><a href="https://www.instagram.com/lilipointcom/" rel="noopener">Instagram</a><a href="https://www.linkedin.com/in/alison-rouzier-0a0b3771/" rel="noopener">LinkedIn</a></nav>
     </div>
   </div>
 </footer>
-<script src="/assets/site.js?v=17" defer></script>
+<script src="assets/site.js?v=18" defer></script>
 </body>
 </html>

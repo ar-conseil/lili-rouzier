@@ -580,3 +580,21 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   .infos-legales > div { grid-template-columns: 1fr; gap: 2px; }
 }
 .page-texte .en-bref ul { list-style: none; padding-left: 0; }
+
+/* Page 404 */
+.p404 { min-height: 100svh; display: grid; align-items: center; padding: 130px 0 90px; }
+.p404-grille { display: grid; grid-template-columns: 7fr 4fr; gap: clamp(40px, 7vw, 120px); align-items: center; }
+.p404-code { font-family: "Boska", Georgia, serif; font-style: italic; font-weight: 400; font-size: clamp(90px, 14vw, 220px); line-height: .8; color: var(--rose); }
+.p404 h1 { margin-top: 18px; font-size: clamp(40px, 5vw, 80px); line-height: .95; max-width: 11em; }
+.p404 .chapo { margin-top: 20px; font-size: 19px; color: #d8d0c6; max-width: 30em; }
+.p404-liens { margin-top: 36px; }
+.p404-liens b { font-size: clamp(30px, 3.4vw, 52px) !important; }
+.p404-liens .cote i { opacity: 1; transform: none; }
+.p404-image { transform: rotate(3deg); }
+.p404-image img { width: 100%; aspect-ratio: 1; object-fit: cover; box-shadow: 0 30px 70px rgba(0,0,0,.45); }
+.p404-image figcaption { margin-top: 14px; font-size: 14px; color: #a59c92; transform: rotate(-3deg); }
+@media (max-width: 860px) {
+  .p404 { padding-top: 100px; min-height: 0; }
+  .p404-grille { grid-template-columns: 1fr; }
+  .p404-image { max-width: 260px; }
+}
