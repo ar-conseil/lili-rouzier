@@ -174,3 +174,21 @@ document.querySelectorAll(".apparait").forEach((el) => {
     if (e.key === "ArrowLeft") zone.querySelector("[data-avis-prec]")?.click();
   });
 })();
+
+// Pages de texte : l’onglet du sommaire suit la lecture (et reste visible sur téléphone)
+(() => {
+  const liens = [...document.querySelectorAll(".sommaire-texte a")];
+  if (!liens.length || !("IntersectionObserver" in window)) return;
+  const parId = new Map(liens.map((a) => [a.getAttribute("href").slice(1), a]));
+  const obs = new IntersectionObserver((entrees) => {
+    entrees.forEach((e) => {
+      if (!e.isIntersecting) return;
+      const a = parId.get(e.target.id);
+      liens.forEach((l) => l.removeAttribute("aria-current"));
+      a.setAttribute("aria-current", "location");
+      const ol = a.closest("ol");
+      if (ol && ol.scrollWidth > ol.clientWidth) ol.scrollTo({ left: a.parentElement.offsetLeft - 8, behavior: "smooth" });
+    });
+  }, { rootMargin: "-35% 0px -60% 0px" });
+  parId.forEach((_, id) => { const s = document.getElementById(id); if (s) obs.observe(s); });
+})();

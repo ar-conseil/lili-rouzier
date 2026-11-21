@@ -661,3 +661,32 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   .p404-image img { box-shadow: 0 16px 36px rgba(0,0,0,.5); }
   .p404-image figcaption { display: none; }
 }
+
+/* Pages de texte sur téléphone : sommaire en onglets collants, haut de page resserré */
+@media (max-width: 860px) {
+  .page-texte { padding-top: 88px; }
+  .page-texte .retour { font-size: 14px; margin-bottom: 18px; }
+  .page-texte h1 { font-size: clamp(44px, 12.5vw, 58px); line-height: .95; }
+  .texte-tete { padding-bottom: 22px; }
+  .texte-tete .chapo { margin-top: 12px; font-size: 17px; }
+  .texte-tete .maj { margin-top: 8px; font-size: 13px; }
+  .texte-grille { margin-top: 0; gap: 0; }
+  .sommaire-texte { position: sticky; top: 64px; z-index: 5; margin: 0 calc(var(--marge) * -1); padding: 10px var(--marge); background: var(--craie); border-bottom: 1px solid var(--trait); }
+  .sommaire-texte p { display: none; }
+  .sommaire-texte ol { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity; }
+  .sommaire-texte ol::-webkit-scrollbar { display: none; }
+  .sommaire-texte li { flex: none; border: 0; scroll-snap-align: start; }
+  .sommaire-texte a { padding: 8px 14px; border: 1px solid var(--encre); font-size: 14px; white-space: nowrap; }
+  .sommaire-texte a:hover { padding-left: 14px; }
+  .sommaire-texte a[aria-current="location"] { background: var(--encre); color: var(--craie); }
+  .page-texte .texte-long { padding-top: 26px; }
+  .page-texte .texte-long section { scroll-margin-top: 130px; padding-bottom: 24px; }
+  .page-texte .texte-long section + section { padding-top: 24px; }
+  .page-texte .texte-long h2 { font-size: 28px; }
+  .page-texte .texte-long p { font-size: 17px; line-height: 1.6; }
+  .infos-legales > div { padding: 10px 0; }
+  .infos-legales dt { font-size: 14px; color: var(--gris); font-weight: 500; }
+  .en-bref { margin-bottom: 28px; }
+  .en-bref-titre { font-size: 24px; }
+}
+.texte-grille > * { min-width: 0; }
