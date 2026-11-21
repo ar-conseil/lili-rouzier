@@ -369,3 +369,4 @@ p { hyphens: auto; -webkit-hyphens: auto; }
 .contact .appel .bouton { gap: 12px; }
 .contact .appel .numero { color: #a59c92; font-variant-numeric: tabular-nums; transition: color .35s var(--ease); }
 .contact .appel .bouton:hover .numero { color: var(--craie); }
+.contact .appel { display: flex; flex-wrap: wrap; gap: 10px; }
