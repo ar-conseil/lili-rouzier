@@ -644,3 +644,20 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   .cas-appel p { font-size: 30px; }
   .cas-appel .bouton { width: 100%; justify-content: center; }
 }
+
+/* Page 404 sur téléphone : l'image remonte à côté du « 404 », tout tient sur un écran */
+@media (max-width: 860px) {
+  .p404 { padding: 92px 0 56px; }
+  .p404-grille { position: relative; display: block; }
+  .p404-code { font-size: clamp(88px, 28vw, 120px); }
+  .p404 h1 { margin-top: 14px; font-size: clamp(34px, 9.5vw, 44px); line-height: 1; max-width: none; text-wrap: balance; }
+  .p404 .chapo { margin-top: 14px; font-size: 16px; }
+  .p404-liens { margin-top: 22px; }
+  .p404-liens li a { padding: 14px 0; }
+  .p404-liens b { font-size: 28px !important; }
+  .p404-image { position: absolute; top: 0; right: 2px; width: 25vw; max-width: 112px; margin: 0; transform: rotate(6deg); }
+  .p404 h1 { padding-right: 0; }
+  .p404-code { line-height: .85; padding-bottom: 6px; }
+  .p404-image img { box-shadow: 0 16px 36px rgba(0,0,0,.5); }
+  .p404-image figcaption { display: none; }
+}
