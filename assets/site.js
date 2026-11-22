@@ -230,7 +230,7 @@ document.querySelectorAll(".apparait").forEach((el) => {
 
   // --- Titres révélés mot à mot (ordinateur) ---
   if (ordi && "IntersectionObserver" in window) {
-    const titres = document.querySelectorAll(".bloc .titre, .cas-autres .titre, .p404 h1");
+    const titres = document.querySelectorAll(".bloc .titre, .cas-autres .titre, .p404 h1, .cas-une h1, .cas-citation blockquote");
     const obs = new IntersectionObserver((entrees) => {
       entrees.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("revele"); obs.unobserve(e.target); } });
     }, { rootMargin: "0px 0px -10% 0px" });
@@ -311,33 +311,6 @@ document.querySelectorAll(".apparait").forEach((el) => {
     });
   }
 
-  // --- Curseur sur mesure ---
-  const cur = document.createElement("div");
-  cur.className = "curseur cache";
-  cur.innerHTML = '<div class="curseur-anneau"><span></span></div><div class="curseur-point"></div>';
-  document.body.appendChild(cur);
-  document.documentElement.classList.add("curseur-actif");
-  const anneau = cur.querySelector(".curseur-anneau"), point = cur.querySelector(".curseur-point"), texte = anneau.querySelector("span");
-  let mx = -100, my = -100, ax = -100, ay = -100;
-  window.addEventListener("mousemove", (e) => { mx = e.clientX; my = e.clientY; cur.classList.remove("cache"); }, { passive: true });
-  document.addEventListener("mouseleave", () => cur.classList.add("cache"));
-  const suivre = () => {
-    ax = lerp(ax, mx, 0.18); ay = lerp(ay, my, 0.18);
-    point.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%)`;
-    anneau.style.transform = `translate3d(${ax}px, ${ay}px, 0) translate(-50%, -50%)`;
-    requestAnimationFrame(suivre);
-  };
-  requestAnimationFrame(suivre);
-  document.addEventListener("mouseover", (e) => {
-    const lien = e.target.closest("a, button, summary, label");
-    const champ = e.target.closest("input, textarea, select");
-    cur.classList.toggle("cache", !!champ);
-    cur.classList.toggle("sur-lien", !!lien);
-    const t = lien && lien.dataset.curseur;
-    cur.classList.toggle("avec-texte", !!t);
-    texte.textContent = t || "";
-  });
-
   // --- Boutons magnétiques ---
   document.querySelectorAll(".bouton, .burger").forEach((b) => {
     b.addEventListener("mousemove", (e) => {
@@ -384,6 +357,80 @@ document.querySelectorAll(".apparait").forEach((el) => {
       const r = a.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5, y2 = (e.clientY - r.top) / r.height - 0.5;
       a.style.transform = `rotateY(${x * 14}deg) rotateX(${-y2 * 14}deg) translateZ(10px)`;
+    });
+    a.addEventListener("mouseleave", () => { a.style.transform = ""; });
+  });
+})();
+
+// ============================================================
+// Effets des pages clients
+// ============================================================
+(() => {
+  if (!document.body.classList.contains("page-cas")) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const souris = window.matchMedia("(pointer: fine)").matches;
+  const ordi = window.matchMedia("(min-width: 981px)").matches;
+
+  // Sur téléphone, le nom de la marque se révèle aussi (une seule fois, à l'arrivée)
+  if (!ordi) {
+    const h1 = document.querySelector(".cas-une h1");
+    if (h1 && !h1.classList.contains("mots")) {
+      let i = 0;
+      h1.innerHTML = h1.textContent.split(" ").map((m) => `<span class="mot"><span style="--i:${i++}">${m}</span></span>`).join(" ");
+      h1.classList.add("mots");
+      requestAnimationFrame(() => requestAnimationFrame(() => h1.classList.add("revele")));
+    }
+  }
+
+  const logo = document.querySelector(".cas-une .logo");
+  const une = document.querySelector(".cas-une");
+  const img = document.querySelector(".cas-visuel img");
+  let sx = 0, sy = 0;
+  let logoLibre = false;
+  if (logo) logo.addEventListener("animationend", () => { logo.style.animation = "none"; logoLibre = true; }, { once: true });
+
+  // Logo qui dérive au défilement et suit un peu la souris ; visuel qui se resserre
+  const boucle = () => {
+    const y = window.scrollY, h = window.innerHeight;
+    if (logo && logoLibre && y < h) {
+      logo.style.transform = `translate3d(${sx}px, ${y * 0.25 + sy}px, 0) rotate(${y * 0.02}deg)`;
+    }
+    if (img && ordi) {
+      const r = img.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < h && !img.dataset.survol) {
+        const p = 1 - (r.top + r.height) / (h + r.height);
+        img.style.transform = `scale(${1.15 - p * 0.15})`;
+      }
+    }
+    requestAnimationFrame(boucle);
+  };
+  requestAnimationFrame(boucle);
+
+  if (!souris) return;
+  if (une && logo && ordi) {
+    une.addEventListener("mousemove", (e) => {
+      sx = (e.clientX / window.innerWidth - 0.5) * 30;
+      sy = (e.clientY / window.innerHeight - 0.5) * 20;
+    });
+  }
+  // Visuel : inclinaison au survol
+  if (img) {
+    const cadre = img.closest("picture");
+    cadre.style.perspective = "900px";
+    cadre.addEventListener("mousemove", (e) => {
+      const r = cadre.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+      img.dataset.survol = "1";
+      img.style.transform = `scale(1.06) rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`;
+    });
+    cadre.addEventListener("mouseleave", () => { delete img.dataset.survol; });
+  }
+  // Cartes des autres clients : inclinaison 3D
+  document.querySelectorAll(".cas-autres .generique a").forEach((a) => {
+    a.addEventListener("mousemove", (e) => {
+      const r = a.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+      a.style.transform = `translateY(-6px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg)`;
     });
     a.addEventListener("mouseleave", () => { a.style.transform = ""; });
   });
