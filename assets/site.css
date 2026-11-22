@@ -974,18 +974,17 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   @keyframes clin { 0% { opacity: 1; } 15% { opacity: .35; } 30% { opacity: 1; } 45% { opacity: .35; } 60% { opacity: 1; } }
 }
 
-/* Boutons : le texte roule lettre par lettre au survol, la flèche sort et revient */
-.lecteur { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.roule { display: inline-flex; overflow: hidden; height: 1.3em; line-height: 1.3; vertical-align: middle; }
-.roule > span { display: inline-block; white-space: pre; text-shadow: 0 1.3em 0 currentColor; transition: transform .6s cubic-bezier(.76, 0, .24, 1); transition-delay: calc(var(--i) * 16ms); }
-.bouton:hover .roule > span, .bouton:focus-visible .roule > span { transform: translateY(-1.3em); }
-.bouton .fleche { display: inline-flex; overflow: hidden; vertical-align: middle; }
-.bouton .fleche > span { display: inline-block; text-shadow: -1.6em 0 0 currentColor; transition: transform .6s cubic-bezier(.76, 0, .24, 1) .08s; }
-.bouton:hover .fleche, .bouton:focus-visible .fleche { transform: none; }
-.bouton:hover .fleche > span, .bouton:focus-visible .fleche > span { transform: translateX(1.6em); }
+/* Boutons : léger zoom au survol, la flèche avance un peu */
+.bouton { transition: transform .35s var(--ease), background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease); }
+.bouton .fleche { display: inline-block; transition: transform .35s var(--ease); }
+@media (hover: hover) and (pointer: fine) {
+  .bouton:hover:not(:disabled) { transform: scale(1.05); }
+  .bouton:active { transform: scale(.98); }
+  .bouton:hover .fleche { transform: translateX(6px); }
+}
 .bouton:hover { background: var(--craie); border-color: var(--craie); color: var(--encre); }
 .bouton.fil:hover { background: transparent; border-color: var(--craie); color: var(--craie); }
 .cas-appel .bouton:hover, .page-texte .actions-droits .bouton:hover, .question-donnees .bouton:not(.fil):hover { background: var(--encre); border-color: var(--encre); color: var(--craie); }
 .question-donnees .bouton.fil:hover { background: transparent; color: var(--encre); border-color: var(--encre); }
 .page-cas .entete:not(.resserre) .nav .bouton:hover { background: var(--sur-marque); color: var(--marque); border-color: var(--sur-marque); }
-@media (prefers-reduced-motion: reduce) { .roule > span, .bouton .fleche > span { transition: none; transform: none !important; } }
+@media (prefers-reduced-motion: reduce) { .bouton, .bouton .fleche { transition: none; transform: none !important; } }
