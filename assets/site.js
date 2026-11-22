@@ -321,35 +321,12 @@ document.querySelectorAll(".apparait").forEach((el) => {
     b.addEventListener("mouseleave", () => { b.style.transition = "transform .5s cubic-bezier(.22,.61,.21,1)"; b.style.transform = ""; setTimeout(() => (b.style.transition = ""), 500); });
   });
 
-  // --- Aperçu de client qui suit la souris (liste des clients de l'accueil) ---
-  const liens = document.querySelectorAll("[data-apercu-c]");
-  if (liens.length && ordi) {
-    const ap = document.createElement("div");
-    ap.className = "apercu-client"; ap.setAttribute("aria-hidden", "true");
-    ap.innerHTML = '<span class="logo"></span><b></b><small><span>Voir le projet</span><span>→</span></small>';
-    document.body.appendChild(ap);
-    const logo = ap.querySelector(".logo"), nom = ap.querySelector("b");
-    let px = 0, py = 0, cx = 0, cy = 0, actif = false, rot = 0;
-    liens.forEach((a) => {
-      a.addEventListener("mouseenter", (e) => {
-        ap.style.setProperty("--c", a.dataset.apercuC); ap.style.setProperty("--t", a.dataset.apercuT);
-        logo.className = "logo " + (a.dataset.apercuLogo || ""); logo.style.display = a.dataset.apercuLogo ? "" : "none";
-        nom.textContent = a.querySelector("b").textContent; nom.hidden = !!a.dataset.apercuLogo;
-        if (!actif) { cx = e.clientX + 36; cy = e.clientY + 28; }
-        actif = true; ap.classList.add("visible");
-      });
-      a.addEventListener("mouseleave", () => { actif = false; ap.classList.remove("visible"); });
-    });
-    window.addEventListener("mousemove", (e) => { px = e.clientX; py = e.clientY; }, { passive: true });
-    const bouger = () => {
-      const nx = lerp(cx, px + 36, 0.14), ny = lerp(cy, py + 28, 0.14);
-      rot = lerp(rot, Math.max(-4, Math.min(4, (nx - cx) * 0.25)), 0.12);
-      cx = nx; cy = ny;
-      ap.style.transform = `translate3d(${cx}px, ${cy}px, 0) rotate(${rot.toFixed(2)}deg)`;
-      requestAnimationFrame(bouger);
-    };
-    requestAnimationFrame(bouger);
-  }
+  // --- Liste des clients : la ligne survolée prend la couleur du client ---
+  document.querySelectorAll("#realisations [data-apercu-c]").forEach((a) => {
+    const sombre = a.dataset.apercuC === "#0e0e0e"; // Move Your Fit : noir sur fond noir, on inverse
+    a.style.setProperty("--c", sombre ? "#f4efe8" : a.dataset.apercuC);
+    a.style.setProperty("--t", sombre ? "#0e0e0e" : a.dataset.apercuT);
+  });
 
   // --- Instagram : inclinaison 3D ---
   document.querySelectorAll(".grille-insta a").forEach((a) => {

@@ -792,16 +792,6 @@ p { hyphens: auto; -webkit-hyphens: auto; }
 .progression { position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 60; background: var(--rose); transform-origin: 0 50%; transform: scaleX(0); pointer-events: none; }
 
 /* Aperçu de client qui suit la souris */
-.apercu-client { position: fixed; left: 0; top: 0; z-index: 40; width: 190px; aspect-ratio: 5 / 4; display: grid; place-items: center; pointer-events: none; background: var(--c, var(--rose)); color: var(--t, var(--encre)); clip-path: inset(100% 0 0 0); transition: clip-path .55s var(--ease), background .35s var(--ease), color .35s; box-shadow: 0 14px 34px rgba(0, 0, 0, .28); }
-.apercu-client.visible { clip-path: inset(0 0 0 0); }
-.apercu-client .logo { --h: 34px; color: var(--t); transform: translateY(6px); opacity: 0; transition: transform .5s var(--ease) .12s, opacity .4s .12s; }
-.apercu-client.visible .logo, .apercu-client.visible b { transform: none; opacity: 1; }
-.apercu-client .logo-aushopping { --h: 17px; }
-.apercu-client .logo-les-entrees-de-la-mer { --h: 66px; }
-.apercu-client .logo-move-your-fit { --h: 24px; }
-.apercu-client b { font-family: "Boska", Georgia, serif; font-style: italic; font-weight: 400; font-size: 23px; line-height: 1.05; text-align: center; padding: 0 14px; transform: translateY(6px); opacity: 0; transition: transform .5s var(--ease) .12s, opacity .4s .12s; }
-.apercu-client b[hidden] { display: none; }
-.apercu-client small { position: absolute; left: 12px; right: 12px; bottom: 9px; display: flex; justify-content: space-between; font-size: 10.5px; letter-spacing: .02em; opacity: .7; }
 
 /* Titres révélés mot à mot */
 .mots .mot { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
@@ -854,7 +844,8 @@ p { hyphens: auto; -webkit-hyphens: auto; }
 .bandeau.pilote .piste { animation: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .apercu-client, .progression { display: none !important; }
+  .progression { display: none !important; }
+  #realisations .generique a::before { animation: none !important; }
   .mots .mot > span { transform: none !important; }
   .pied .signature { clip-path: none !important; }
   body::after { display: none; }
@@ -959,4 +950,15 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   .intro { display: none !important; }
   .voile { clip-path: none !important; }
   .apercu-image { display: none !important; }
+}
+
+/* Liste des clients : la ligne survolée s'allume à la couleur du client (souris seulement) */
+@media (hover: hover) and (pointer: fine) and (min-width: 761px) {
+  #realisations .generique a { position: relative; isolation: isolate; transition: padding .55s var(--ease), border-color .3s; }
+  #realisations .generique a::before { content: ""; position: absolute; inset: -1px 0 0; z-index: -1; background: var(--c); transform: scaleY(0); transform-origin: 50% 100%; transition: transform .45s var(--ease); }
+  #realisations .generique a:hover { padding-inline: clamp(20px, 2.4vw, 36px); border-color: transparent; }
+  #realisations .generique a:hover::before { transform: scaleY(1); transform-origin: 50% 0; animation: clin .9s steps(1, end) .3s; }
+  #realisations .generique a:hover b, #realisations .generique a:hover .cote { color: var(--t); }
+  #realisations .generique a:hover .cote .logo { opacity: 1; color: var(--t); }
+  @keyframes clin { 0% { opacity: 1; } 15% { opacity: .35; } 30% { opacity: 1; } 45% { opacity: .35; } 60% { opacity: 1; } }
 }
