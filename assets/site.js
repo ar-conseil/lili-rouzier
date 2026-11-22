@@ -311,6 +311,21 @@ document.querySelectorAll(".apparait").forEach((el) => {
     });
   }
 
+  // --- Boutons : texte découpé en lettres qui roulent au survol ---
+  if (souris) document.querySelectorAll(".bouton").forEach((b) => {
+    [...b.childNodes].forEach((n) => {
+      if (n.nodeType !== 3 || !n.textContent.trim()) return;
+      const t = n.textContent.trim(), fin = /\s$/.test(n.textContent);
+      const lu = document.createElement("span"); lu.className = "lecteur"; lu.textContent = t;
+      const r = document.createElement("span"); r.className = "roule"; r.setAttribute("aria-hidden", "true");
+      [...t].forEach((c, i) => { const l = document.createElement("span"); l.textContent = c; l.style.setProperty("--i", i); r.appendChild(l); });
+      b.insertBefore(lu, n); b.insertBefore(r, n);
+      n.textContent = fin ? " " : "";
+    });
+    const f = b.querySelector(".fleche");
+    if (f && !f.firstElementChild) { const s = document.createElement("span"); s.textContent = f.textContent; f.textContent = ""; f.appendChild(s); }
+  });
+
   // --- Boutons magnétiques ---
   document.querySelectorAll(".bouton, .burger").forEach((b) => {
     b.addEventListener("mousemove", (e) => {
