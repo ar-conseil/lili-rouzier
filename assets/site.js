@@ -454,7 +454,7 @@ document.querySelectorAll(".apparait").forEach((el) => {
   // --- Méthode horizontale (ordinateur) : photo et étapes sur un même rail, étape en cours allumée ---
   const methode = document.querySelector(".methode");
   const liste = methode && methode.querySelector(".parcours");
-  let rail = null, fil = null, etapes = [], pastilles = [], centres = [], indexActif = -1, maxRail = 0, margeRail = 0, largeurVue = 0;
+  let rail = null, fil = null, etapes = [], pastilles = [], centres = [], boutonsFleches = [], indexActif = -1, maxRail = 0, margeRail = 0, largeurVue = 0;
   const progEtape = (i) => {
     const c = centres[i];
     return Math.min(1, Math.max(0, (c - 0.25 * largeurVue) / (maxRail + 0.5 * largeurVue)));
@@ -475,10 +475,18 @@ document.querySelectorAll(".apparait").forEach((el) => {
     etapes.forEach((li, i) => {
       const b = document.createElement("button"); b.type = "button";
       b.textContent = li.querySelector(".quand").textContent;
-      b.addEventListener("click", () => allerEtape(i));
+      b.addEventListener("click", (e) => { allerEtape(i); if (e.detail) b.blur(); });
       fil.appendChild(b); pastilles.push(b);
       li.addEventListener("click", () => { if (bougeRail < 6) allerEtape(i); });
     });
+    // Deux flèches bien visibles pour avancer ou reculer d'une étape
+    const fleches = document.createElement("span"); fleches.className = "fleches-etapes";
+    [["Étape précédente", "←", -1], ["Étape suivante", "→", 1]].forEach(([nom, signe, pas]) => {
+      const b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", nom); b.textContent = signe;
+      b.addEventListener("click", (e) => { allerEtape(Math.min(etapes.length - 1, Math.max(0, indexActif + pas))); if (e.detail) b.blur(); });
+      fleches.appendChild(b); boutonsFleches.push(b);
+    });
+    fil.appendChild(fleches);
     scene.appendChild(fil);
     const mesurer = () => {
       margeRail = scene.getBoundingClientRect().left + parseFloat(getComputedStyle(scene).paddingLeft || 0);
@@ -498,6 +506,24 @@ document.querySelectorAll(".apparait").forEach((el) => {
     }, { passive: true });
     window.addEventListener("pointerup", () => { if (tireRail) { tireRail = false; rail.classList.remove("tire"); } });
     rail.addEventListener("dragstart", (e) => e.preventDefault());
+    // Balayage gauche-droite (souris, pavé tactile, Maj + molette) : il fait avancer la file
+    const facteur = () => (methode.offsetHeight - window.innerHeight) / maxRail;
+    scene.addEventListener("wheel", (e) => {
+      const dx = e.shiftKey && !e.deltaX ? e.deltaY : e.deltaX;
+      if (!maxRail || Math.abs(dx) <= Math.abs(e.shiftKey ? 0 : e.deltaY)) return;
+      e.preventDefault();
+      const haut = methode.getBoundingClientRect().top + window.scrollY, bas = haut + methode.offsetHeight - window.innerHeight;
+      window.scrollTo({ top: Math.min(bas, Math.max(haut, window.scrollY + dx * facteur())), behavior: "instant" });
+    }, { passive: false });
+    // Flèches du clavier quand la section occupe l'écran
+    window.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || "")) return;
+      const r = methode.getBoundingClientRect();
+      if (r.top > 1 || r.bottom < window.innerHeight - 1) return;
+      e.preventDefault();
+      allerEtape(Math.min(etapes.length - 1, Math.max(0, indexActif + (e.key === "ArrowRight" ? 1 : -1))));
+    });
   }
 
   const boucle = () => {
@@ -527,6 +553,7 @@ document.querySelectorAll(".apparait").forEach((el) => {
         indexActif = proche;
         etapes.forEach((li, i) => li.classList.toggle("actif", i === proche));
         pastilles.forEach((b, i) => b.classList.toggle("actif", i === proche));
+        if (boutonsFleches.length) { boutonsFleches[0].disabled = proche === 0; boutonsFleches[1].disabled = proche === etapes.length - 1; }
       }
     }
     requestAnimationFrame(boucle);

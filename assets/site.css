@@ -935,6 +935,11 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   .methode.horizontale .fil-etapes button::before { content: ""; position: absolute; left: 0; top: 20px; width: 7px; height: 7px; border-radius: 50%; border: 1px solid var(--rose); box-sizing: border-box; transition: background .35s var(--ease), transform .45s var(--ease); }
   .methode.horizontale .fil-etapes button:hover, .methode.horizontale .fil-etapes button.actif { color: var(--craie); }
   .methode.horizontale .fil-etapes button.actif::before { background: var(--rose); transform: scale(1.3); }
+  .methode.horizontale .fleches-etapes { display: flex; gap: 8px; margin-left: auto; padding-top: 10px; }
+  .methode.horizontale .fleches-etapes button { width: 38px; height: 38px; padding: 0; border: 1px solid #4a443e; color: var(--craie); font-size: 18px; line-height: 1; display: grid; place-items: center; transition: border-color .3s var(--ease), transform .3s var(--ease), opacity .3s; }
+  .methode.horizontale .fleches-etapes button::before { display: none; }
+  .methode.horizontale .fleches-etapes button:hover:not(:disabled) { border-color: var(--craie); transform: scale(1.06); }
+  .methode.horizontale .fleches-etapes button:disabled { opacity: .3; cursor: default; }
 }
 
 /* Photos qui apparaissent en fondu */
