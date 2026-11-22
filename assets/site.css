@@ -465,8 +465,8 @@ p { hyphens: auto; -webkit-hyphens: auto; }
 
 /* Navigation : la section en cours est soulignée */
 @media (min-width: 981px) {
-  .nav a[aria-current="location"]::after { transform: none; }
-  .nav a[aria-current="location"] { color: var(--craie); }
+  .nav a:not(.bouton)[aria-current="location"]::after { transform: none; }
+  .nav a:not(.bouton)[aria-current="location"] { color: var(--craie); }
 }
 
 /* Avis : commandes plus confortables */
