@@ -43,6 +43,11 @@ Brief complet : `~/Downloads/PROMPT_SITE_LILI.md`. Sources de contenu validées 
 - Pas d'effets d'apparition au défilement sur téléphone (fluidité) ; ils restent sur ordinateur.
 - Lighthouse mobile accueil : 95 à 98 en performance, 100 ailleurs.
 
+## Effets « studio » (22/11/2026)
+
+- Dans `assets/site.js` (bloc « Effets studio ») et `site.css` : curseur sur mesure (souris), boutons magnétiques et remplissage rose au survol, aperçu coloré du client qui suit la souris sur la liste de l'accueil (attributs `data-apercu-*`), titres révélés mot à mot (ordinateur), parallaxe de la photo d'accueil, zoom de la photo du café, valeurs qui glissent, bandeau des marques lié à la vitesse de défilement, Instagram en 3D, signature du pied de page qui s'écrit, grain photo léger, barre de progression, transitions entre pages (View Transitions).
+- Tout est coupé si `prefers-reduced-motion`. Curseur et survols seulement avec une souris. Lighthouse après effets : 100 ordinateur, 98 téléphone.
+
 ## Recette Lighthouse (21/11/2026)
 
 - Mesurée sur 5 pages (accueil, deux études de cas, mentions, confidentialité), mobile et ordinateur : accessibilité, bonnes pratiques et SEO à 100 partout ; performance de 98 à 100.
