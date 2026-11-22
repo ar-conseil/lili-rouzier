@@ -157,7 +157,7 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   /* Quelques clients */
   .generique { margin-top: 56px; }
   .generique a { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; padding: 18px 0; border-bottom: 1px solid #3a3530; text-decoration: none; }
-  .generique b { font-family: "Boska", Georgia, serif; font-weight: 500; font-size: clamp(44px, 7vw, 120px); line-height: .95; transition: color .4s var(--ease), letter-spacing .6s var(--ease); }
+  .generique b { font-family: "Boska", Georgia, serif; font-weight: 500; font-size: clamp(34px, 4.2vw, 66px); line-height: 1; transition: color .4s var(--ease), letter-spacing .6s var(--ease); }
   .generique a:hover b { color: var(--rose); letter-spacing: .01em; }
   .generique span { color: #a59c92; }
 
@@ -429,7 +429,7 @@ p { hyphens: auto; -webkit-hyphens: auto; }
   .parcours li { padding-bottom: 32px; }
   .parcours h3 { font-size: 30px; }
   .espace { margin-top: 72px; }
-  .generique b { font-size: clamp(38px, 10vw, 56px); }
+  .generique b { font-size: clamp(32px, 8.6vw, 44px); }
   .valeurs b { font-size: clamp(48px, 14vw, 72px); }
   .liste-faq summary { font-size: 23px; padding: 20px 40px 20px 0; }
 
