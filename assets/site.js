@@ -326,7 +326,7 @@ document.querySelectorAll(".apparait").forEach((el) => {
   if (liens.length && ordi) {
     const ap = document.createElement("div");
     ap.className = "apercu-client"; ap.setAttribute("aria-hidden", "true");
-    ap.innerHTML = '<span class="logo"></span><div><b></b><small>Voir le projet →</small></div>';
+    ap.innerHTML = '<span class="logo"></span><b></b><small><span>Voir le projet</span><span>→</span></small>';
     document.body.appendChild(ap);
     const logo = ap.querySelector(".logo"), nom = ap.querySelector("b");
     let px = 0, py = 0, cx = 0, cy = 0, actif = false, rot = 0;
@@ -334,18 +334,18 @@ document.querySelectorAll(".apparait").forEach((el) => {
       a.addEventListener("mouseenter", (e) => {
         ap.style.setProperty("--c", a.dataset.apercuC); ap.style.setProperty("--t", a.dataset.apercuT);
         logo.className = "logo " + (a.dataset.apercuLogo || ""); logo.style.display = a.dataset.apercuLogo ? "" : "none";
-        nom.textContent = a.querySelector("b").textContent;
-        if (!actif) { cx = e.clientX; cy = e.clientY; }
+        nom.textContent = a.querySelector("b").textContent; nom.hidden = !!a.dataset.apercuLogo;
+        if (!actif) { cx = e.clientX + 36; cy = e.clientY + 28; }
         actif = true; ap.classList.add("visible");
       });
       a.addEventListener("mouseleave", () => { actif = false; ap.classList.remove("visible"); });
     });
     window.addEventListener("mousemove", (e) => { px = e.clientX; py = e.clientY; }, { passive: true });
     const bouger = () => {
-      const nx = lerp(cx, px + 150, 0.12), ny = lerp(cy, py, 0.12);
-      rot = lerp(rot, Math.max(-12, Math.min(12, (nx - cx) * 0.6)), 0.15);
+      const nx = lerp(cx, px + 36, 0.14), ny = lerp(cy, py + 28, 0.14);
+      rot = lerp(rot, Math.max(-4, Math.min(4, (nx - cx) * 0.25)), 0.12);
       cx = nx; cy = ny;
-      ap.style.transform = `translate3d(${cx}px, ${cy}px, 0) translate(-50%, -50%) rotate(${rot.toFixed(2)}deg) scale(${actif ? 1 : 0.6})`;
+      ap.style.transform = `translate3d(${cx}px, ${cy}px, 0) rotate(${rot.toFixed(2)}deg)`;
       requestAnimationFrame(bouger);
     };
     requestAnimationFrame(bouger);
@@ -502,15 +502,19 @@ document.querySelectorAll(".apparait").forEach((el) => {
     let px = 0, py = 0, cx = 0, cy = 0, actif = false, rot = 0;
     services.forEach((li) => {
       const src = li.querySelector(".vignette img")?.getAttribute("src");
-      li.addEventListener("mouseenter", (e) => { if (src) im.src = src; if (!actif) { cx = e.clientX; cy = e.clientY; } actif = true; ap.classList.add("visible"); });
+      li.addEventListener("mouseenter", (e) => {
+        if (src && im.getAttribute("src") !== src) { if (actif) { ap.classList.add("change"); setTimeout(() => ap.classList.remove("change"), 120); } im.src = src; }
+        if (!actif) { cx = e.clientX + 32; cy = e.clientY + 24; }
+        actif = true; ap.classList.add("visible");
+      });
       li.addEventListener("mouseleave", () => { actif = false; ap.classList.remove("visible"); });
     });
     window.addEventListener("mousemove", (e) => { px = e.clientX; py = e.clientY; }, { passive: true });
     const bouger = () => {
-      const nx = lerp(cx, px + 40, 0.1), ny = lerp(cy, py - 40, 0.1);
-      rot = lerp(rot, Math.max(-10, Math.min(10, (nx - cx) * 0.5)), 0.12);
+      const nx = lerp(cx, px + 32, 0.14), ny = lerp(cy, py + 24, 0.14);
+      rot = lerp(rot, Math.max(-4, Math.min(4, (nx - cx) * 0.25)), 0.12);
       cx = nx; cy = ny;
-      ap.style.transform = `translate3d(${cx}px, ${cy}px, 0) translate(0, -50%) rotate(${rot.toFixed(2)}deg)`;
+      ap.style.transform = `translate3d(${cx}px, ${cy}px, 0) rotate(${rot.toFixed(2)}deg)`;
       requestAnimationFrame(bouger);
     };
     requestAnimationFrame(bouger);
