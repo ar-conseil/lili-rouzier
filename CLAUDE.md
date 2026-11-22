@@ -37,6 +37,12 @@ Brief complet : `~/Downloads/PROMPT_SITE_LILI.md`. Sources de contenu validées 
 - Photo pleine largeur de Lili au travail (`lili-cafe-*`), tirée de sa publication Instagram du 15/12/2023.
 - Témoignage de Fatou Keita (CEO My French Beauté), publié par Lili sur Instagram le 22/10/2021 (publication CVVYTJpMyZ1), ajouté au carrousel des avis avec l'accord d'Antonin (22/11/2026). My French Beauté n'est pas dans le bandeau des marques : accord à demander avant.
 
+## Photos du café (22/11/2026)
+
+- Six photos de Lili dans un café (tailleur kaki), envoyées par Antonin, originaux 1067 × 1600 dans `~/.lili/site/medias/photos/lili-cafe-*.jpg`. Même séance que la grande photo `lili-cafe-*` déjà en place. Photographe inconnu : crédit `[À COMPLÉTER]` dans le pied de page et les mentions légales.
+- Emplacements : `lili-cafe-table` dans la méthode (à la place de `lili-rue`), `lili-cafe-portrait` dans « Qui je suis » (à la place de `lili-studio-tabouret`), `lili-cafe-vitre` et `lili-cafe-portrait-nb` en duo décalé entre les avis et les questions (`.duo`), `lili-cafe-fauteuil` (au téléphone) sous les coordonnées du contact (`.contact-photo`).
+- `lili-cafe-tasse` (queue de cheval, tasse) n'est pas utilisée : trop proche de la grande photo du café. `lili-rue` et `lili-studio-tabouret` restent dans `assets/img/` si on veut revenir en arrière.
+
 ## Mobile (22/11/2026)
 
 - Refonte téléphone après retour d'Antonin : icône de menu (deux traits qui deviennent une croix), menu plein écran avec raccourcis Appeler / WhatsApp / Instagram, accueil photo au-dessus et texte dessous, bouton flottant « Parlons de votre projet » entre l'accueil et le contact, en-tête opaque au défilement.

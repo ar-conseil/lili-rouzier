@@ -562,7 +562,7 @@ document.querySelectorAll(".apparait").forEach((el) => {
 
   // --- Photos qui apparaissent en fondu (ordinateur) ---
   if (ordi && "IntersectionObserver" in window) {
-    const cibles = document.querySelectorAll(".pause picture, .moi figure picture, .methode figure picture, .cas-visuel picture");
+    const cibles = document.querySelectorAll(".pause picture, .moi figure picture, .methode figure picture, .cas-visuel picture, .duo figure picture, .contact-photo picture");
     // On observe le cadre de la photo (qui a une vraie hauteur), pas la balise picture
     const obs = new IntersectionObserver((entrees) => {
       entrees.forEach((e) => {

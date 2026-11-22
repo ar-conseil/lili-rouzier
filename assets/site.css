@@ -983,3 +983,23 @@ p { hyphens: auto; -webkit-hyphens: auto; }
 .question-donnees .bouton.fil:hover { background: transparent; color: var(--encre); border-color: var(--encre); }
 .page-cas .entete:not(.resserre) .nav .bouton:hover { background: var(--sur-marque); color: var(--marque); border-color: var(--sur-marque); }
 @media (prefers-reduced-motion: reduce) { .bouton, .bouton .fleche { transition: none; transform: none !important; } }
+
+/* Photos du café : duo décalé entre les avis et les questions, photo au téléphone dans le contact */
+.duo { padding: clamp(64px, 9vw, 140px) 0; }
+.duo .conteneur { display: flex; justify-content: center; align-items: flex-end; gap: clamp(12px, 3vw, 44px); }
+.duo figure { margin: 0; flex: 0 1 auto; overflow: hidden; }
+.duo .petite { width: min(32vw, 340px); margin-bottom: clamp(32px, 7vw, 110px); }
+.duo .grande { width: min(42vw, 460px); }
+.duo img { display: block; width: 100%; height: auto; }
+.moi figure img { object-position: 50% 30%; }
+.contact-photo { margin: clamp(28px, 4vw, 48px) 0 0; max-width: 380px; overflow: hidden; }
+.contact-photo img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 15%; }
+@media (max-width: 980px) {
+  .contact-photo { max-width: 420px; }
+}
+@media (max-width: 760px) {
+  .duo .petite { width: 38vw; }
+  .duo .grande { width: 50vw; }
+  .contact-photo { max-width: none; }
+  .contact-photo img { aspect-ratio: 4 / 3; object-position: 50% 30%; }
+}
