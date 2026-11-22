@@ -436,41 +436,113 @@ document.querySelectorAll(".apparait").forEach((el) => {
   const souris = window.matchMedia("(pointer: fine)").matches;
   const ordi = window.matchMedia("(min-width: 981px)").matches;
   const lerp = (a, b, t) => a + (b - a) * t;
+  let bougeRail = 0;
 
-  // --- Grand bandeau de texte : file à l'inverse du bandeau des logos, accélère avec le défilement ---
+  // --- Grand bandeau de texte : file tout seul, accélère avec le défilement, se laisse attraper ---
+  const bande = document.querySelector(".bande-texte");
   const pisteTexte = document.querySelector(".piste-texte");
-  let yPrec = window.scrollY, vitesse = 0, pos = 0, sens = 1;
+  let yPrec = window.scrollY, vitesse = 0, pos = 0, sens = 1, allure = 1, elan = 0, biais = 0;
+  let surBande = false, tire = false, xTire = 0, bouge = 0;
+  if (bande && pisteTexte && souris) {
+    bande.classList.add("vivante");
+    bande.addEventListener("mouseenter", () => { surBande = true; });
+    bande.addEventListener("mouseleave", () => { surBande = false; });
+    bande.addEventListener("pointerdown", (e) => { if (e.button !== 0) return; tire = true; bouge = 0; xTire = e.clientX; elan = 0; bande.classList.add("tire"); });
+    window.addEventListener("pointermove", (e) => {
+      if (!tire) return;
+      const dx = e.clientX - xTire; xTire = e.clientX;
+      pos += dx; bouge += Math.abs(dx); elan = dx;
+    }, { passive: true });
+    window.addEventListener("pointerup", () => { if (tire) { tire = false; bande.classList.remove("tire"); if (elan) sens = elan > 0 ? 1 : -1; } });
+    // Un clic sur un mot (sans avoir tiré) mène au service du même nom
+    bande.addEventListener("click", (e) => {
+      const mot = e.target.closest(".piste-texte span");
+      if (!mot || bouge > 6) return;
+      const cible = [...document.querySelectorAll(".services-grille li h3")].find((h) => h.textContent.trim() === mot.textContent.trim());
+      if (!cible) return;
+      const li = cible.closest("li");
+      li.scrollIntoView({ behavior: "smooth", block: "center" });
+      li.classList.add("pointe"); setTimeout(() => li.classList.remove("pointe"), 2600);
+    });
+  }
 
-  // --- Méthode horizontale (ordinateur) ---
+  // --- Méthode horizontale (ordinateur) : photo et étapes sur un même rail, étape en cours allumée ---
   const methode = document.querySelector(".methode");
-  const track = methode && methode.querySelector(".parcours");
-  let jauge = null;
-  if (methode && track && ordi) {
+  const liste = methode && methode.querySelector(".parcours");
+  let rail = null, fil = null, etapes = [], pastilles = [], centres = [], indexActif = -1, maxRail = 0, margeRail = 0, largeurVue = 0;
+  const progEtape = (i) => {
+    const c = centres[i];
+    return Math.min(1, Math.max(0, (c - 0.25 * largeurVue) / (maxRail + 0.5 * largeurVue)));
+  };
+  const allerEtape = (i) => {
+    const haut = methode.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: haut + progEtape(i) * (methode.offsetHeight - window.innerHeight), behavior: "smooth" });
+  };
+  if (methode && liste && ordi) {
     methode.classList.add("horizontale");
-    jauge = document.createElement("div"); jauge.className = "jauge-h"; jauge.innerHTML = "<i></i>";
-    track.after(jauge);
+    const scene = methode.querySelector(".grille"), figure = methode.querySelector("figure");
+    rail = document.createElement("div"); rail.className = "rail";
+    scene.appendChild(rail);
+    if (figure) rail.appendChild(figure);
+    rail.appendChild(liste);
+    etapes = [...liste.children];
+    fil = document.createElement("div"); fil.className = "fil-etapes"; fil.setAttribute("role", "group"); fil.setAttribute("aria-label", "Aller à une étape");
+    etapes.forEach((li, i) => {
+      const b = document.createElement("button"); b.type = "button";
+      b.textContent = li.querySelector(".quand").textContent;
+      b.addEventListener("click", () => allerEtape(i));
+      fil.appendChild(b); pastilles.push(b);
+      li.addEventListener("click", () => { if (bougeRail < 6) allerEtape(i); });
+    });
+    scene.appendChild(fil);
+    const mesurer = () => {
+      margeRail = scene.getBoundingClientRect().left + parseFloat(getComputedStyle(scene).paddingLeft || 0);
+      largeurVue = window.innerWidth - 2 * margeRail;
+      maxRail = Math.max(0, rail.scrollWidth - largeurVue);
+      const gauche = rail.getBoundingClientRect().left;
+      centres = etapes.map((li) => { const r = li.getBoundingClientRect(); return r.left + r.width / 2 - gauche; });
+    };
+    mesurer(); window.addEventListener("resize", mesurer); window.addEventListener("load", mesurer);
+    // On peut aussi tirer le rail à la souris : cela fait défiler la page
+    let tireRail = false, xRail = 0;
+    rail.addEventListener("pointerdown", (e) => { if (e.button !== 0) return; tireRail = true; bougeRail = 0; xRail = e.clientX; rail.classList.add("tire"); });
+    window.addEventListener("pointermove", (e) => {
+      if (!tireRail || !maxRail) return;
+      const dx = e.clientX - xRail; xRail = e.clientX; bougeRail += Math.abs(dx);
+      window.scrollTo({ top: window.scrollY - dx * (methode.offsetHeight - window.innerHeight) / maxRail, behavior: "instant" });
+    }, { passive: true });
+    window.addEventListener("pointerup", () => { if (tireRail) { tireRail = false; rail.classList.remove("tire"); } });
+    rail.addEventListener("dragstart", (e) => e.preventDefault());
   }
 
   const boucle = () => {
     const y = window.scrollY, h = window.innerHeight;
     if (pisteTexte) {
       const dy = y - yPrec;
-      if (dy !== 0) sens = dy > 0 ? 1 : -1;
+      if (dy !== 0 && !tire) sens = dy > 0 ? 1 : -1;
       vitesse = lerp(vitesse, Math.min(Math.abs(dy), 80), 0.08);
-      pos += sens * (0.5 + vitesse * 0.45);
+      allure = lerp(allure, surBande || tire ? 0 : 1, 0.06);
+      if (!tire) { pos += sens * (0.5 * allure + vitesse * 0.45) + elan; elan *= 0.94; if (Math.abs(elan) < 0.05) elan = 0; }
       const moitie = pisteTexte.scrollWidth / 2;
       if (pos >= 0) pos -= moitie;
       if (pos < -moitie) pos += moitie;
-      pisteTexte.style.transform = `translate3d(${pos}px, 0, 0)`;
+      biais = lerp(biais, Math.max(-9, Math.min(9, -(sens * vitesse * 0.22 + elan * 0.35))), 0.12);
+      pisteTexte.style.transform = `translate3d(${pos}px, 0, 0) skewX(${biais.toFixed(2)}deg)`;
     }
     yPrec = y;
-    if (jauge) {
+    if (rail) {
       const r = methode.getBoundingClientRect();
       const prog = Math.min(1, Math.max(0, -r.top / (r.height - h)));
-      const marge = methode.querySelector(".grille").getBoundingClientRect().left;
-      const max = Math.max(0, track.scrollWidth + 2 * marge - window.innerWidth);
-      track.style.transform = `translate3d(${-prog * max}px, 0, 0)`;
-      jauge.style.setProperty("--p", prog.toFixed(3));
+      rail.style.transform = `translate3d(${(-prog * maxRail).toFixed(1)}px, 0, 0)`;
+      fil.style.setProperty("--p", prog.toFixed(3));
+      const foyer = largeurVue * (0.25 + 0.5 * prog) + prog * maxRail;
+      let proche = 0, ecart = Infinity;
+      centres.forEach((c, i) => { const d = Math.abs(c - foyer); if (d < ecart) { ecart = d; proche = i; } });
+      if (proche !== indexActif) {
+        indexActif = proche;
+        etapes.forEach((li, i) => li.classList.toggle("actif", i === proche));
+        pastilles.forEach((b, i) => b.classList.toggle("actif", i === proche));
+      }
     }
     requestAnimationFrame(boucle);
   };
@@ -479,10 +551,15 @@ document.querySelectorAll(".apparait").forEach((el) => {
   // --- Photos dévoilées (ordinateur) ---
   if (ordi && "IntersectionObserver" in window) {
     const cibles = document.querySelectorAll(".pause picture, .moi figure picture, .methode figure picture, .cas-visuel picture");
+    // On observe le cadre de la photo (qui a une vraie hauteur), pas la balise picture
     const obs = new IntersectionObserver((entrees) => {
-      entrees.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("devoile"); obs.unobserve(e.target); } });
+      entrees.forEach((e) => {
+        if (!e.isIntersecting && e.boundingClientRect.bottom > 0) return;
+        e.target.querySelectorAll(":scope > picture.voile").forEach((p) => p.classList.add("devoile"));
+        obs.unobserve(e.target);
+      });
     }, { rootMargin: "0px 0px -15% 0px" });
-    cibles.forEach((c) => { c.classList.add("voile"); obs.observe(c); });
+    cibles.forEach((c) => { c.classList.add("voile"); obs.observe(c.parentElement); });
   }
 
   // --- Services : grande image qui suit la souris (ordinateur) ---
