@@ -24,7 +24,8 @@
 <link rel="preload" href="assets/fonts/boska-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/switzer-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" type="image/avif" imagesrcset="assets/img/lili-studio-pied-640.avif 640w, assets/img/lili-studio-pied-900.avif 900w, assets/img/lili-studio-pied-1200.avif 1200w" imagesizes="(max-width: 980px) 100vw, 58vw">
-<link rel="stylesheet" href="assets/site.css?v=30">
+<script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!sessionStorage.getItem("lili-intro")){document.documentElement.classList.add("avec-intro");sessionStorage.setItem("lili-intro","1")}}catch(e){}</script>
+<link rel="stylesheet" href="assets/site.css?v=32">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -106,6 +107,7 @@
 </script>
 </head>
 <body>
+<div class="intro" aria-hidden="true"><span class="signature"></span><span class="intro-ligne">Community manager · Hauts-de-France</span></div>
 <a class="lien-evitement" href="#contenu">Aller au contenu</a>
 
 <header class="entete" data-entete>
@@ -179,6 +181,10 @@
       <source type="image/avif" srcset="assets/img/lili-cafe-720.avif 720w, assets/img/lili-cafe-1080.avif 1080w" sizes="100vw">
       <img src="assets/img/lili-cafe-1080.webp" srcset="assets/img/lili-cafe-720.webp 720w, assets/img/lili-cafe-1080.webp 1080w" sizes="100vw" width="1080" height="1350" alt="Lili Rouzier travaillant sur son ordinateur, un café à la main" loading="lazy">
     </picture>
+  </section>
+
+  <section class="bande-texte" aria-hidden="true">
+    <div class="piste-texte"><span>La ligne éditoriale</span><i></i><span>Le calendrier</span><i></i><span>Les contenus</span><i></i><span>La veille</span><i></i><span>L’influence</span><i></i><span>La communauté</span><i></i><span>Le rapport du mois</span><i></i><span>La ligne éditoriale</span><i></i><span>Le calendrier</span><i></i><span>Les contenus</span><i></i><span>La veille</span><i></i><span>L’influence</span><i></i><span>La communauté</span><i></i><span>Le rapport du mois</span><i></i></div>
   </section>
 
   <section class="bloc methode" id="methode">
@@ -339,6 +345,6 @@
     </div>
   </div>
 </footer>
-<script src="assets/site.js?v=30" defer></script>
+<script src="assets/site.js?v=32" defer></script>
 </body>
 </html>

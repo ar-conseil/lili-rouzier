@@ -435,3 +435,84 @@ document.querySelectorAll(".apparait").forEach((el) => {
     a.addEventListener("mouseleave", () => { a.style.transform = ""; });
   });
 })();
+
+// ============================================================
+// Troisième niveau d'effets
+// ============================================================
+(() => {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const souris = window.matchMedia("(pointer: fine)").matches;
+  const ordi = window.matchMedia("(min-width: 981px)").matches;
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  // --- Grand bandeau de texte : file à l'inverse du bandeau des logos, accélère avec le défilement ---
+  const pisteTexte = document.querySelector(".piste-texte");
+  let yPrec = window.scrollY, vitesse = 0, pos = 0, sens = 1;
+
+  // --- Méthode horizontale (ordinateur) ---
+  const methode = document.querySelector(".methode");
+  const track = methode && methode.querySelector(".parcours");
+  let jauge = null;
+  if (methode && track && ordi) {
+    methode.classList.add("horizontale");
+    jauge = document.createElement("div"); jauge.className = "jauge-h"; jauge.innerHTML = "<i></i>";
+    track.after(jauge);
+  }
+
+  const boucle = () => {
+    const y = window.scrollY, h = window.innerHeight;
+    if (pisteTexte) {
+      const dy = y - yPrec;
+      if (dy !== 0) sens = dy > 0 ? 1 : -1;
+      vitesse = lerp(vitesse, Math.min(Math.abs(dy), 80), 0.08);
+      pos += sens * (0.5 + vitesse * 0.45);
+      const moitie = pisteTexte.scrollWidth / 2;
+      if (pos >= 0) pos -= moitie;
+      if (pos < -moitie) pos += moitie;
+      pisteTexte.style.transform = `translate3d(${pos}px, 0, 0)`;
+    }
+    yPrec = y;
+    if (jauge) {
+      const r = methode.getBoundingClientRect();
+      const prog = Math.min(1, Math.max(0, -r.top / (r.height - h)));
+      const marge = methode.querySelector(".grille").getBoundingClientRect().left;
+      const max = Math.max(0, track.scrollWidth + 2 * marge - window.innerWidth);
+      track.style.transform = `translate3d(${-prog * max}px, 0, 0)`;
+      jauge.style.setProperty("--p", prog.toFixed(3));
+    }
+    requestAnimationFrame(boucle);
+  };
+  requestAnimationFrame(boucle);
+
+  // --- Photos dévoilées (ordinateur) ---
+  if (ordi && "IntersectionObserver" in window) {
+    const cibles = document.querySelectorAll(".pause picture, .moi figure picture, .methode figure picture, .cas-visuel picture");
+    const obs = new IntersectionObserver((entrees) => {
+      entrees.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("devoile"); obs.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -15% 0px" });
+    cibles.forEach((c) => { c.classList.add("voile"); obs.observe(c); });
+  }
+
+  // --- Services : grande image qui suit la souris (ordinateur) ---
+  const services = document.querySelectorAll(".services-grille li:not(.autre)");
+  if (souris && ordi && services.length) {
+    document.body.classList.add("services-suivi");
+    const ap = document.createElement("div"); ap.className = "apercu-image"; ap.setAttribute("aria-hidden", "true");
+    const im = document.createElement("img"); im.alt = ""; ap.appendChild(im); document.body.appendChild(ap);
+    let px = 0, py = 0, cx = 0, cy = 0, actif = false, rot = 0;
+    services.forEach((li) => {
+      const src = li.querySelector(".vignette img")?.getAttribute("src");
+      li.addEventListener("mouseenter", (e) => { if (src) im.src = src; if (!actif) { cx = e.clientX; cy = e.clientY; } actif = true; ap.classList.add("visible"); });
+      li.addEventListener("mouseleave", () => { actif = false; ap.classList.remove("visible"); });
+    });
+    window.addEventListener("mousemove", (e) => { px = e.clientX; py = e.clientY; }, { passive: true });
+    const bouger = () => {
+      const nx = lerp(cx, px + 40, 0.1), ny = lerp(cy, py - 40, 0.1);
+      rot = lerp(rot, Math.max(-10, Math.min(10, (nx - cx) * 0.5)), 0.12);
+      cx = nx; cy = ny;
+      ap.style.transform = `translate3d(${cx}px, ${cy}px, 0) translate(0, -50%) rotate(${rot.toFixed(2)}deg)`;
+      requestAnimationFrame(bouger);
+    };
+    requestAnimationFrame(bouger);
+  }
+})();
