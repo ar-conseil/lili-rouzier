@@ -546,31 +546,4 @@ document.querySelectorAll(".apparait").forEach((el) => {
     }, { rootMargin: "0px 0px -15% 0px" });
     cibles.forEach((c) => { c.classList.add("voile"); obs.observe(c.parentElement); });
   }
-
-  // --- Services : grande image qui suit la souris (ordinateur) ---
-  const services = document.querySelectorAll(".services-grille li:not(.autre)");
-  if (souris && ordi && services.length) {
-    document.body.classList.add("services-suivi");
-    const ap = document.createElement("div"); ap.className = "apercu-image"; ap.setAttribute("aria-hidden", "true");
-    const im = document.createElement("img"); im.alt = ""; ap.appendChild(im); document.body.appendChild(ap);
-    let px = 0, py = 0, cx = 0, cy = 0, actif = false, rot = 0;
-    services.forEach((li) => {
-      const src = li.querySelector(".vignette img")?.getAttribute("src");
-      li.addEventListener("mouseenter", (e) => {
-        if (src && im.getAttribute("src") !== src) { if (actif) { ap.classList.add("change"); setTimeout(() => ap.classList.remove("change"), 120); } im.src = src; }
-        if (!actif) { cx = e.clientX + 32; cy = e.clientY + 24; }
-        actif = true; ap.classList.add("visible");
-      });
-      li.addEventListener("mouseleave", () => { actif = false; ap.classList.remove("visible"); });
-    });
-    window.addEventListener("mousemove", (e) => { px = e.clientX; py = e.clientY; }, { passive: true });
-    const bouger = () => {
-      const nx = lerp(cx, px + 32, 0.14), ny = lerp(cy, py + 24, 0.14);
-      rot = lerp(rot, Math.max(-4, Math.min(4, (nx - cx) * 0.25)), 0.12);
-      cx = nx; cy = ny;
-      ap.style.transform = `translate3d(${cx}px, ${cy}px, 0) rotate(${rot.toFixed(2)}deg)`;
-      requestAnimationFrame(bouger);
-    };
-    requestAnimationFrame(bouger);
-  }
 })();
