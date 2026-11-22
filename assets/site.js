@@ -533,7 +533,7 @@ document.querySelectorAll(".apparait").forEach((el) => {
   };
   requestAnimationFrame(boucle);
 
-  // --- Photos dévoilées (ordinateur) ---
+  // --- Photos qui apparaissent en fondu (ordinateur) ---
   if (ordi && "IntersectionObserver" in window) {
     const cibles = document.querySelectorAll(".pause picture, .moi figure picture, .methode figure picture, .cas-visuel picture");
     // On observe le cadre de la photo (qui a une vraie hauteur), pas la balise picture
@@ -543,7 +543,7 @@ document.querySelectorAll(".apparait").forEach((el) => {
         e.target.querySelectorAll(":scope > picture.voile").forEach((p) => p.classList.add("devoile"));
         obs.unobserve(e.target);
       });
-    }, { rootMargin: "0px 0px -15% 0px" });
+    }, { rootMargin: "0px 0px -5% 0px" });
     cibles.forEach((c) => { c.classList.add("voile"); obs.observe(c.parentElement); });
   }
 })();
